@@ -1,0 +1,4 @@
+Thank you for acquiring my asset.
+A prefab is already made for you so that you can start using the asset right away, but you're also provided with all of the base files such as textures, models and materials to play around with them.
+Take a look at the demo scene for some ideas. As you can see, you can move, delete and animate several parts of the gun as you like.
+This weapon is made for use in FPS games, but it can also look good from other perspectives.
