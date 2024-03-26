@@ -7,11 +7,16 @@ public class MovementController : MonoBehaviour
     Rigidbody rb;
     InputControler inputs;
     new AnimationController animation;
+    [SerializeField]Transform Fpscamera;
 
     [SerializeField] float walkSpeed = 2.5f;
     [SerializeField] float sprintSpeed = 5f;
 
-    [SerializeField] float camSencitivity = 2f;
+    [Header("Mouse Sensitivity")]
+    [SerializeField] float xClamp = 85f;
+    [SerializeField] float mouseX = 2f;
+    [SerializeField] float mouseY = 2f;
+    float xRotation;
 
     void Start()
     {
@@ -22,7 +27,14 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(Vector3.up, inputs.Look().x * camSencitivity* Time.deltaTime);
+        transform.Rotate(Vector3.up, inputs.Look().x * mouseX* Time.deltaTime);
+
+        xRotation -= inputs.Look().y * mouseY;
+        xRotation = Mathf.Clamp(xRotation, -xClamp, xClamp);
+        Vector3 targetRotation = transform.eulerAngles;
+        targetRotation.x = xRotation;
+
+        Fpscamera.eulerAngles = targetRotation;
     }
     private void FixedUpdate()
     {

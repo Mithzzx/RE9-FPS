@@ -12,9 +12,11 @@ public class InputControler : MonoBehaviour
     InputAction look;
     InputAction attack;
     InputAction sprint;
+    InputAction pause;
 
     bool isAttacking;
     bool isSptinting;
+    bool isPaused;
 
     private void Awake()
     {
@@ -37,6 +39,10 @@ public class InputControler : MonoBehaviour
         sprint.Enable();
         sprint.performed += context => isSptinting = !isSptinting;
 
+        pause = inputs.FirstPerson.Pause;
+        pause.Enable();
+        pause.performed += context => isPaused = !isPaused;
+
     }
 
     private void OnDisable()
@@ -45,6 +51,7 @@ public class InputControler : MonoBehaviour
         look.Disable();
         attack.Disable();
         sprint.Disable();
+        pause.Disable();
     }
 
     private void Update()
@@ -60,6 +67,8 @@ public class InputControler : MonoBehaviour
     public bool Attack() { return isAttacking; }
 
     public bool Sprint() { return isSptinting; }
+
+    public bool Pause() { return isPaused; }
     
 
 }
