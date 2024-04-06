@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
+    [SerializeField]Animator camanimator;
+    int crouch = Animator.StringToHash("crouch");
+
     Animator animator;
     int xmove = Animator.StringToHash("xVelocity");
     int ymove = Animator.StringToHash("yVelocity");
+    int crouched = Animator.StringToHash("isCrouch");
 
     [SerializeField] float acc;
     [SerializeField] float dec;
@@ -16,23 +21,29 @@ public class AnimationController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void ProcessAnimation(Vector2 v, bool isSprinting)
+    public void ProcessAnimation(Vector2 v, bool isSprinting, bool isCrouched)
     {
-        Lurp(v.y , xmove,isSprinting);
-        Lurp(v.x, ymove,isSprinting);
+        Lurp(v.y , xmove, isSprinting,isCrouched);
+        Lurp(v.x, ymove, isSprinting,isCrouched);
 
+        if (isCrouched) ToggleCrouch(true);
+        else ToggleCrouch(false);
     }
 
-    private void Lurp(float v ,int hash,bool isSprinting)
+    private void Lurp(float v ,int hash,bool isSprinting, bool isCrouched)
     {
-        float hashLimit = 0.5f;
-        if (isSprinting) hashLimit = 1f;
+        float hashLimit;
+
+        if (isSprinting || isCrouched) hashLimit = 1f;
+        else hashLimit = 0.5f;
+
         if (v > 0)
         {
             if (animator.GetFloat(hash) < hashLimit)
             {
                 animator.SetFloat(hash, animator.GetFloat(hash) + acc * Time.deltaTime);
             }
+            else animator.SetFloat(hash, animator.GetFloat(hash) - dec * Time.deltaTime);
         }
         else
         {
@@ -48,6 +59,7 @@ public class AnimationController : MonoBehaviour
             {
                 animator.SetFloat(hash, animator.GetFloat(hash) - acc * Time.deltaTime);
             }
+            else animator.SetFloat(hash, animator.GetFloat(hash) + dec * Time.deltaTime);
         }
         else
         {
@@ -57,4 +69,10 @@ public class AnimationController : MonoBehaviour
             }
         }
     }
+    private void ToggleCrouch(bool state)
+    {
+        animator.SetBool(crouched, state);
+        camanimator.SetBool(crouch, state);
+    }
+
 }

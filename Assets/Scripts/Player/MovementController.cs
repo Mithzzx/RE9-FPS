@@ -11,6 +11,7 @@ public class MovementController : MonoBehaviour
 
     [SerializeField] float walkSpeed = 2.5f;
     [SerializeField] float sprintSpeed = 5f;
+    [SerializeField] float crouchSpeed = 1.8f;
 
     [Header("Mouse Sensitivity")]
     [SerializeField] float xClamp = 85f;
@@ -40,6 +41,7 @@ public class MovementController : MonoBehaviour
     {
         float moveSpeed = walkSpeed;
         if (inputs.Sprint()) moveSpeed = sprintSpeed;
+        if (inputs.Crouch()) moveSpeed = crouchSpeed;
 
         if (inputs.Movement().magnitude > 0)
         {
@@ -52,6 +54,6 @@ public class MovementController : MonoBehaviour
             rb.velocity = Vector3.up * rb.velocity.y;
         }
 
-        animation.ProcessAnimation(inputs.Movement(), inputs.Sprint());
+        animation.ProcessAnimation(inputs.Movement(), inputs.Sprint(), inputs.Crouch());
     }
 }

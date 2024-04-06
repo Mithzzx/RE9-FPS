@@ -13,10 +13,12 @@ public class InputControler : MonoBehaviour
     InputAction attack;
     InputAction sprint;
     InputAction pause;
+    InputAction crouch;
 
     bool isAttacking;
     bool isSptinting;
     bool isPaused;
+    bool isCrouched;
 
     private void Awake()
     {
@@ -42,6 +44,10 @@ public class InputControler : MonoBehaviour
         pause = inputs.FirstPerson.Pause;
         pause.Enable();
         pause.performed += context => isPaused = !isPaused;
+
+        crouch = inputs.FirstPerson.Crouch;
+        crouch.Enable();
+        crouch.performed += context => isCrouched = !isCrouched;
 
     }
 
@@ -69,6 +75,7 @@ public class InputControler : MonoBehaviour
     public bool Sprint() { return isSptinting; }
 
     public bool Pause() { return isPaused; }
-    
+
+    public bool Crouch() { return isCrouched; }
 
 }
