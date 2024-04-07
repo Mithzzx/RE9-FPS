@@ -19,6 +19,9 @@ public class MovementController : MonoBehaviour
     [SerializeField] float mouseY = 2f;
     float xRotation;
 
+    [SerializeField] CapsuleCollider standCollider;
+    [SerializeField] CapsuleCollider crouchCollider; 
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -36,6 +39,17 @@ public class MovementController : MonoBehaviour
         targetRotation.x = xRotation;
 
         Fpscamera.eulerAngles = targetRotation;
+
+        if (inputs.Crouch())
+        {
+            standCollider.enabled = false;
+            crouchCollider.enabled = true;
+        }
+        else
+        {
+            standCollider.enabled = true;
+            crouchCollider.enabled = false;
+        }
     }
     private void FixedUpdate()
     {

@@ -7,6 +7,7 @@ public class AnimationController : MonoBehaviour
 {
     [SerializeField]Animator camanimator;
     int crouch = Animator.StringToHash("crouch");
+    int ismoving = Animator.StringToHash("moving");
 
     Animator animator;
     int xmove = Animator.StringToHash("xVelocity");
@@ -26,8 +27,8 @@ public class AnimationController : MonoBehaviour
         Lurp(v.y , xmove, isSprinting,isCrouched);
         Lurp(v.x, ymove, isSprinting,isCrouched);
 
-        if (isCrouched) ToggleCrouch(true);
-        else ToggleCrouch(false);
+        if (isCrouched) ToggleCrouch(true,v);
+        else ToggleCrouch(false,v);
     }
 
     private void Lurp(float v ,int hash,bool isSprinting, bool isCrouched)
@@ -69,10 +70,11 @@ public class AnimationController : MonoBehaviour
             }
         }
     }
-    private void ToggleCrouch(bool state)
+    private void ToggleCrouch(bool state,Vector2 vector)
     {
         animator.SetBool(crouched, state);
         camanimator.SetBool(crouch, state);
+        camanimator.SetBool(ismoving, vector.magnitude > 0);
     }
 
 }
