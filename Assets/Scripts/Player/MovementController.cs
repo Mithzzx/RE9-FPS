@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] float walkSpeed = 2.5f;
     [SerializeField] float sprintSpeed = 5f;
     [SerializeField] float crouchSpeed = 1.8f;
+    [SerializeField] float jumpForce = 2f;
 
     [Header("Mouse Sensitivity")]
     [SerializeField] float xClamp = 85f;
@@ -19,8 +21,12 @@ public class MovementController : MonoBehaviour
     [SerializeField] float mouseY = 2f;
     float xRotation;
 
+    [Header("Colliders")]
     [SerializeField] CapsuleCollider standCollider;
-    [SerializeField] CapsuleCollider crouchCollider; 
+    [SerializeField] CapsuleCollider crouchCollider;
+
+    [SerializeField] bool isGrounded;
+    [SerializeField] bool jumped;
 
     void Start()
     {
@@ -50,7 +56,18 @@ public class MovementController : MonoBehaviour
             standCollider.enabled = true;
             crouchCollider.enabled = false;
         }
+
+        //Ground Check
+        CheackGrounded();
+
+        if (inputs.Jump() && isGrounded)
+        {
+            rb.velocity = Vector3.up * jumpForce;
+            jumped = true;
+        }
+        else jumped = false;
     }
+
     private void FixedUpdate()
     {
         float moveSpeed = walkSpeed;
@@ -69,5 +86,12 @@ public class MovementController : MonoBehaviour
         }
 
         animation.ProcessAnimation(inputs.Movement(), inputs.Sprint(), inputs.Crouch());
+    }
+
+
+    private void CheackGrounded()
+    {
+        if (Physics.Raycast(transform.position + new Vector3(0,0.93f,0), Vector3.down, 1f)) isGrounded = true;
+        else isGrounded = false;
     }
 }
