@@ -10,16 +10,20 @@ public class MovementController : MonoBehaviour
     new AnimationController animation;
     [SerializeField]Transform Fpscamera;
 
+    [Header("Movement")]
     [SerializeField] float walkSpeed = 2.5f;
     [SerializeField] float sprintSpeed = 5f;
     [SerializeField] float crouchSpeed = 1.8f;
     [SerializeField] float jumpForce = 2f;
+    [SerializeField] Transform orintation;
+    Vector3 moveDirection;
 
     [Header("Mouse Sensitivity")]
     [SerializeField] float xClamp = 85f;
     [SerializeField] float mouseX = 2f;
     [SerializeField] float mouseY = 2f;
     float xRotation;
+    float yRotation;
 
     [Header("Colliders")]
     [SerializeField] CapsuleCollider standCollider;
@@ -37,14 +41,19 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(Vector3.up, inputs.Look().x * mouseX* Time.deltaTime);
 
-        xRotation -= inputs.Look().y * mouseY;
-        xRotation = Mathf.Clamp(xRotation, -xClamp, xClamp);
-        Vector3 targetRotation = transform.eulerAngles;
-        targetRotation.x = xRotation;
+        //mouse
 
-        Fpscamera.eulerAngles = targetRotation;
+        float mx = inputs.Look().x * Time.deltaTime * mouseX;
+        float my = inputs.Look().y * Time.deltaTime * mouseY;
+
+        yRotation += mx;
+        xRotation -= my;
+        xRotation = Math.Clamp(xRotation, -xClamp, xClamp);
+
+        transform.rotation = Quaternion.Euler(0, yRotation, 0);
+        Fpscamera.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+
 
         if (inputs.Crouch())
         {
@@ -62,7 +71,7 @@ public class MovementController : MonoBehaviour
 
         if (inputs.Jump() && isGrounded)
         {
-            rb.velocity = Vector3.up * jumpForce;
+            rb.AddForce(transform.up * jumpForce, ForceMode.Force);
             jumped = true;
         }
         else jumped = false;
@@ -73,21 +82,17 @@ public class MovementController : MonoBehaviour
         float moveSpeed = walkSpeed;
         if (inputs.Sprint()) moveSpeed = sprintSpeed;
         if (inputs.Crouch()) moveSpeed = crouchSpeed;
-
-        if (inputs.Movement().magnitude > 0)
-        {
-            rb.velocity = transform.forward * inputs.Movement().y * moveSpeed +
-                        transform.right * inputs.Movement().x * moveSpeed +
-                        transform.up * rb.velocity.y;
-        }
-        else if (rb.velocity.x != 0 || rb.velocity.z !=0)
-        {
-            rb.velocity = Vector3.up * rb.velocity.y;
-        }
+        Moveplayer(moveSpeed);
 
         animation.ProcessAnimation(inputs.Movement(), inputs.Sprint(), inputs.Crouch());
     }
 
+    private void Moveplayer(float moveSpeed)
+    {
+        moveDirection = orintation.forward * inputs.Movement().y + orintation.right * inputs.Movement().x;
+
+        rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
+    }
 
     private void CheackGrounded()
     {
