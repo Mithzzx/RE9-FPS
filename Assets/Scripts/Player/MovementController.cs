@@ -31,6 +31,8 @@ public class MovementController : MonoBehaviour
 
     [SerializeField] bool isGrounded;
     [SerializeField] bool jumped;
+    [SerializeField] float groundDrag;
+    [SerializeField] float airMultiplier;
 
     void Start()
     {
@@ -41,7 +43,6 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
-
         //mouse
 
         float mx = inputs.Look().x * Time.deltaTime * mouseX;
@@ -69,9 +70,13 @@ public class MovementController : MonoBehaviour
         //Ground Check
         CheackGrounded();
 
+        //Grag
+        if (isGrounded) rb.drag = groundDrag;
+        else rb.drag = 0f;
+
         if (inputs.Jump() && isGrounded)
         {
-            rb.AddForce(transform.up * jumpForce, ForceMode.Force);
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
             jumped = true;
         }
         else jumped = false;
@@ -83,6 +88,7 @@ public class MovementController : MonoBehaviour
         if (inputs.Sprint()) moveSpeed = sprintSpeed;
         if (inputs.Crouch()) moveSpeed = crouchSpeed;
         Moveplayer(moveSpeed);
+        SpeedControl(moveSpeed);
 
         animation.ProcessAnimation(inputs.Movement(), inputs.Sprint(), inputs.Crouch());
     }
@@ -91,12 +97,26 @@ public class MovementController : MonoBehaviour
     {
         moveDirection = orintation.forward * inputs.Movement().y + orintation.right * inputs.Movement().x;
 
-        rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
+        if(isGrounded) rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
+        //in air
+        else if (!isGrounded) rb.AddForce(moveDirection * walkSpeed * airMultiplier * 10f, ForceMode.Force);
     }
 
     private void CheackGrounded()
     {
         if (Physics.Raycast(transform.position + new Vector3(0,0.93f,0), Vector3.down, 1f)) isGrounded = true;
         else isGrounded = false;
+    }
+
+    private void SpeedControl(float moveSpeed)
+    {
+         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        // limit velocity if needed
+        if (flatVel.magnitude > moveSpeed)
+        {
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
     }
 }
