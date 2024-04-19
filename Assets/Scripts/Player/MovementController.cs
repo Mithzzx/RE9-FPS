@@ -14,9 +14,21 @@ public class MovementController : MonoBehaviour
     [SerializeField] float walkSpeed = 2.5f;
     [SerializeField] float sprintSpeed = 5f;
     [SerializeField] float crouchSpeed = 1.8f;
-    [SerializeField] float jumpForce = 2f;
     [SerializeField] Transform orintation;
     Vector3 moveDirection;
+
+    [Header("Jump")]
+    [SerializeField] float jumpForce = 2f;
+    [SerializeField] float jumpCoolDown;
+    [SerializeField] float airMultiplier;
+    [SerializeField] bool readyToJump = true;
+
+    [Header("SlopeMovement")]
+    [SerializeField] float maxSlopAngle = 80f;
+    [SerializeField] bool onslpoe;
+    bool exitingSlope;
+    RaycastHit slopHit;
+
 
     [Header("Mouse Sensitivity")]
     [SerializeField] float xClamp = 85f;
@@ -30,9 +42,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] CapsuleCollider crouchCollider;
 
     [SerializeField] bool isGrounded;
-    [SerializeField] bool jumped;
     [SerializeField] float groundDrag;
-    [SerializeField] float airMultiplier;
 
     void Start()
     {
@@ -74,12 +84,13 @@ public class MovementController : MonoBehaviour
         if (isGrounded) rb.drag = groundDrag;
         else rb.drag = 0f;
 
-        if (inputs.Jump() && isGrounded)
+        if (inputs.Jump() && isGrounded && readyToJump)
         {
-            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-            jumped = true;
+            readyToJump = false;
+            Jump();
+
+            Invoke("ResetJump", jumpCoolDown);
         }
-        else jumped = false;
     }
 
     private void FixedUpdate()
@@ -96,27 +107,79 @@ public class MovementController : MonoBehaviour
     private void Moveplayer(float moveSpeed)
     {
         moveDirection = orintation.forward * inputs.Movement().y + orintation.right * inputs.Movement().x;
+        //inslop
+        if (OnSlope() && exitingSlope)
+        {
+            rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
 
-        if(isGrounded) rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
+            if (rb.velocity.y>0)
+            {
+                rb.AddForce(Vector3.down * 30f, ForceMode.Force);
+            }
+        }
+        //in ground
+        else if (isGrounded) rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode.Force);
         //in air
         else if (!isGrounded) rb.AddForce(moveDirection * walkSpeed * airMultiplier * 10f, ForceMode.Force);
+
+        //turn off gravity on slope
+        rb.useGravity = !OnSlope();
+        onslpoe = OnSlope();
     }
 
     private void CheackGrounded()
     {
-        if (Physics.Raycast(transform.position + new Vector3(0,0.93f,0), Vector3.down, 1f)) isGrounded = true;
+        if (Physics.Raycast(transform.position + new Vector3(0,0.98f,0), Vector3.down, 1f)) isGrounded = true;
         else isGrounded = false;
     }
 
     private void SpeedControl(float moveSpeed)
     {
-         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        // limit velocity if needed
-        if (flatVel.magnitude > moveSpeed)
+        if (OnSlope() && exitingSlope)
         {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            if (rb.velocity.magnitude > moveSpeed)
+                rb.velocity = rb.velocity.normalized * moveSpeed;
         }
+
+        else
+        {
+            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+            // limit velocity if needed
+            if (flatVel.magnitude > moveSpeed)
+            {
+                Vector3 limitedVel = flatVel.normalized * moveSpeed;
+                rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            }
+        }
+    }
+
+    private void Jump()
+    {
+        exitingSlope = true;
+
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+    }
+
+    private void ResetJump()
+    {
+        exitingSlope = false;
+        readyToJump = true;
+    }
+
+    private bool OnSlope()
+    {
+        if (Physics.Raycast(transform.position,Vector3.down,out slopHit,1f))
+        {
+            float angle = Vector3.Angle(Vector3.up, slopHit.normal);
+            return angle < maxSlopAngle && angle != 0;
+        }
+        return false;
+    }
+
+    private Vector3 GetSlopeMoveDirection()
+    {
+        return Vector3.ProjectOnPlane(moveDirection, slopHit.normal).normalized;
     }
 }

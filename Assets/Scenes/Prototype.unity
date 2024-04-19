@@ -305,8 +305,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 230430823}
   m_LocalRotation: {x: -0.0066921366, y: -0.014648846, z: -0.23129794, w: 0.97274965}
-  m_LocalPosition: {x: -3.7828, y: 1.3542, z: -8.2574}
-  m_LocalScale: {x: 5.1649, y: 0.1974, z: 2.0157397}
+  m_LocalPosition: {x: -3.5996, y: 1.7652, z: -7.4907}
+  m_LocalScale: {x: 8.573217, y: 0.1974, z: 3.55516}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 923432890}
@@ -2328,18 +2328,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Fpscamera: {fileID: 330585546}
-  walkSpeed: 2
-  sprintSpeed: 15
+  walkSpeed: 2.6
+  sprintSpeed: 4.6
   crouchSpeed: 1.8
-  jumpForce: 30
   orintation: {fileID: 1186426620}
+  jumpForce: 5
+  jumpCoolDown: 0.25
+  airMultiplier: 0.4
+  readyToJump: 1
+  maxSlopAngle: 60
+  onslpoe: 0
   xClamp: 78
   mouseX: 23
   mouseY: 23
   standCollider: {fileID: 1985789954}
   crouchCollider: {fileID: 1400428335}
   isGrounded: 0
-  jumped: 0
+  groundDrag: 1.3
 --- !u!4 &1985789952 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 515dc7bea816b4ba79d18915e2453497,
