@@ -2324,21 +2324,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1985789946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f58687d6e4424ac795356c7c55e00ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 75c8df4643b2d4b608603d3d09687c48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Fpscamera: {fileID: 330585546}
-  walkSpeed: 2.6
-  sprintSpeed: 4.6
+  walkSpeed: 2.2
+  sprintSpeed: 4
   crouchSpeed: 1.8
   orintation: {fileID: 1186426620}
   jumpForce: 5
   jumpCoolDown: 0.25
-  airMultiplier: 0.4
+  airMultiplier: 0.3
   readyToJump: 1
-  maxSlopAngle: 60
+  maxSlopAngle: 80
   onslpoe: 0
-  xClamp: 78
+  xClamp: 85
   mouseX: 23
   mouseY: 23
   standCollider: {fileID: 1985789954}
