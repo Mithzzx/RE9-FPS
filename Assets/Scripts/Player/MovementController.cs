@@ -41,7 +41,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] CapsuleCollider standCollider;
     [SerializeField] CapsuleCollider crouchCollider;
 
-    [SerializeField] bool isGrounded;
+    [SerializeField] public bool isGrounded;
     [SerializeField] float groundDrag;
 
     void Start()
@@ -101,7 +101,7 @@ public class MovementController : MonoBehaviour
         Moveplayer(moveSpeed);
         SpeedControl(moveSpeed);
 
-        animation.ProcessAnimation(inputs.Movement(), inputs.Sprint(), inputs.Crouch());
+        animation.ProcessAnimation(inputs.Movement(), inputs.Sprint(), inputs.Crouch(), inputs.Jump());
     }
 
     private void Moveplayer(float moveSpeed)

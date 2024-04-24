@@ -6,6 +6,8 @@ using UnityEngine;
 public class AnimationController : MonoBehaviour
 {
     [SerializeField]Animator camanimator;
+    MovementController movement;
+
     int crouch = Animator.StringToHash("crouch");
     int ismoving = Animator.StringToHash("moving");
 
@@ -13,6 +15,7 @@ public class AnimationController : MonoBehaviour
     int xmove = Animator.StringToHash("xVelocity");
     int ymove = Animator.StringToHash("yVelocity");
     int crouched = Animator.StringToHash("isCrouch");
+    int inAir = Animator.StringToHash("inAir");
 
     [SerializeField] float acc;
     [SerializeField] float dec;
@@ -20,10 +23,18 @@ public class AnimationController : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        movement = GetComponentInParent<MovementController>();
+        
     }
 
-    public void ProcessAnimation(Vector2 v, bool isSprinting, bool isCrouched)
+    public void ProcessAnimation(Vector2 v, bool isSprinting, bool isCrouched, bool jumped)
     {
+        //Processing Jump
+        if (jumped) animator.Play("Jumping Up");
+
+        if (movement.isGrounded) animator.SetBool(inAir, false);
+        else animator.SetBool(inAir, true);
+
         Lurp(v.y , xmove, isSprinting,isCrouched);
         Lurp(v.x, ymove, isSprinting,isCrouched);
 
