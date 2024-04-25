@@ -16,6 +16,8 @@ public class AnimationController : MonoBehaviour
     int ymove = Animator.StringToHash("yVelocity");
     int crouched = Animator.StringToHash("isCrouch");
     int inAir = Animator.StringToHash("inAir");
+    int isWalking = Animator.StringToHash("isWalking");
+    int isSprint = Animator.StringToHash("isSprint");
 
     [SerializeField] float acc;
     [SerializeField] float dec;
@@ -30,10 +32,15 @@ public class AnimationController : MonoBehaviour
     public void ProcessAnimation(Vector2 v, bool isSprinting, bool isCrouched, bool jumped)
     {
         //Processing Jump
-        if (jumped) animator.Play("Jumping Up");
+        if (jumped && movement.isGrounded) animator.Play("Jumping Up");
 
-        if (movement.isGrounded) animator.SetBool(inAir, false);
-        else animator.SetBool(inAir, true);
+        //Assigining bools
+        animator.SetBool(inAir, !movement.isGrounded);
+        animator.SetBool(isSprint, isSprinting);
+
+        if (v.magnitude > 0 && !isSprinting) animator.SetBool(isWalking, true);
+        else animator.SetBool(isWalking, false);
+
 
         Lurp(v.y , xmove, isSprinting,isCrouched);
         Lurp(v.x, ymove, isSprinting,isCrouched);

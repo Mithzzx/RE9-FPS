@@ -21,7 +21,7 @@ public class MovementController : MonoBehaviour
     [SerializeField] float jumpForce = 2f;
     [SerializeField] float jumpCoolDown;
     [SerializeField] float airMultiplier;
-    [SerializeField] bool readyToJump = true;
+    [SerializeField] public bool readyToJump = true;
 
     [Header("SlopeMovement")]
     [SerializeField] float maxSlopAngle = 80f;
@@ -91,6 +91,7 @@ public class MovementController : MonoBehaviour
 
             Invoke("ResetJump", jumpCoolDown);
         }
+        animation.ProcessAnimation(inputs.Movement(), inputs.Sprint(), inputs.Crouch(), inputs.Jump());
     }
 
     private void FixedUpdate()
@@ -100,21 +101,19 @@ public class MovementController : MonoBehaviour
         if (inputs.Crouch()) moveSpeed = crouchSpeed;
         Moveplayer(moveSpeed);
         SpeedControl(moveSpeed);
-
-        animation.ProcessAnimation(inputs.Movement(), inputs.Sprint(), inputs.Crouch(), inputs.Jump());
     }
 
     private void Moveplayer(float moveSpeed)
     {
         moveDirection = orintation.forward * inputs.Movement().y + orintation.right * inputs.Movement().x;
         //inslop
-        if (OnSlope() && exitingSlope)
+        if (OnSlope() && !exitingSlope)
         {
             rb.AddForce(GetSlopeMoveDirection() * moveSpeed * 20f, ForceMode.Force);
 
             if (rb.velocity.y>0)
             {
-                rb.AddForce(Vector3.down * 30f, ForceMode.Force);
+                rb.AddForce(Vector3.down * 40f, ForceMode.Force);
             }
         }
         //in ground
@@ -129,13 +128,13 @@ public class MovementController : MonoBehaviour
 
     private void CheackGrounded()
     {
-        if (Physics.Raycast(transform.position + new Vector3(0,0.98f,0), Vector3.down, 1f)) isGrounded = true;
+        if (Physics.Raycast(transform.position + new Vector3(0,0.98f,0), Vector3.down, 1.3f)) isGrounded = true;
         else isGrounded = false;
     }
 
     private void SpeedControl(float moveSpeed)
     {
-        if (OnSlope() && exitingSlope)
+        if (OnSlope() && !exitingSlope)
         {
             if (rb.velocity.magnitude > moveSpeed)
                 rb.velocity = rb.velocity.normalized * moveSpeed;
@@ -170,9 +169,10 @@ public class MovementController : MonoBehaviour
 
     private bool OnSlope()
     {
-        if (Physics.Raycast(transform.position,Vector3.down,out slopHit,1f))
+        if (Physics.Raycast(transform.position,Vector3.down,out slopHit,1.3f))
         {
             float angle = Vector3.Angle(Vector3.up, slopHit.normal);
+            isGrounded = true;
             return angle < maxSlopAngle && angle != 0;
         }
         return false;
