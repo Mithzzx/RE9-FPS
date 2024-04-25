@@ -1851,12 +1851,12 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.45661724
-  m_Height: 1.4471769
+  m_Height: 1.3724623
   m_Direction: 1
-  m_Center: {x: 0.056731462, y: 0.77087975, z: 0.10678846}
+  m_Center: {x: 0.056731462, y: 0.7335224, z: 0.10678846}
 --- !u!1 &1429693279
 GameObject:
   m_ObjectHideFlags: 0
@@ -2461,15 +2461,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Fpscamera: {fileID: 330585546}
-  walkSpeed: 2.2
-  sprintSpeed: 4
+  walkSpeed: 3
+  sprintSpeed: 4.5
   crouchSpeed: 1.8
   orintation: {fileID: 1186426620}
   jumpForce: 5.6
   jumpCoolDown: 0.25
   airMultiplier: 0.3
   readyToJump: 1
-  maxSlopAngle: 80
+  maxSlopAngle: 47
   onslpoe: 0
   xClamp: 85
   mouseX: 23
