@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: WFX_BulletHole Wood Lighted
-  m_Shader: {fileID: 4800000, guid: edb905ac1dd1f8d4688248976976eae3, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1f056903eb75cee4591fce095534ce2e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
