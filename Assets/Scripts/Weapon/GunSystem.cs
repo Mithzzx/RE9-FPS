@@ -28,9 +28,11 @@ public class GunSystem : MonoBehaviour
     [Header("Reference")]
     [SerializeField] InputControler input;
     [SerializeField] Camera fpscam;
+    [SerializeField] Recoil recoil;
     [SerializeField] ParticleSystem[] muzzelFlashs;
     [SerializeField] Light flashLight;
     RaycastHit hit;
+    [SerializeField] float shootEff;
 
     private void Update()
     {
@@ -61,10 +63,16 @@ public class GunSystem : MonoBehaviour
         //creating Bullet
         if (Physics.Raycast(fpscam.transform.position,fpscam.transform.forward,out hit,range))
         {
-            Debug.Log("hooting");
             GameObject bh = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(bh, 4);
         }
+
+        //Recoil
+        recoil.RecoilFire();
+
+        //Recoil Animaton
+        Vector3 currentPos = transform.localPosition;
+        transform.localPosition = Vector3.Lerp(currentPos, currentPos + new Vector3(0, 0, 0.5f), shootEff*Time.deltaTime);
 
         //StartDelay
         StartCoroutine(FireRateHandeler());
