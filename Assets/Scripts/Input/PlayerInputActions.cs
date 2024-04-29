@@ -55,6 +55,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""6e59edf9-d877-4d7f-aeec-fbaa103cc8e7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""ff555673-e958-4545-8ab9-e307688d90d4"",
@@ -289,6 +298,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0c8be69-e7c8-4534-a874-e02de794e3c2"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c3719fc-7a01-4aba-9f4d-6809ebf1fed7"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -300,6 +331,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_FirstPerson_Move = m_FirstPerson.FindAction("Move", throwIfNotFound: true);
         m_FirstPerson_Look = m_FirstPerson.FindAction("Look", throwIfNotFound: true);
         m_FirstPerson_Attack = m_FirstPerson.FindAction("Attack", throwIfNotFound: true);
+        m_FirstPerson_Aim = m_FirstPerson.FindAction("Aim", throwIfNotFound: true);
         m_FirstPerson_Sprint = m_FirstPerson.FindAction("Sprint", throwIfNotFound: true);
         m_FirstPerson_Pause = m_FirstPerson.FindAction("Pause", throwIfNotFound: true);
         m_FirstPerson_Crouch = m_FirstPerson.FindAction("Crouch", throwIfNotFound: true);
@@ -368,6 +400,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_FirstPerson_Move;
     private readonly InputAction m_FirstPerson_Look;
     private readonly InputAction m_FirstPerson_Attack;
+    private readonly InputAction m_FirstPerson_Aim;
     private readonly InputAction m_FirstPerson_Sprint;
     private readonly InputAction m_FirstPerson_Pause;
     private readonly InputAction m_FirstPerson_Crouch;
@@ -379,6 +412,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_FirstPerson_Move;
         public InputAction @Look => m_Wrapper.m_FirstPerson_Look;
         public InputAction @Attack => m_Wrapper.m_FirstPerson_Attack;
+        public InputAction @Aim => m_Wrapper.m_FirstPerson_Aim;
         public InputAction @Sprint => m_Wrapper.m_FirstPerson_Sprint;
         public InputAction @Pause => m_Wrapper.m_FirstPerson_Pause;
         public InputAction @Crouch => m_Wrapper.m_FirstPerson_Crouch;
@@ -401,6 +435,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @Aim.started += instance.OnAim;
+            @Aim.performed += instance.OnAim;
+            @Aim.canceled += instance.OnAim;
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
@@ -426,6 +463,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @Aim.started -= instance.OnAim;
+            @Aim.performed -= instance.OnAim;
+            @Aim.canceled -= instance.OnAim;
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
@@ -460,6 +500,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnCrouch(InputAction.CallbackContext context);

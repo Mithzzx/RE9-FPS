@@ -63,7 +63,7 @@ public class MovementController : MonoBehaviour
         xRotation = Math.Clamp(xRotation, -xClamp, xClamp);
 
         transform.rotation = Quaternion.Euler(0, yRotation, 0);
-        Fpscamera.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
+        Fpscamera.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
 
         if (inputs.Crouch())

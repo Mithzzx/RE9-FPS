@@ -11,12 +11,14 @@ public class InputControler : MonoBehaviour
     InputAction move;
     InputAction look;
     InputAction attack;
+    InputAction aim;
     InputAction sprint;
     InputAction pause;
     InputAction crouch;
     InputAction jump;
 
     bool isAttacking;
+    bool isAiming;
     bool isSptinting;
     bool isPaused;
     bool isCrouched;
@@ -38,6 +40,10 @@ public class InputControler : MonoBehaviour
         attack = inputs.FirstPerson.Attack;
         attack.Enable();
         attack.performed += context => isAttacking = !isAttacking;
+
+        aim = inputs.FirstPerson.Aim;
+        aim.Enable();
+        aim.performed += context => isAiming = !isAiming;
 
         sprint = inputs.FirstPerson.Sprint;
         sprint.Enable();
@@ -79,6 +85,8 @@ public class InputControler : MonoBehaviour
     public Vector2 Movement() { return move.ReadValue<Vector2>(); }
 
     public bool Attack() { return isAttacking; }
+
+    public bool Aim()    { return isAiming; }
 
     public bool Sprint() { return isSptinting; }
 
