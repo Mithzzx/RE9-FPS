@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CursorVisiblity : MonoBehaviour
 {
-    [SerializeField] InputControler inputs;
+    [SerializeField] InputController inputs;
 
     private void Start()
     {

@@ -36,7 +36,7 @@ public class GunSystem : MonoBehaviour
     [SerializeField] GameObject bulletHole;
 
     [Header("Reference")]
-    [SerializeField] InputControler input;
+    [SerializeField] InputController input;
     [SerializeField] Camera fpscam;
     [SerializeField] Recoil recoil;
     [SerializeField] ParticleSystem[] muzzelFlashs;

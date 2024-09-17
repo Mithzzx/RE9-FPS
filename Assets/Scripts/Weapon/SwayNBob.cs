@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SwayNBob : MonoBehaviour
 {
-    [SerializeField] InputControler input;
+    [SerializeField] InputController input;
     [SerializeField] MovementController mover;
 
     [Header("Sway")]

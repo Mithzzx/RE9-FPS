@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Player
 {
-    public class InputControler : MonoBehaviour
+    public class InputController : MonoBehaviour
     {
         [SerializeField] PlayerInputActions inputs;
 

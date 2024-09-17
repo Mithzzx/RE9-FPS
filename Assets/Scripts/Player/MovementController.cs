@@ -6,11 +6,12 @@ namespace Player
     public class MovementController : MonoBehaviour
     {
         Rigidbody rb;
-        InputControler inputs;
+        InputController inputs;
         new AnimationController animation;
         [SerializeField]Transform Fpscamera;
 
         [Header("Movement")]
+        [SerializeField] public bool canMove = true;
         [SerializeField] float walkSpeed = 2.5f;
         [SerializeField] float sprintSpeed = 5f;
         [SerializeField] float crouchSpeed = 1.8f;
@@ -38,8 +39,10 @@ namespace Player
         float yRotation;
 
         [Header("Colliders")]
-        [SerializeField] CapsuleCollider standCollider;
+        [SerializeField] CapsuleCollider standCollider1;
+        [SerializeField] CapsuleCollider standCollider2;
         [SerializeField] CapsuleCollider crouchCollider;
+        
 
         [SerializeField] public bool isGrounded;
         [SerializeField] float groundDrag;
@@ -47,7 +50,7 @@ namespace Player
         void Start()
         {
             rb = GetComponent<Rigidbody>();
-            inputs = GetComponent<InputControler>();
+            inputs = GetComponent<InputController>();
             animation = GetComponent<AnimationController>();
         }
 
@@ -68,12 +71,14 @@ namespace Player
 
             if (inputs.Crouch())
             {
-                standCollider.enabled = false;
+                standCollider1.enabled = false;
+                standCollider2.enabled = false;
                 crouchCollider.enabled = true;
             }
             else
             {
-                standCollider.enabled = true;
+                standCollider1.enabled = true;
+                standCollider2.enabled = true;
                 crouchCollider.enabled = false;
             }
 
@@ -96,11 +101,14 @@ namespace Player
 
         private void FixedUpdate()
         {
-            float moveSpeed = walkSpeed;
-            if (inputs.Sprint()) moveSpeed = sprintSpeed;
-            if (inputs.Crouch()) moveSpeed = crouchSpeed;
-            Moveplayer(moveSpeed);
-            SpeedControl(moveSpeed);
+            if (canMove)
+            {
+                float moveSpeed = walkSpeed;
+                if (inputs.Sprint()) moveSpeed = sprintSpeed;
+                if (inputs.Crouch()) moveSpeed = crouchSpeed;
+                Moveplayer(moveSpeed);
+                SpeedControl(moveSpeed);
+            } 
         }
 
         private void Moveplayer(float moveSpeed)
