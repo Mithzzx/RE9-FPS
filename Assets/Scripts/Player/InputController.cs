@@ -15,6 +15,7 @@ namespace Player
         InputAction pause;
         InputAction crouch;
         InputAction jump;
+        InputAction slide;
 
         bool isAttacking;
         bool isAiming;
@@ -22,6 +23,7 @@ namespace Player
         bool isPaused;
         bool isCrouched;
         bool isJumped;
+        bool isSliding;
 
         private void Awake()
         {
@@ -59,6 +61,10 @@ namespace Player
             jump = inputs.FirstPerson.Jump;
             jump.Enable();
             jump.performed += context => isJumped = !isJumped;
+            
+            slide = inputs.FirstPerson.Slide;
+            slide.Enable();
+            slide.performed += context => isSliding = !isSliding;
 
         }
 
@@ -71,6 +77,7 @@ namespace Player
             pause.Disable();
             crouch.Disable();
             jump.Disable();
+            slide.Disable();
         }
 
         private void Update()
@@ -81,7 +88,11 @@ namespace Player
 
         public Vector2 Look() { return look.ReadValue<Vector2>();  }
 
-        public Vector2 Movement() { return move.ReadValue<Vector2>(); }
+        public Vector2 Movement()
+        {
+            Debug.Log(Movement());
+            return move.ReadValue<Vector2>();
+        }
 
         public bool Attack() { return isAttacking; }
 
@@ -94,6 +105,8 @@ namespace Player
         public bool Crouch() { return isCrouched; }
 
         public bool Jump() { return isJumped; }
+        
+        public bool Slide() { return isSliding; }
 
     }
 }

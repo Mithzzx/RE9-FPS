@@ -17,6 +17,7 @@ namespace Player
         int inAir = Animator.StringToHash("inAir");
         int isWalking = Animator.StringToHash("isWalking");
         int isSprint = Animator.StringToHash("isSprint");
+        int isSlide = Animator.StringToHash("isSlide");
 
         [SerializeField] float acc;
         [SerializeField] float dec;
@@ -26,6 +27,11 @@ namespace Player
             animator = GetComponent<Animator>();
             movement = GetComponentInParent<MovementController>();
         
+        }
+        
+        public void ProcessSlide(bool isSliding)
+        {
+            animator.SetBool(isSlide, isSliding);
         }
 
         public void ProcessAnimation(Vector2 v, bool isSprinting, bool isCrouched, bool jumped)
