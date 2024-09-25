@@ -81,7 +81,7 @@ namespace Player
                 standCollider2.enabled = true;
                 crouchCollider.enabled = false;
             }
-
+  
             //Ground Check
             CheackGrounded();
 

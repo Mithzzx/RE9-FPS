@@ -19,7 +19,7 @@ namespace Player
 
         bool isAttacking;
         bool isAiming;
-        bool isSptinting;
+        bool isSprinting;
         bool isPaused;
         bool isCrouched;
         bool isJumped;
@@ -48,7 +48,7 @@ namespace Player
 
             sprint = inputs.FirstPerson.Sprint;
             sprint.Enable();
-            sprint.performed += context => isSptinting = !isSptinting;
+            sprint.performed += context => isSprinting = !isSprinting;
 
             pause = inputs.FirstPerson.Pause;
             pause.Enable();
@@ -98,7 +98,7 @@ namespace Player
 
         public bool Aim()    { return isAiming; }
 
-        public bool Sprint() { return isSptinting; }
+        public bool Sprint() { return isSprinting; }
 
         public bool Pause() { return isPaused; }
 
