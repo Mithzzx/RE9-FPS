@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 1f55a77b80ebd43d99d0d64670c83e82
+  productGUID: 7eac8f5ec2d03402fb80184d1c1dec60
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: RE9
+  productName: Project Undead
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -852,14 +852,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: RE9
+  metroPackageName: Project Undead
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: RE9
+  metroApplicationDescription: Project Undead
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -930,11 +930,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 3878ba79-f6b9-4048-b697-b00a7b2eaf84
+  cloudProjectId: c1821724-0e5f-4b11-bc30-1a67fca40d95
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: RE9
-  organizationId: mithunrajan77
+  projectName: Project Undead
+  organizationId: mithzz
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
