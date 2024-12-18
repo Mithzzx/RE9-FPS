@@ -27,7 +27,7 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "d0d546df-59e7-4fab-83c4-f776199c0ed5",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
@@ -36,7 +36,7 @@
                     "name": "Aim",
                     "type": "Button",
                     "id": "6e59edf9-d877-4d7f-aeec-fbaa103cc8e7",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press",
                     "initialStateCheck": false
@@ -45,7 +45,7 @@
                     "name": "Sprint",
                     "type": "Button",
                     "id": "ff555673-e958-4545-8ab9-e307688d90d4",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(behavior=2)",
                     "initialStateCheck": false
@@ -316,6 +316,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Slide",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "New action map",
+            "id": "507f3608-e755-4b81-94ee-85b01342c26d",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "7fe7f34f-5710-4beb-a204-e6111ccf2d01",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5007f3e2-6be1-4775-8dc8-d5c2d2115fb4",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
