@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterImpact2_mobile
+  m_Shader: {fileID: 4800000, guid: 58eb399dc6162a041b5fe246273661bb, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 14eef8247fc290746841a6edecaf6784, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _CutOut:
+        m_Texture: {fileID: 2800000, guid: 90adfbcbafe1a0143b509c8b5d78cbe6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: df1ec0f146d570a4b8bec0452b45598a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpAmt: -0.3
+    - _ColorStrength: 0.6
+    - _InvFade: 1.6071428
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _TintColor: {r: 0.7867648, g: 0.92058814, b: 1, a: 0.583}
