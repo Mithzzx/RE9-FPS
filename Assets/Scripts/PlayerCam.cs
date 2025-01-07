@@ -2,9 +2,14 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
+    [Header("Mouse Sensitivity")]
     [SerializeField] private float sensX;
     [SerializeField] private float sensY;
     
+    [Header("Fps")]
+    [SerializeField] private int fps = 60;
+    
+    [Header("References")]
     [SerializeField] private InputHandler input;
     [SerializeField] private Transform orientation;
     
@@ -15,6 +20,8 @@ public class PlayerCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        
+        Application.targetFrameRate = fps;
     }
     
     private void Update()
