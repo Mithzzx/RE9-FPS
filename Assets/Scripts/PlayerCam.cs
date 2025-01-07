@@ -2,37 +2,32 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
-    [Header("Input References")]
-    [SerializeField] public InputHandler input;
+    [SerializeField] private float sensX;
+    [SerializeField] private float sensY;
     
-    [Header("Sensitivity")]
-    [SerializeField] public float sensX = 10f;
-    [SerializeField] public float sensY = 10f;
+    [SerializeField] private InputHandler input;
+    [SerializeField] private Transform orientation;
     
+    private float xRotation;
+    private float yRotation;
     
-    public Transform orientation;
-    
-    float xRotation;
-    float yRotation;
-    
-    void Start()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
     
-    void Update()
+    private void Update()
     {
         float mouseX = input.LookInput.x * sensX * Time.deltaTime;
         float mouseY = input.LookInput.y * sensY * Time.deltaTime;
         
-        yRotation += mouseX;
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 75f);
+        yRotation += mouseX;
         
-        // Rotate the camera and the player's orientation
+        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
-        orientation.rotation = Quaternion.Euler(0f, yRotation, 0f);
-        
-    }
+        orientation.rotation= Quaternion.Euler(0f, yRotation, 0f);
+    } 
 }

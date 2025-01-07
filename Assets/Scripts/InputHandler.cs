@@ -19,6 +19,7 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private string crouch = "Crouch";
     [SerializeField] private string slide = "Slide";
     [SerializeField] private string pause = "Pause";
+    [SerializeField] private string grapple = "Grapple";
     
     private InputAction moveAction;
     private InputAction lookAction;
@@ -29,6 +30,7 @@ public class InputHandler : MonoBehaviour
     private InputAction crouchAction;
     private InputAction slideAction;
     private InputAction pauseAction;
+    private InputAction grappleAction;
     
     public Vector2 MoveInput { get; private set; }
     public Vector2 LookInput { get; private set; }
@@ -39,6 +41,7 @@ public class InputHandler : MonoBehaviour
     public bool CrouchTriggered { get; private set; }
     public bool SlideTriggered { get; private set; }
     public bool PauseTriggered { get; private set; }
+    public bool GrappleTriggered { get; private set; }
     
     public static InputHandler Instance { get; private set; }
 
@@ -64,6 +67,7 @@ public class InputHandler : MonoBehaviour
         crouchAction = input.FindActionMap(actionMapName).FindAction(crouch);
         slideAction = input.FindActionMap(actionMapName).FindAction(slide);
         pauseAction = input.FindActionMap(actionMapName).FindAction(pause);
+        grappleAction = input.FindActionMap(actionMapName).FindAction(grapple);
         RegisterInputActions();
     }
     
@@ -82,6 +86,7 @@ public class InputHandler : MonoBehaviour
         crouchAction.performed += context => CrouchTriggered = !CrouchTriggered;
         slideAction.performed += context => SlideTriggered = !SlideTriggered;
         pauseAction.performed += context => PauseTriggered = !PauseTriggered;
+        grappleAction.performed += context => GrappleTriggered = !GrappleTriggered;
     }
     
     private void OnEnable()
@@ -95,6 +100,7 @@ public class InputHandler : MonoBehaviour
         crouchAction.Enable();
         slideAction.Enable();
         pauseAction.Enable();
+        grappleAction.Enable();
     }
     
     private void OnDisable()
@@ -108,6 +114,7 @@ public class InputHandler : MonoBehaviour
         crouchAction.Disable();
         slideAction.Disable();
         pauseAction.Disable();
+        grappleAction.Disable();
     }
     
 }
