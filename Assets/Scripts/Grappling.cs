@@ -23,7 +23,7 @@ public class Grappling : MonoBehaviour
     [SerializeField] private float grappleCooldown = 1f;
     [SerializeField] private float grappleCooldownTimer;
     
-    private bool grappling;
+    public bool grappling;
 
     private void Start()
     {
@@ -32,7 +32,7 @@ public class Grappling : MonoBehaviour
 
     private void Update()
     {
-        if (canGrapple && input.AttackTriggered) StartGrapple();
+        if (canGrapple && input.GrappleTriggered) StartGrapple();
 
         if (grappleCooldownTimer > 0) grappleCooldownTimer -= Time.deltaTime;
     }

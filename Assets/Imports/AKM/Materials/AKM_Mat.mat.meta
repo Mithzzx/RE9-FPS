@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 08d76a9e6d6712d4aa9193bdb4f6b55f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180663
+  packageName: FPS Weapon - AKM
+  packageVersion: 1.0
+  assetPath: Assets/DelthorGames/AKM/Materials/AKM_Mat.mat
+  uploadId: 394365

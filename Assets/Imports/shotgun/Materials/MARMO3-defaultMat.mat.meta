@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2715b4cf0ca32444c87c9ed33288343c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 26685
+  packageName: Shotgun
+  packageVersion: 4.5.5
+  assetPath: Assets/shotgun/Materials/MARMO3-defaultMat.mat
+  uploadId: 44547

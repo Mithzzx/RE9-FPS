@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 80cfc9f5e8fbfa1458fdd439aeb9cfec
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 180663
+  packageName: FPS Weapon - AKM
+  packageVersion: 1.0
+  assetPath: Assets/DelthorGames/AKM/HowToUse.txt
+  uploadId: 394365

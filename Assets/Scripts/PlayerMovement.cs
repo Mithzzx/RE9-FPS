@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float walkSpeed = 6f;
     [SerializeField] private float sprintSpeed = 10f;
+    [SerializeField] private float swingSpeed = 20f;
     [SerializeField] private float groundDrag = 6f;
     
     [Header("Jumping")]
@@ -43,12 +44,14 @@ public class PlayerMovement : MonoBehaviour
         Freeze,
         Walking,
         Sprinting,
+        Swinging,
         Air
     }
 
     public bool freeze;
     
     public bool activeGrapple;
+    public bool swinging;
     
     private void Start()
     {
@@ -112,6 +115,13 @@ public class PlayerMovement : MonoBehaviour
             moveSpeed = walkSpeed;
         }
         
+        // Mode - Swinging
+        else if (swinging)
+        {
+            state = MovementState.Swinging;
+            moveSpeed = swingSpeed;
+        }
+        
         // Mode - Air
         else
         {
@@ -122,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         if (activeGrapple) return;
+        if (swinging) return;
         
         moveDirection = orientation.forward * input.MoveInput.y + orientation.right * input.MoveInput.x;
         moveDirection.y = 0;
@@ -135,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.AddForce(Vector3.down * 50f ,ForceMode.Force);
             }
         }
-        if (isGrounded)
+        else if (isGrounded)
         {
             rb.AddForce(moveDirection * (moveSpeed * 10f), ForceMode.Force);
         }
@@ -154,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
         if (OnSlope() && !exitingSlope)
         {
             if (rb.linearVelocity.magnitude > moveSpeed)
-                rb.linearVelocity = rb.linearVelocity.normalized * moveSpeed;
+            {rb.linearVelocity = rb.linearVelocity.normalized * (moveSpeed * 0.8f);}
         }
         else
         {
@@ -200,7 +211,7 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = velocityToSet;
     }
     
-    private void ResetRestrictions()
+    public void ResetRestrictions()
     {
         activeGrapple = false;  
     }
