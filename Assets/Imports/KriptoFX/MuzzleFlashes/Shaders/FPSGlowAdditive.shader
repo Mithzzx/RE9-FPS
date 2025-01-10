@@ -58,7 +58,7 @@ UNITY_VERTEX_INPUT_INSTANCE_ID
 				return o;
 			}
 
-			half4 frag (v2f i) : SV_Target
+			half4 frag (v2f i) : COLOR
 			{
 				half4 col = 2.0f * i.color * _TintColor * tex2D(_MainTex, i.texcoord) * _ColorStrength;
 				col.a = saturate(col.a);

@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: ConcreteBulletDecal
   m_Shader: {fileID: 4800000, guid: 378dc20440f4d724796368a0d8b5af3d, type: 3}
-  m_ShaderKeywords: USE_QUAD_DECAL _BLENDMODE_MUL
+  m_ShaderKeywords: _BLENDMODE_MUL
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -54,7 +54,7 @@ Material:
     - _UseFrameBlending: 0
     - _UseNoiseDistortion: 0
     - _UseWorldSpaceUV: 0
-    - _ZTest1: 4
+    - _ZTest1: 5
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CutoutColor: {r: 1, g: 1, b: 1, a: 1}

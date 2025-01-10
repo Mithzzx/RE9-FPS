@@ -6,7 +6,6 @@ public class FPSShaderColorGradient : MonoBehaviour
     public RFX4_ShaderProperties ShaderColorProperty = RFX4_ShaderProperties._TintColor;
     public Gradient Color = new Gradient();
     public float TimeMultiplier = 1;
-    public float ColorMultiplier = 1;
     public bool IsLoop;
    
     [HideInInspector]
@@ -41,7 +40,7 @@ public class FPSShaderColorGradient : MonoBehaviour
         rend.GetPropertyBlock(props);
 
         startColor = rend.sharedMaterial.GetColor(propertyID);
-        props.SetColor(propertyID, startColor * Color.Evaluate(0) * ColorMultiplier);
+        props.SetColor(propertyID, startColor * Color.Evaluate(0));
 
         rend.SetPropertyBlock(props);
     }
@@ -54,7 +53,7 @@ public class FPSShaderColorGradient : MonoBehaviour
         if (canUpdate)
         {
             var eval = Color.Evaluate(time / TimeMultiplier);
-            props.SetColor(propertyID, eval * startColor * ColorMultiplier);
+            props.SetColor(propertyID, eval * startColor);
         }
         if (time >= TimeMultiplier)
         {

@@ -55,7 +55,7 @@ UNITY_VERTEX_INPUT_INSTANCE_ID
 				o.texcoord = TRANSFORM_TEX(v.texcoord,_MainTex);
 				return o;
 			}
-			fixed4 frag (v2f i) : SV_Target
+			fixed4 frag (v2f i) : COLOR
 			{
 				fixed4 tex = tex2D(_MainTex, i.texcoord + _Time.x * _Direction.xy);
 				fixed4 tex2 = tex2D(_MainTex, i.texcoord + _Time.x * _Direction.zw);

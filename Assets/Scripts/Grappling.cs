@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Grappling : MonoBehaviour
@@ -6,6 +5,7 @@ public class Grappling : MonoBehaviour
     [Header("References")] 
     [SerializeField] private PlayerMovement pm;
     [SerializeField] private InputHandler input;
+    [SerializeField] private Swinging sd;
     [SerializeField] private Transform playerCam;
     [SerializeField] private Transform gunTip;
     [SerializeField] private LayerMask whatIsGrappleable;
@@ -13,7 +13,6 @@ public class Grappling : MonoBehaviour
 
     [Header("Grappling")] 
     [SerializeField] private bool canGrapple = true;
-    [SerializeField] private float maxDistance = 100f;
     [SerializeField] private float grappleDelayTime = 0.1f;
     [SerializeField] private float overshootYAxis;
     
@@ -51,20 +50,11 @@ public class Grappling : MonoBehaviour
 
         grappling = true;
         
-        RaycastHit hit;
-        if (Physics.Raycast(playerCam.position, playerCam.forward, out hit, maxDistance, whatIsGrappleable))
-        {
-            grapplePoint = hit.point;
+        
+        grapplePoint = sd.predictionPoint.position;
             
-            Invoke(nameof(ExecuteGrapple), grappleDelayTime);
-        }
-        else
-        {
-            grapplePoint = playerCam.position + playerCam.forward * maxDistance;
-            
-            Invoke(nameof(StopGrapple), grappleDelayTime);
-        }
-
+        Invoke(nameof(ExecuteGrapple), grappleDelayTime);
+        
         lr.enabled = true;
         lr.SetPosition(1,grapplePoint);
     }

@@ -22,22 +22,22 @@ public class FPS_Decal : MonoBehaviour
 
     private void OnEnable()
     {
-        var meshRend = GetComponent<MeshRenderer>();
-        if (meshRend != null)
-        {
-            meshRend.reflectionProbeUsage = ReflectionProbeUsage.Off;
-            meshRend.shadowCastingMode = ShadowCastingMode.Off;
-            if (ScreenSpaceDecals)
-            {
-                meshRend.sharedMaterial.DisableKeyword("USE_QUAD_DECAL");
-                meshRend.sharedMaterial.SetInt("_ZTest1", (int)UnityEngine.Rendering.CompareFunction.Greater);
-            }
-            else
-            {
-                meshRend.sharedMaterial.EnableKeyword("USE_QUAD_DECAL");
-                meshRend.sharedMaterial.SetInt("_ZTest1", (int)UnityEngine.Rendering.CompareFunction.LessEqual);
-            }
-        }
+        //var meshRend = GetComponent<MeshRenderer>();
+        //if (meshRend != null)
+        //{
+        //    meshRend.reflectionProbeUsage = ReflectionProbeUsage.Off;
+        //    meshRend.shadowCastingMode = ShadowCastingMode.Off;
+        //    if (ScreenSpaceDecals)
+        //    {
+        //        meshRend.sharedMaterial.DisableKeyword("USE_QUAD_DECAL");
+        //        meshRend.sharedMaterial.SetInt("_ZTest1", (int)UnityEngine.Rendering.CompareFunction.Greater);
+        //    }
+        //    else
+        //    {
+        //        meshRend.sharedMaterial.EnableKeyword("USE_QUAD_DECAL");
+        //        meshRend.sharedMaterial.SetInt("_ZTest1", (int)UnityEngine.Rendering.CompareFunction.LessEqual);
+        //    }
+        //}
         if (Application.isPlaying)
         {
             transform.localRotation = Quaternion.Euler(Random.Range(0, 360), 90, 90);
@@ -46,7 +46,7 @@ public class FPS_Decal : MonoBehaviour
             transform.localScale = new Vector3(randomScaleRange, ScreenSpaceDecals ? startScale.y : 0.001f, randomScaleRange);
         }
 
-        if (Camera.main.depthTextureMode != DepthTextureMode.Depth) Camera.main.depthTextureMode = DepthTextureMode.Depth;
+        //if (Camera.main.depthTextureMode != DepthTextureMode.Depth) Camera.main.depthTextureMode = DepthTextureMode.Depth;
         
     }
 

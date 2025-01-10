@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     
     [Header("Movement")]
-    [SerializeField] private float moveSpeed;
+    [SerializeField] public float moveSpeed;
     [SerializeField] private float walkSpeed = 6f;
     [SerializeField] private float sprintSpeed = 10f;
     [SerializeField] private float swingSpeed = 20f;
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Ground Check")]
     [SerializeField] private float playerHeight = 2f;
     [SerializeField] private LayerMask groundMask;
-    [SerializeField] private bool isGrounded;
+    [SerializeField] public bool isGrounded;
     
     [Header("References")]
     [SerializeField] private InputHandler input;

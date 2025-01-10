@@ -48,36 +48,6 @@ Shader "KriptoFX/FPS_Pack/Leafs" {
 
 	float4 _MainTex_ST;
 
-	float3 ShadePointLights (
-    float4 lightPosX, float4 lightPosY, float4 lightPosZ,
-    float3 lightColor0, float3 lightColor1, float3 lightColor2, float3 lightColor3,
-    float4 lightAttenSq,
-    float3 pos)
-{
-    // to light vectors
-    float4 toLightX = lightPosX - pos.x;
-    float4 toLightY = lightPosY - pos.y;
-    float4 toLightZ = lightPosZ - pos.z;
-    // squared lengths
-    float4 lengthSq = 0;
-    lengthSq += toLightX * toLightX;
-    lengthSq += toLightY * toLightY;
-    lengthSq += toLightZ * toLightZ;
-    // don't produce NaNs if some vertex position overlaps with the light
-    lengthSq = max(lengthSq, 0.000001);
-
-    // attenuation
-    float4 atten = 1.0 / (1.0 + lengthSq * lightAttenSq);
-    float4 diff = 1 * atten;
-    // final color
-    float3 col = 0;
-    col += lightColor0 * diff.x;
-    col += lightColor1 * diff.y;
-    col += lightColor2 * diff.z;
-    col += lightColor3 * diff.w;
-    return col;
-}
-
 	half3 ShadeTranslucentLights(float4 vertex)
 	{
 		float3 normal = float3(0, 1, 0);
@@ -85,13 +55,13 @@ Shader "KriptoFX/FPS_Pack/Leafs" {
 
 		//#ifdef VERTEXLIGHT_ON
 		float3 worldPos = mul(unity_ObjectToWorld, vertex).xyz;
-		otherLights += ShadePointLights(
+		otherLights += Shade4PointLights(
 			unity_4LightPosX0, unity_4LightPosY0, unity_4LightPosZ0,
 			unity_LightColor[0].rgb, unity_LightColor[1].rgb, unity_LightColor[2].rgb, unity_LightColor[3].rgb,
-			unity_4LightAtten0, worldPos);
+			unity_4LightAtten0, worldPos, normal);
 		//#endif
 
-		return saturate(otherLights + _LightColor0.rgb);
+		return saturate(otherLights * 1.5 + _LightColor0.rgb);
 	}
 
 	v2f vert(appdata_t v)
@@ -162,7 +132,7 @@ Shader "KriptoFX/FPS_Pack/Leafs" {
 		return o;
 	}
 
-	float4 frag(v2f i) : SV_Target
+	float4 frag(v2f i) : COLOR
 	{
 		fixed col = tex2D(_MainTex, i.texcoord).a * 2;
 		if (col < 0.01) discard;

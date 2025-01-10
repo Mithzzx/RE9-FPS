@@ -1,155 +1,144 @@
-Shader "KriptoFX/FPS_Pack/AlphaBlendedAnim" {
-	Properties{
-		[HDR]_TintColor("Tint Color", Color) = (0.5,0.5,0.5,0.5)
-		_MainTex("Particle Texture", 2D) = "white" {}
-		_InvFade("Soft Particles Factor", Range(0.01,5)) = 1.0
-	}
-
-		Category{
-		Tags{ "Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent" "PreviewType" = "Plane" "LightMode" = "ForwardBase"}
-		Blend SrcAlpha OneMinusSrcAlpha
-
-		Cull Off
-		ZWrite Off
-
-		SubShader{
-		Pass{
-
-		CGPROGRAM
-#pragma vertex vert
-#pragma fragment frag
-
-#pragma multi_compile_particles
-#pragma multi_compile_fog
-#define FORWARD_BASE_PASS
-//#pragma multi_compile _ VERTEXLIGHT_ON
-
-#include "UnityCG.cginc"
-#include "Lighting.cginc"
-
-
-
-		sampler2D _MainTex;
-	fixed4 _TintColor;
-
-	struct appdata_t {
-		float4 vertex : POSITION;
-		fixed4 color : COLOR;
-		float3 normal : NORMAL;
-		float4 texcoords : TEXCOORD0;
-		float texcoordBlend : TEXCOORD1;
-		UNITY_VERTEX_INPUT_INSTANCE_ID
-	};
-
-	struct v2f {
-		float4 vertex : SV_POSITION;
-		fixed4 color : COLOR;
-		float2 texcoord : TEXCOORD0;
-		float2 texcoord2 : TEXCOORD1;
-		fixed blend : TEXCOORD2;
-		UNITY_FOG_COORDS(3)
-#ifdef SOFTPARTICLES_ON
-			float4 projPos : TEXCOORD4;
-#endif
-		UNITY_VERTEX_OUTPUT_STEREO
-	};
-
-	float4 _MainTex_ST;
-
-	float3 ShadePointLights (
-    float4 lightPosX, float4 lightPosY, float4 lightPosZ,
-    float3 lightColor0, float3 lightColor1, float3 lightColor2, float3 lightColor3,
-    float4 lightAttenSq,
-    float3 pos)
+Shader "KriptoFX/FPS_Pack/AlphaBlendedAnim"
 {
-    // to light vectors
-    float4 toLightX = lightPosX - pos.x;
-    float4 toLightY = lightPosY - pos.y;
-    float4 toLightZ = lightPosZ - pos.z;
-    // squared lengths
-    float4 lengthSq = 0;
-    lengthSq += toLightX * toLightX;
-    lengthSq += toLightY * toLightY;
-    lengthSq += toLightZ * toLightZ;
-    // don't produce NaNs if some vertex position overlaps with the light
-    lengthSq = max(lengthSq, 0.000001);
+    Properties
+    {
+        [HDR] _TintColor ("Tint Color", Color) = (0.5, 0.5, 0.5, 0.5)
+        _MainTex ("Particle Texture", 2D) = "white" { }
+        _InvFade ("Soft Particles Factor", Range(0.01, 5)) = 1.0
+    }
 
-    // attenuation
-    float4 atten = 1.0 / (1.0 + lengthSq * lightAttenSq);
-    float4 diff = 1 * atten;
-    // final color
-    float3 col = 0;
-    col += lightColor0 * diff.x;
-    col += lightColor1 * diff.y;
-    col += lightColor2 * diff.z;
-    col += lightColor3 * diff.w;
-    return col;
-}
+    Category
+    {
+        Tags { "Queue" = "Transparent" "RenderType" = "Transparent" }
+        Blend SrcAlpha OneMinusSrcAlpha
 
+        Cull Off
+        ZWrite Off
 
-	half3 ShadeTranslucentLights(float4 vertex)
-	{
-		float3 normal = float3(0, 1, 0);
-		half3 otherLights = ShadeSH9(float4(normal, 1.0));
-		
-//#ifdef VERTEXLIGHT_ON
-		float3 worldPos = mul(unity_ObjectToWorld, vertex).xyz;
-		otherLights += ShadePointLights(
-			unity_4LightPosX0, unity_4LightPosY0, unity_4LightPosZ0,
-			unity_LightColor[0].rgb, unity_LightColor[1].rgb, unity_LightColor[2].rgb, unity_LightColor[3].rgb,
-			unity_4LightAtten0, worldPos);
-		
-//#endif
+        SubShader
+        {
+            Pass
+            {
+                Name "Forward"
+                Tags { "LightMode" = "UniversalForward" }
 
-		return saturate(otherLights + _LightColor0.rgb);
-	}
+                HLSLPROGRAM
 
-	v2f vert(appdata_t v)
-	{
-		v2f o;
-	UNITY_SETUP_INSTANCE_ID(v); //Insert
-		UNITY_INITIALIZE_OUTPUT(v2f, o); //Insert
-		UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o); //Insert
-		o.vertex = UnityObjectToClipPos(v.vertex);
-#ifdef SOFTPARTICLES_ON
-		o.projPos = ComputeScreenPos(o.vertex);
-		COMPUTE_EYEDEPTH(o.projPos.z);
-#endif
-		o.color = v.color * _TintColor;
-		o.color.rgb *= ShadeTranslucentLights(v.vertex);
+                #pragma vertex vert
+                #pragma fragment frag
 
-		o.texcoord = TRANSFORM_TEX(v.texcoords.xy, _MainTex);
-		o.texcoord2 = TRANSFORM_TEX(v.texcoords.zw, _MainTex);
-		o.blend = v.texcoordBlend;
-		UNITY_TRANSFER_FOG(o,o.vertex);
-		return o;
-	}
+                #pragma multi_compile_instancing
+                #pragma multi_compile_fog
+                #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+                #pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
+
+                #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+                #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+                #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
+                #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareOpaqueTexture.hlsl"
 
 
-	UNITY_DECLARE_DEPTH_TEXTURE(_CameraDepthTexture);
-	float _InvFade;
+                sampler2D _MainTex;
+                half4 _TintColor;
 
-	fixed4 frag(v2f i) : SV_Target
-	{
-		//return float4(i.color.xyz, 1);
-		UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i); //Insert
-#ifdef SOFTPARTICLES_ON
-		float sceneZ = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.projPos.xy / i.projPos.w));
-		float partZ = i.projPos.z;
-		float fade = saturate(_InvFade * (sceneZ - partZ));
-		fade = _InvFade < 0.02f ? 1 : fade;
-		i.color.a *= fade;
-	#endif
+                struct appdata_t
+                {
+                    float4 vertex : POSITION;
+                    half4 color : COLOR;
+                    float3 normal : NORMAL;
+                    float4 texcoords : TEXCOORD0;
+                    float texcoordBlend : TEXCOORD1;
 
-		half4 colA = tex2D(_MainTex, i.texcoord);
-		half4 colB = tex2D(_MainTex, i.texcoord2);
-		half4 col = i.color * lerp(colA, colB, i.blend);
-		UNITY_APPLY_FOG(i.fogCoord, col);
-		col.a = saturate(col.a * 2);
-		return col;
-	}
-		ENDCG
-	}
-	}
-		}
+                    UNITY_VERTEX_INPUT_INSTANCE_ID
+                };
+
+                struct v2f
+                {
+                    float4 vertex : SV_POSITION;
+                    half4 color : COLOR;
+                    float2 texcoord : TEXCOORD0;
+                    float2 texcoord2 : TEXCOORD1;
+                    half blend : TEXCOORD2;
+                    float4 screenUV : TEXCOORD3;
+                    float fogFactor : TEXCOORD4;
+                    
+                    UNITY_VERTEX_INPUT_INSTANCE_ID
+                    UNITY_VERTEX_OUTPUT_STEREO
+                };
+
+                float4 _MainTex_ST;
+
+                half3 GetLighting(float3 positionWS, half3 normalWS)
+                {
+                    Light mainLight = GetMainLight();
+                    float atten = MainLightRealtimeShadow(TransformWorldToShadowCoord(positionWS));
+                    half3 attenuatedLightColor = mainLight.color * (mainLight.distanceAttenuation * atten);
+
+                    half3 vertexLightColor = half3(0.0, 0.0, 0.0);
+
+                    uint lightsCount = GetAdditionalLightsCount();
+                    for (uint lightIndex = 0u; lightIndex < lightsCount; ++lightIndex)
+                    {
+                        Light light = GetAdditionalLight(lightIndex, positionWS);
+                        half3 lightColor = light.color * light.distanceAttenuation;
+                        vertexLightColor += LightingLambert(lightColor, light.direction, normalWS);
+                    }
+
+                    half3 ambient = SampleSH(normalWS);
+
+                    return attenuatedLightColor + vertexLightColor + ambient;
+                }
+
+                v2f vert(appdata_t v)
+                {
+                    v2f o;
+                    
+                    UNITY_SETUP_INSTANCE_ID(v);
+                    UNITY_TRANSFER_INSTANCE_ID(v, o);
+                    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
+
+                    o.vertex = TransformObjectToHClip(v.vertex.xyz);
+                    o.screenUV = ComputeScreenPos(o.vertex);
+                    o.color = v.color;
+
+                    o.texcoord = v.texcoords.xy * _MainTex_ST.xy + _MainTex_ST.zw;
+                    o.texcoord2 = v.texcoords.zw * _MainTex_ST.xy + _MainTex_ST.zw;
+                    o.blend = v.texcoordBlend;
+
+                    
+                    float3 worldPos = TransformObjectToWorld(v.vertex);
+                    o.color.rgb *= saturate(GetLighting(worldPos, float3(0, 1, 0)));
+
+
+                    o.fogFactor = ComputeFogFactor(o.vertex.z);
+                    return o;
+                }
+
+                float _InvFade;
+
+                half4 frag(v2f i) : SV_Target
+                {
+                    
+                    UNITY_SETUP_INSTANCE_ID(i);
+                    
+                    float depthZ = LinearEyeDepth(SampleSceneDepth(i.screenUV.xy / i.screenUV.w), _ZBufferParams);
+                    float thisZ = LinearEyeDepth(i.screenUV.z / i.screenUV.w, _ZBufferParams);
+                    float fade = saturate(_InvFade * (depthZ - thisZ));
+                    fade = _InvFade < 0.02 ?   1 : fade;
+                    i.color.a *= fade;
+                    
+
+                    half4 colA = tex2D(_MainTex, i.texcoord);
+                    half4 colB = tex2D(_MainTex, i.texcoord2);
+                    half4 col = _TintColor * i.color * lerp(colA, colB, i.blend);
+                    col.rgb = MixFog(col.rgb, i.fogFactor);
+                    
+                    col.a = saturate(col.a * 2);
+                    
+                    return col;
+                }
+                ENDHLSL
+            }
+        }
+    }
 }

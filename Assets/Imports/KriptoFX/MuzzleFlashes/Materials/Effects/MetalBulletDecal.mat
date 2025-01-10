@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: MetalBulletDecal
   m_Shader: {fileID: 4800000, guid: 378dc20440f4d724796368a0d8b5af3d, type: 3}
-  m_ShaderKeywords: _BLENDMODE_MUL
+  m_ShaderKeywords: _BLENDMODE_BLEND
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -37,16 +37,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaPow: 1
-    - _BlendMode: 2
+    - _BlendMode: 1
     - _BumpAmt: 10
     - _ColorStrength: 1
     - _Cutout: 1
     - _CutoutAlphaMul: 1
     - _DistortScale: 0.1
     - _DistortSpeed: 1
-    - _DstMode: 3
+    - _DstMode: 10
     - _InvFade: 0.5
-    - _SrcMode: 0
+    - _SrcMode: 5
     - _UseAlphaPow: 0
     - _UseCutout: 0
     - _UseCutoutTex: 0
@@ -58,4 +58,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CutoutColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TintColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TintColor: {r: 2, g: 2, b: 2, a: 1}

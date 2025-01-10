@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SwingingDone : MonoBehaviour
+public class Swinging : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private LineRenderer lr;
@@ -12,24 +10,24 @@ public class SwingingDone : MonoBehaviour
     [SerializeField] private Grappling grappling;
 
     [Header("Swinging")]
-    private float maxSwingDistance = 25f;
+    [SerializeField] private float maxSwingDistance = 25f;
     private Vector3 swingPoint;
     private SpringJoint joint;
 
     [Header("OdmGear")]
-    public Transform orientation;
-    public Rigidbody rb;
-    public float horizontalThrustForce;
-    public float forwardThrustForce;
-    public float extendCableSpeed;
+    [SerializeField] private Transform orientation;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private float horizontalThrustForce;
+    [SerializeField] private float forwardThrustForce;
+    [SerializeField] private float extendCableSpeed;
 
     [Header("Prediction")]
     private RaycastHit predictionHit;
-    public float predictionSphereCastRadius;
-    public Transform predictionPoint;
+    [SerializeField] private float predictionSphereCastRadius;
+    [SerializeField] public Transform predictionPoint;
 
     [Header("Input")]
-    public KeyCode swingKey = KeyCode.Q;
+    [SerializeField] private KeyCode swingKey = KeyCode.G;
 
 
     private void Update()

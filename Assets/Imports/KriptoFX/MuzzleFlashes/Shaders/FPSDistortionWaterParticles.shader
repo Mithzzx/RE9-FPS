@@ -2,183 +2,149 @@
 
 // Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
 
-Shader "KriptoFX/FPS_Pack/WaterParticles" {
-Properties {
-       [HDR] _TintColor ("Tint Color", Color) = (1,1,1,1)
-		_MainTex ("Main Texture (R) CutOut (G)", 2D) = "white" {}
-        _BumpMap ("Normalmap", 2D) = "bump" {}
-		_BumpAmt ("Distortion", Float) = 10
-}
-
-Category {
-
-	Tags { "Queue"="Transparent+1"  "IgnoreProjector"="True"  "RenderType"="Transparent"   "LightMode" = "ForwardBase"}
-	Blend SrcAlpha OneMinusSrcAlpha
-	Cull Off
-	ZWrite Off
-
-
-	SubShader {
-		GrabPass {
-			"_GrabTexture"
- 		}
-		Pass {
-
-
-CGPROGRAM
-#pragma vertex vert
-#pragma fragment frag
-
-#pragma multi_compile_particles
-#define FORWARD_BASE_PASS
-
-#include "UnityCG.cginc"
-#include "Lighting.cginc"
-
-struct appdata_t {
-	float4 vertex : POSITION;
-	float4 texcoord: TEXCOORD0;
-	fixed4 color : COLOR;
-	float texcoordBlend : TEXCOORD1;
-UNITY_VERTEX_INPUT_INSTANCE_ID
-};
-
-struct v2f {
-	float4 vertex : POSITION;
-	float4 uvgrab : TEXCOORD0;
-	float4 uvbump : TEXCOORD1;
-	fixed4 color : COLOR;
-
-	#ifdef SOFTPARTICLES_ON
-		float4 projPos : TEXCOORD4;
-	#endif
-		fixed blend : TEXCOORD6;
-		UNITY_VERTEX_INPUT_INSTANCE_ID
-			UNITY_VERTEX_OUTPUT_STEREO
-
-};
-
-sampler2D _MainTex;
-sampler2D _BumpMap;
-
-float _BumpAmt;
-float _ColorStrength;
-UNITY_DECLARE_SCREENSPACE_TEXTURE(_GrabTexture);
-float4 _GrabTexture_TexelSize;
-fixed4 _TintColor;
-
-float4 _BumpMap_ST;
-float4 _MainTex_ST;
-
-float3 ShadePointLights (
-    float4 lightPosX, float4 lightPosY, float4 lightPosZ,
-    float3 lightColor0, float3 lightColor1, float3 lightColor2, float3 lightColor3,
-    float4 lightAttenSq,
-    float3 pos)
+Shader "KriptoFX/FPS_Pack/WaterParticles"
 {
-    // to light vectors
-    float4 toLightX = lightPosX - pos.x;
-    float4 toLightY = lightPosY - pos.y;
-    float4 toLightZ = lightPosZ - pos.z;
-    // squared lengths
-    float4 lengthSq = 0;
-    lengthSq += toLightX * toLightX;
-    lengthSq += toLightY * toLightY;
-    lengthSq += toLightZ * toLightZ;
-    // don't produce NaNs if some vertex position overlaps with the light
-    lengthSq = max(lengthSq, 0.000001);
+    Properties
+    {
+        [HDR] _TintColor ("Tint Color", Color) = (1, 1, 1, 1)
+        _MainTex ("Main Texture (R) CutOut (G)", 2D) = "white" { }
+        _BumpMap ("Normalmap", 2D) = "bump" { }
+        _BumpAmt ("Distortion", Float) = 10
+    }
 
-    // attenuation
-    float4 atten = 1.0 / (1.0 + lengthSq * lightAttenSq);
-    float4 diff = 1 * atten;
-    // final color
-    float3 col = 0;
-    col += lightColor0 * diff.x;
-    col += lightColor1 * diff.y;
-    col += lightColor2 * diff.z;
-    col += lightColor3 * diff.w;
-    return col;
-}
+    Category
+    {
 
-half3 ShadeTranslucentLights(float4 vertex)
-{
-	float3 normal = float3(0, 1, 0);
-	half3 otherLights = ShadeSH9(float4(normal, 1.0));
-
-	//#ifdef VERTEXLIGHT_ON
-	float3 worldPos = mul(unity_ObjectToWorld, vertex).xyz;
-	otherLights += ShadePointLights(
-		unity_4LightPosX0, unity_4LightPosY0, unity_4LightPosZ0,
-		unity_LightColor[0].rgb, unity_LightColor[1].rgb, unity_LightColor[2].rgb, unity_LightColor[3].rgb,
-		unity_4LightAtten0, worldPos);
-	//#endif
-
-	return saturate(otherLights * 1.5 + _LightColor0.rgb);
-}
+        Tags { "Queue" = "Transparent-9" "IgnoreProjector" = "True" "RenderType" = "Transparent" }
+        Blend SrcAlpha OneMinusSrcAlpha
+        Cull Off
+        ZWrite Off
 
 
-v2f vert (appdata_t v)
-{
-	v2f o;
-		UNITY_SETUP_INSTANCE_ID(v); //Insert
-		UNITY_INITIALIZE_OUTPUT(v2f, o); //Insert
-		UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o); //Insert
-	o.vertex = UnityObjectToClipPos(v.vertex);
-
-	#ifdef SOFTPARTICLES_ON
-		o.projPos = ComputeScreenPos (o.vertex);
-		COMPUTE_EYEDEPTH(o.projPos.z);
-	#endif
-	o.color = v.color;
-
-	o.color.rgb *= ShadeTranslucentLights(v.vertex);
-
-	o.uvgrab = ComputeGrabScreenPos (o.vertex);
-	o.uvbump.xy = TRANSFORM_TEX(v.texcoord.xy, _BumpMap);
-	o.uvbump.zw = TRANSFORM_TEX(v.texcoord.zw, _BumpMap);
-	o.blend = v.texcoordBlend;
-
-	return o;
-}
-
-sampler2D _CameraDepthTexture;
-float _InvFade;
-
-half4 frag( v2f i ) : SV_Target
-{
-		UNITY_SETUP_INSTANCE_ID(i);
-	UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i); //Insert
-	fixed4 bumpTex1 = tex2D(_BumpMap, i.uvbump.xy);
-	fixed4 bumpTex2 = tex2D(_BumpMap, i.uvbump.zw);
-	half3 bump = UnpackNormal(lerp(bumpTex1, bumpTex2, i.blend));
-	half alphaBump = saturate((0.94 - pow(bump.z, 127)) * 5);
-
-	if (alphaBump < 0.1) discard;
+        SubShader
+        {
+            
+            Pass
+            {
 
 
-	fixed4 tex = tex2D(_MainTex, i.uvbump.xy);
-	fixed4 tex2 = tex2D(_MainTex, i.uvbump.zw);
-	tex = lerp(tex, tex2, i.blend);
+                HLSLPROGRAM
+                #pragma vertex vert
+                #pragma fragment frag
+
+                #pragma multi_compile_instancing
+                #pragma multi_compile_fog
+
+                #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+                #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
+                #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"
+                #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareOpaqueTexture.hlsl"
+
+                struct appdata_t
+                {
+                    float4 vertex : POSITION;
+                    float4 texcoord : TEXCOORD0;
+                    half4 color : COLOR;
+                    float texcoordBlend : TEXCOORD1;
+                    UNITY_VERTEX_INPUT_INSTANCE_ID
+                };
+
+                struct v2f
+                {
+                    float4 vertex : POSITION;
+                    float4 uvbump : TEXCOORD0;
+                    half4 color : COLOR;
+                    float4 screenUV : TEXCOORD2;
+                    half blend : TEXCOORD3;
+
+                    UNITY_VERTEX_INPUT_INSTANCE_ID
+                    UNITY_VERTEX_OUTPUT_STEREO
+                };
+
+                sampler2D _MainTex;
+                sampler2D _BumpMap;
+
+                float _BumpAmt;
+                float _ColorStrength;
+                float4 _GrabTexture_TexelSize;
+                half4 _TintColor;
+
+                float4 _BumpMap_ST;
+                float4 _MainTex_ST;
 
 
-	float2 offset = bump * _BumpAmt  * i.color.a * alphaBump;
-	i.uvgrab.xy = offset  + i.uvgrab.xy;
+                half3 GetLighting(float3 positionWS, half3 normalWS)
+                {
+                    Light mainLight = GetMainLight();
+                    float atten = MainLightRealtimeShadow(TransformWorldToShadowCoord(positionWS));
+                    half3 attenuatedLightColor = mainLight.color * (mainLight.distanceAttenuation * atten);
 
-	half4 grab = UNITY_SAMPLE_SCREENSPACE_TEXTURE(_GrabTexture, i.uvgrab.xy / i.uvgrab.w);
+                    half3 vertexLightColor = half3(0.0, 0.0, 0.0);
 
+                    uint lightsCount = GetAdditionalLightsCount();
+                    for (uint lightIndex = 0u; lightIndex < lightsCount; ++lightIndex)
+                    {
+                        Light light = GetAdditionalLight(lightIndex, positionWS);
+                        half3 lightColor = light.color * light.distanceAttenuation;
+                        vertexLightColor += LightingLambert(lightColor, light.direction, normalWS);
+                    }
 
-	//fixed4 cut = tex2D(_CutOut, i.uvcutout) * i.color;
-	//fixed4 emission = col * i.color + tex.r * _ColorStrength * _TintColor * _LightColor0 * i.color * i.color.a;
-	fixed4 emission = grab + tex.a * _TintColor * i.color * i.color.a;
-    emission.a = _TintColor.a * alphaBump ;
+                    half3 ambient = SampleSH(normalWS);
 
-	return saturate(emission);
-}
-ENDCG
-		}
-	}
+                    return attenuatedLightColor + vertexLightColor + ambient;
+                }
 
+                v2f vert(appdata_t v)
+                {
+                    v2f o;
 
-}
+                    UNITY_SETUP_INSTANCE_ID(v);
+                    UNITY_TRANSFER_INSTANCE_ID(v, o);
+                    UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o);
 
+                    o.vertex = TransformObjectToHClip(v.vertex.xyz);
+                    o.screenUV = ComputeScreenPos(o.vertex);
+                    o.color = v.color;
+
+                    float3 worldPos = TransformObjectToWorld(v.vertex.xyz);
+                    o.color.rgb *= saturate(GetLighting(worldPos, float3(0, 1, 0)));
+
+                    o.uvbump.xy = v.texcoord.xy * _BumpMap_ST.xy + _BumpMap_ST.zw;
+                    o.uvbump.zw = v.texcoord.zw * _BumpMap_ST.xy + _BumpMap_ST.zw;
+                    o.blend = v.texcoordBlend;
+
+                    return o;
+                }
+
+                float _InvFade;
+
+                half4 frag(v2f i) : SV_Target
+                {
+                    UNITY_SETUP_INSTANCE_ID(i);
+                    UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i); //Insert
+                    half4 bumpTex1 = tex2D(_BumpMap, i.uvbump.xy);
+                    half4 bumpTex2 = tex2D(_BumpMap, i.uvbump.zw);
+                    half3 bump = UnpackNormal(lerp(bumpTex1, bumpTex2, i.blend));
+                    half alphaBump = saturate((0.94 - pow(bump.z, 127)) * 5);
+
+                    if (alphaBump < 0.1) discard;
+
+                    half4 tex = tex2D(_MainTex, i.uvbump.xy);
+                    half4 tex2 = tex2D(_MainTex, i.uvbump.zw);
+                    tex = lerp(tex, tex2, i.blend);
+
+                    float2 offset = bump * _BumpAmt * i.color.a * alphaBump;
+                    i.screenUV.xy = offset +i.screenUV.xy;
+
+                    half3 grabColor = SampleSceneColor(i.screenUV.xy / i.screenUV.w);
+
+                    half4 emission = float4(grabColor, 1) + tex.a * _TintColor * i.color * i.color.a;
+                    emission.a = saturate(_TintColor.a * alphaBump);
+
+                    return emission;
+                }
+                ENDHLSL
+            }
+        }
+    }
 }
