@@ -1,82 +1,111 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class GunMechanics : MonoBehaviour
 {
+    [Header("Reference")]
+    [SerializeField] InputHandler input;
+    [SerializeField] Camera fpsCam;
+    [SerializeField] private Transform muzzle;
+    RaycastHit hit;
+    
     [Header("Characteristics")]
     [SerializeField] float damage;
-    [SerializeField] float rateOfFire;
+    [SerializeField] float timeBetweenShooting;
     [SerializeField] float range;
     [SerializeField] float spread;
     [SerializeField] float reloadTime;
-    [SerializeField] float timeBetweenShots;
+    [FormerlySerializedAs("timeBetweenShooting")] [SerializeField] float timeBetweenShots;
 
-    [SerializeField] int magaineSize;
+    [SerializeField] int magazineSize;
     [SerializeField] int bulletsPerTap;
     [SerializeField] bool allowButtonHold;
 
     [SerializeField] int bulletsLeft;
     [SerializeField] int bulletsShot;
 
-    bool shooting, canshoot = true, reloading;
+    private bool shooting;
+    private bool canShoot;
+    private bool reloading;
 
     [Header("Bullet Holes")]
     [SerializeField] GameObject bulletHole;
 
-    [Header("Reference")]
-    [SerializeField] InputHandler input;
-    [SerializeField] Camera fpscam;
-    [SerializeField] ParticleSystem[] muzzelFlashs;
-    [SerializeField] Light flashLight;
-    RaycastHit hit;
+    [Header("Muzzle Flash")] 
+    [SerializeField] private GameObject muzzleFlash;
+
+    private void Awake()
+    {
+        bulletsLeft = magazineSize;
+        canShoot = true;
+    }
 
     private void Update()
     {
-        if(input.AttackTriggered)
+        shooting = allowButtonHold ? input.AttackHeld : // holding the attack button
+            input.AttackTriggered; // triggering the attack button
+
+        if (input.ReloadTriggered && bulletsLeft < magazineSize && !reloading) // Assuming ReloadTriggered is a property in InputHandler for triggering the reload action
         {
-            ToggleMuzzleFlash(true);
-            if (canshoot) StartCoroutine(Fire());
+            StartCoroutine(Reload());
         }
-        else ToggleMuzzleFlash(false);
-        
+
+        if (shooting && canShoot && !reloading && bulletsLeft > 0)
+        {
+            bulletsShot = bulletsPerTap;
+            //Creating Muzzle Flash
+            GameObject muzzleFlashInstance = Instantiate(muzzleFlash, muzzle.position, muzzle.rotation) as GameObject;
+            Destroy(muzzleFlashInstance, 4);
+
+            Fire();
+        }
     }
 
-    private void ToggleMuzzleFlash(bool state)
-    {
-        foreach (ParticleSystem muzzelFlash in muzzelFlashs)
-        {
-            var emmisionModule = muzzelFlash.emission;
-            emmisionModule.enabled = state;
-        }
-        flashLight.gameObject.SetActive(state);
-    }
-
-    IEnumerator Fire()
+    private void Fire()
     {
         //Disabling Firing
-        canshoot = false;
+        canShoot = false;
+        
+        //spread
+        float x = UnityEngine.Random.Range(-spread, spread);
+        float y = UnityEngine.Random.Range(-spread, spread);
+        
+        //Calculating direction with spread
+        Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
 
         //creating Bullet
-        if (Physics.Raycast(fpscam.transform.position,fpscam.transform.forward,out hit,range))
+        if (Physics.Raycast(fpsCam.transform.position,direction,out hit,range))
         {
-            Debug.Log("hooting");
-            GameObject bh = Instantiate(bulletHole, hit.point, Quaternion.LookRotation(hit.normal));
-            Destroy(bh, 4);
+            GameObject bulletHoleInstance = Instantiate(bulletHole, hit.point, new Quaternion()) as GameObject;
+            bulletHoleInstance.transform.LookAt(hit.point + hit.normal);
+            Destroy(bulletHoleInstance, 20);
         }
-
+        
+        //counting bullets
+        bulletsLeft--;
+        bulletsShot--;
+        
         //StartDelay
-        StartCoroutine(FireRateHandeler());
-        yield return null;
+        Invoke(nameof(ResetShot), timeBetweenShooting);
+        if (bulletsShot > 0 && bulletsLeft > 0)
+        {
+            Invoke(nameof(Fire), timeBetweenShots);
+        }
     }
 
-    IEnumerator FireRateHandeler()
+    private void ResetShot()
     {
-        //Find out the time to delay , and enable firing
-        float timeToDelay = 1 / rateOfFire;
-        yield return new WaitForSeconds(timeToDelay);
-        canshoot = true;
+        canShoot = true;
+    }
+
+    IEnumerator Reload()
+    {
+        reloading = true;
+        Debug.Log("Reloading");
+        yield return new WaitForSeconds(reloadTime);
+        bulletsLeft = magazineSize;
+        reloading = false;
     }
 }

@@ -51,6 +51,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""d0d546df-59e7-4fab-83c4-f776199c0ed5"",
                     ""expectedControlType"": """",
                     ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack Held"",
+                    ""type"": ""Button"",
+                    ""id"": ""2dbb750d-2ef7-487b-94ae-548116b2fe8e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
                     ""interactions"": ""Press(behavior=2)"",
                     ""initialStateCheck"": false
                 },
@@ -87,7 +96,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""304adae8-20c0-43f6-b8e1-140d36e8032c"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -114,7 +123,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""id"": ""988691c3-2582-4eec-b217-88e3f721759a"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""be8a0d1d-da79-48fd-9c31-52a225fefbcb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -204,6 +222,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc932201-cc4f-4883-887d-21741806295f"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack Held"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3eed994-e07d-44e4-87e8-e7a43358d143"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack Held"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -371,6 +411,28 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Grapple"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9f2dbf27-d897-4cff-bb67-309605fe944e"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d40ed35f-3f6a-4d0b-8e80-fd06c696301c"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -410,6 +472,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_FirstPerson_Move = m_FirstPerson.FindAction("Move", throwIfNotFound: true);
         m_FirstPerson_Look = m_FirstPerson.FindAction("Look", throwIfNotFound: true);
         m_FirstPerson_Attack = m_FirstPerson.FindAction("Attack", throwIfNotFound: true);
+        m_FirstPerson_AttackHeld = m_FirstPerson.FindAction("Attack Held", throwIfNotFound: true);
         m_FirstPerson_Aim = m_FirstPerson.FindAction("Aim", throwIfNotFound: true);
         m_FirstPerson_Sprint = m_FirstPerson.FindAction("Sprint", throwIfNotFound: true);
         m_FirstPerson_Pause = m_FirstPerson.FindAction("Pause", throwIfNotFound: true);
@@ -417,6 +480,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_FirstPerson_Jump = m_FirstPerson.FindAction("Jump", throwIfNotFound: true);
         m_FirstPerson_Slide = m_FirstPerson.FindAction("Slide", throwIfNotFound: true);
         m_FirstPerson_Grapple = m_FirstPerson.FindAction("Grapple", throwIfNotFound: true);
+        m_FirstPerson_Reload = m_FirstPerson.FindAction("Reload", throwIfNotFound: true);
         // New action map
         m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
         m_Newactionmap_Newaction = m_Newactionmap.FindAction("New action", throwIfNotFound: true);
@@ -490,6 +554,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_FirstPerson_Move;
     private readonly InputAction m_FirstPerson_Look;
     private readonly InputAction m_FirstPerson_Attack;
+    private readonly InputAction m_FirstPerson_AttackHeld;
     private readonly InputAction m_FirstPerson_Aim;
     private readonly InputAction m_FirstPerson_Sprint;
     private readonly InputAction m_FirstPerson_Pause;
@@ -497,6 +562,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_FirstPerson_Jump;
     private readonly InputAction m_FirstPerson_Slide;
     private readonly InputAction m_FirstPerson_Grapple;
+    private readonly InputAction m_FirstPerson_Reload;
     public struct FirstPersonActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -504,6 +570,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_FirstPerson_Move;
         public InputAction @Look => m_Wrapper.m_FirstPerson_Look;
         public InputAction @Attack => m_Wrapper.m_FirstPerson_Attack;
+        public InputAction @AttackHeld => m_Wrapper.m_FirstPerson_AttackHeld;
         public InputAction @Aim => m_Wrapper.m_FirstPerson_Aim;
         public InputAction @Sprint => m_Wrapper.m_FirstPerson_Sprint;
         public InputAction @Pause => m_Wrapper.m_FirstPerson_Pause;
@@ -511,6 +578,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_FirstPerson_Jump;
         public InputAction @Slide => m_Wrapper.m_FirstPerson_Slide;
         public InputAction @Grapple => m_Wrapper.m_FirstPerson_Grapple;
+        public InputAction @Reload => m_Wrapper.m_FirstPerson_Reload;
         public InputActionMap Get() { return m_Wrapper.m_FirstPerson; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -529,6 +597,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @AttackHeld.started += instance.OnAttackHeld;
+            @AttackHeld.performed += instance.OnAttackHeld;
+            @AttackHeld.canceled += instance.OnAttackHeld;
             @Aim.started += instance.OnAim;
             @Aim.performed += instance.OnAim;
             @Aim.canceled += instance.OnAim;
@@ -550,6 +621,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Grapple.started += instance.OnGrapple;
             @Grapple.performed += instance.OnGrapple;
             @Grapple.canceled += instance.OnGrapple;
+            @Reload.started += instance.OnReload;
+            @Reload.performed += instance.OnReload;
+            @Reload.canceled += instance.OnReload;
         }
 
         private void UnregisterCallbacks(IFirstPersonActions instance)
@@ -563,6 +637,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @AttackHeld.started -= instance.OnAttackHeld;
+            @AttackHeld.performed -= instance.OnAttackHeld;
+            @AttackHeld.canceled -= instance.OnAttackHeld;
             @Aim.started -= instance.OnAim;
             @Aim.performed -= instance.OnAim;
             @Aim.canceled -= instance.OnAim;
@@ -584,6 +661,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Grapple.started -= instance.OnGrapple;
             @Grapple.performed -= instance.OnGrapple;
             @Grapple.canceled -= instance.OnGrapple;
+            @Reload.started -= instance.OnReload;
+            @Reload.performed -= instance.OnReload;
+            @Reload.canceled -= instance.OnReload;
         }
 
         public void RemoveCallbacks(IFirstPersonActions instance)
@@ -652,6 +732,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnAttackHeld(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
@@ -659,6 +740,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
         void OnGrapple(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
     }
     public interface INewactionmapActions
     {

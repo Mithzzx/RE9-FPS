@@ -13,7 +13,9 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private string move = "Move";
     [SerializeField] private string look = "Look";
     [SerializeField] private string attack = "Attack";
+    [SerializeField] private string attackHeld = "Attack Held";
     [SerializeField] private string aim = "Aim";
+    [SerializeField] private string reload = "Reload";
     [SerializeField] private string jump = "Jump";
     [SerializeField] private string sprint = "Sprint";
     [SerializeField] private string crouch = "Crouch";
@@ -23,8 +25,10 @@ public class InputHandler : MonoBehaviour
     
     private InputAction moveAction;
     private InputAction lookAction;
+    private InputAction attackHeldAction;
     private InputAction attackAction;
     private InputAction aimAction;
+    private InputAction reloadAction;
     private InputAction jumpAction;
     private InputAction sprintAction;
     private InputAction crouchAction;
@@ -35,7 +39,9 @@ public class InputHandler : MonoBehaviour
     public Vector2 MoveInput { get; private set; }
     public Vector2 LookInput { get; private set; }
     public bool AttackTriggered { get; private set; }
+    public bool AttackHeld { get; private set; }
     public bool AimTriggered { get; private set; }
+    public bool ReloadTriggered { get; private set; }
     public bool JumpTriggered { get; private set; }
     public bool SprintTriggered { get; private set; }
     public bool CrouchTriggered { get; private set; }
@@ -61,7 +67,9 @@ public class InputHandler : MonoBehaviour
         moveAction = input.FindActionMap(actionMapName).FindAction(move);
         lookAction = input.FindActionMap(actionMapName).FindAction(look);
         attackAction = input.FindActionMap(actionMapName).FindAction(attack);
+        attackHeldAction = input.FindActionMap(actionMapName).FindAction(attackHeld);
         aimAction = input.FindActionMap(actionMapName).FindAction(aim);
+        reloadAction = input.FindActionMap(actionMapName).FindAction(reload);
         jumpAction = input.FindActionMap(actionMapName).FindAction(jump);
         sprintAction = input.FindActionMap(actionMapName).FindAction(sprint);
         crouchAction = input.FindActionMap(actionMapName).FindAction(crouch);
@@ -78,15 +86,30 @@ public class InputHandler : MonoBehaviour
         
         lookAction.performed += context => LookInput = context.ReadValue<Vector2>();
         lookAction.canceled += context => LookInput = Vector2.zero;
+
+        attackAction.performed += context => AttackTriggered = true;
         
-        attackAction.performed += context => AttackTriggered = !AttackTriggered;
+        attackHeldAction.performed += context => AttackHeld = !AttackHeld;
         aimAction.performed += context => AimTriggered = !AimTriggered;
         jumpAction.performed += context => JumpTriggered = !JumpTriggered;
         sprintAction.performed += context => SprintTriggered = !SprintTriggered;
-        crouchAction.performed += context => CrouchTriggered = !CrouchTriggered;
-        slideAction.performed += context => SlideTriggered = !SlideTriggered;
-        pauseAction.performed += context => PauseTriggered = !PauseTriggered;
-        grappleAction.performed += context => GrappleTriggered = !GrappleTriggered;
+        
+        reloadAction.performed += context => ReloadTriggered = true;
+        crouchAction.performed += context => CrouchTriggered = true;
+        slideAction.performed += context => SlideTriggered = true;
+        pauseAction.performed += context => PauseTriggered = true;
+        grappleAction.performed += context => GrappleTriggered = true;
+    }
+    
+    private void LateUpdate()
+    {
+        // Reset triggers after they've been read for a single frame
+        AttackTriggered = false;
+        ReloadTriggered = false;
+        CrouchTriggered = false;
+        SlideTriggered = false;
+        PauseTriggered = false;
+        GrappleTriggered = false;
     }
     
     private void OnEnable()
