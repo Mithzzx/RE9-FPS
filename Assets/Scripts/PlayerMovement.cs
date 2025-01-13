@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 moveDirection;
     
-    private Rigidbody rb;
+    public Rigidbody rb;
     
     public MovementState state;
      
@@ -89,7 +89,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
-        transform.rotation = orientation.rotation;
     }
     
     private void StateHandler()
