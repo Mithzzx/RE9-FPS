@@ -5203,6 +5203,8 @@ MonoBehaviour:
   xVelocity: 0
   yVelocity: 0
   acceleration: 0.01
+  increaseSpeed: 2
+  decreaseSpeed: 3
 --- !u!4 &630236605 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 53103664005132253, guid: 09aade0ecefd01e4b8f7661acf64f5c2, type: 3}

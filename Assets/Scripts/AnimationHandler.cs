@@ -12,6 +12,10 @@ public class AnimationHandler : MonoBehaviour
     [SerializeField] private float xVelocity;
     [SerializeField] private float yVelocity;
     [SerializeField] private float acceleration;
+    public float increaseSpeed = 2f; // Speed of the increase
+    public float decreaseSpeed = 1f; // Target value for the x-axis
+    private float targetValue;
+    
     private bool idle = true;
     
     [Header("Hashes")]
@@ -19,20 +23,51 @@ public class AnimationHandler : MonoBehaviour
     private readonly int yVelocityHash = Animator.StringToHash("yVelocity");
     private readonly int idleHash = Animator.StringToHash("idel");
 
-    private void Update()
+    void Update()
     {
-        bool sprinting = input.SprintTriggered;
+        // Get Vector2's x and y values (e.g., from Input.GetAxis)
+        Vector2 inputVector = input.MoveInput; // -1 to 1 range for vertical input
+
+        // Determine targetValueY
+        if (input.SprintTriggered) // Shift key pressed
+        {
+            targetValue = 2f;
+        }
+        else if (inputVector.magnitude == 0) // No input for y
+        {
+            targetValue = 0f;
+        }
+        else
+        {
+            targetValue = 0.5f;
+        }
         
-        float xInput = input.MoveInput.x;
-        float yInput = input.MoveInput.y;
-        
-        idle = !(pm.rb.linearVelocity.magnitude > 0.1f);
-        
-        xVelocity = Mathf.Lerp(xVelocity, xInput * pm.moveSpeed, acceleration * Time.deltaTime);
-        yVelocity = Mathf.Lerp(yVelocity, yInput * pm.moveSpeed, acceleration * Time.deltaTime);
-        
+
+        // Smoothly increase or decrease valueY based on targetValueY
+        if (yVelocity < targetValue)
+        {
+            yVelocity = Mathf.Lerp(yVelocity, targetValue*inputVector.y, Time.deltaTime * increaseSpeed);
+        }
+        else if (yVelocity > targetValue)
+        {
+            yVelocity = Mathf.Lerp(yVelocity, targetValue*inputVector.y, Time.deltaTime * decreaseSpeed);
+        }
+
+        // Smoothly increase or decrease valueX based on targetValueX
+        if (xVelocity < targetValue)
+        {
+            xVelocity = Mathf.Lerp(xVelocity, targetValue*inputVector.x, Time.deltaTime * increaseSpeed);
+        }
+        else if (xVelocity > targetValue)
+        {
+            xVelocity = Mathf.Lerp(xVelocity, targetValue*inputVector.x, Time.deltaTime * decreaseSpeed);
+        }
+
+        // Set the xVelocity and yVelocity parameters in the Animator
         lowerBodyAnim.SetFloat(xVelocityHash, xVelocity);
         lowerBodyAnim.SetFloat(yVelocityHash, yVelocity);
-        lowerBodyAnim.SetBool(idleHash,idle);
+        
+        // Set the idle parameter in the Animator
+        idle = pm.rb.linearVelocity.magnitude < 0.1f;
     }
 }
