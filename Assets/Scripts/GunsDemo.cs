@@ -8,6 +8,7 @@ public class GunsDemo : MonoBehaviour
     
     [Header("Guns")]
     [SerializeField] private GameObject[] guns;
+    [SerializeField] private GameObject[] arms;
     
     int currentGunIndex = 0;
     
@@ -19,9 +20,10 @@ public class GunsDemo : MonoBehaviour
             if (guns[i].activeSelf)
             {
                 currentGunIndex = i;
-                break;
+                return;
             }
         }
+        currentGunIndex = 0;
     }
 
     // Update is called once per frame
@@ -30,16 +32,20 @@ public class GunsDemo : MonoBehaviour
         if (Input.GetKeyDown(nextKey))
         {
             guns[currentGunIndex].SetActive(false);
+            arms[currentGunIndex].SetActive(false);
             currentGunIndex++;
             if (currentGunIndex >= guns.Length) currentGunIndex = 0;
             guns[currentGunIndex].SetActive(true);
+            arms[currentGunIndex].SetActive(true);
         }
         else if (Input.GetKeyDown(previousKey))
         {
             guns[currentGunIndex].SetActive(false);
+            arms[currentGunIndex].SetActive(false);
             currentGunIndex--;
             if (currentGunIndex < 0) currentGunIndex = guns.Length - 1;
             guns[currentGunIndex].SetActive(true);
+            arms[currentGunIndex].SetActive(true);
         }
     }
 }

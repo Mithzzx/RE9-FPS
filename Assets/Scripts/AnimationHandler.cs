@@ -17,11 +17,15 @@ public class AnimationHandler : MonoBehaviour
     private float targetValue;
     
     private bool idle = true;
+    private bool jumped;
+    private bool inAir;
     
     [Header("Hashes")]
     private readonly int xVelocityHash = Animator.StringToHash("xVelocity");
     private readonly int yVelocityHash = Animator.StringToHash("yVelocity");
     private readonly int idleHash = Animator.StringToHash("idel");
+    private readonly int jumpedHash = Animator.StringToHash("jumped");
+    private readonly int inAirHash = Animator.StringToHash("inAir");
 
     void Update()
     {
@@ -69,5 +73,14 @@ public class AnimationHandler : MonoBehaviour
         
         // Set the idle parameter in the Animator
         idle = pm.rb.linearVelocity.magnitude < 0.1f;
+        lowerBodyAnim.SetBool(idleHash,idle);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            lowerBodyAnim.Play("Jumping Up");
+        }
+
+        inAir = !(pm.isGrounded);
+        lowerBodyAnim.SetBool(inAirHash,inAir);
     }
 }
