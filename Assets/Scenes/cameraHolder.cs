@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class cameraHolder : MonoBehaviour
+public class CameraHolder : MonoBehaviour
 {
     [SerializeField] private Transform camPos;
 

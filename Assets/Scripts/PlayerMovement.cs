@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
         speed = rb.linearVelocity.magnitude;
         
         // Check if player is grounded
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight / 2 + 0.2f, groundMask);
+        isGrounded = Physics.Raycast(orientation.position, Vector3.down, playerHeight / 2 + 0.2f, groundMask);
         
         // Apply drag
         rb.linearDamping = isGrounded && !activeGrapple ? groundDrag : 0;
