@@ -720,6 +720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   fpsCam: {fileID: 1948173563}
   muzzle: {fileID: 499781516}
   damage: 2
@@ -5182,6 +5183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   fpsCam: {fileID: 1948173563}
   muzzle: {fileID: 953213903}
   damage: 2
@@ -5669,6 +5671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   fpsCam: {fileID: 1948173563}
   muzzle: {fileID: 830639884}
   damage: 2
@@ -7057,6 +7060,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   fpsCam: {fileID: 1948173563}
   muzzle: {fileID: 12466382}
   damage: 2
@@ -8754,6 +8758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   fpsCam: {fileID: 1948173563}
   muzzle: {fileID: 12466382}
   damage: 2
@@ -13974,6 +13979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   fpsCam: {fileID: 1948173563}
   muzzle: {fileID: 12466382}
   damage: 2
@@ -19240,6 +19246,7 @@ GameObject:
   - component: {fileID: 1859685305}
   - component: {fileID: 1859685306}
   - component: {fileID: 1859685307}
+  - component: {fileID: 1859685308}
   m_Layer: 7
   m_Name: Hand Gun
   m_TagString: Untagged
@@ -19308,6 +19315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 617500762}
+  recoil: {fileID: 1859685308}
   fpsCam: {fileID: 1948173563}
   muzzle: {fileID: 387877870}
   damage: 2
@@ -19323,6 +19331,23 @@ MonoBehaviour:
   bulletsShot: 0
   bulletHole: {fileID: 108086, guid: 547c2e12da8d4214098216299e70a3ba, type: 3}
   muzzleFlash: {fileID: 847273110}
+--- !u!114 &1859685308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859685304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoilX: 2
+  recoilY: 2
+  recoilZ: 2
+  snappiness: 4
+  returnSpeed: 2
 --- !u!1 &1862073285
 GameObject:
   m_ObjectHideFlags: 0
@@ -20345,6 +20370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   fpsCam: {fileID: 1948173563}
   muzzle: {fileID: 1380777946}
   damage: 2
@@ -20768,6 +20794,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   fpsCam: {fileID: 1948173563}
   muzzle: {fileID: 12466382}
   damage: 2

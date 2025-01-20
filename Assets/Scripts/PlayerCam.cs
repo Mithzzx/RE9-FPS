@@ -13,8 +13,8 @@ public class PlayerCam : MonoBehaviour
     [SerializeField] private InputHandler input;
     [SerializeField] private Transform orientation;
     
-    private float xRotation;
-    private float yRotation;
+    public float xRotation;
+    public float yRotation;
     
     private void Start()
     {

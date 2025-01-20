@@ -1,30 +1,31 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class GunMechanics : MonoBehaviour
 {
     [Header("Reference")]
-    [SerializeField] InputHandler input;
-    [SerializeField] Camera fpsCam;
+    [SerializeField] private InputHandler input;
+    [SerializeField] private RecoilAnimation recoilAnimation;
+    [SerializeField] private Camera fpsCam;
+    [SerializeField] private PlayerCam mainCam;
     [SerializeField] private Transform muzzle;
-    RaycastHit hit;
+    private RaycastHit hit;
     
     [Header("Characteristics")]
-    [SerializeField] float damage;
-    [SerializeField] float timeBetweenShooting;
-    [SerializeField] float range;
-    [SerializeField] float spread;
-    [SerializeField] float reloadTime;
-    [FormerlySerializedAs("timeBetweenShooting")] [SerializeField] float timeBetweenShots;
+    [SerializeField] private float damage;
+    [SerializeField] private float timeBetweenShooting;
+    [SerializeField] private float range;
+    [SerializeField] private float spread;
+    [SerializeField] private float reloadTime;
+    [SerializeField] private float timeBetweenShots;
 
-    [SerializeField] int magazineSize;
-    [SerializeField] int bulletsPerTap;
-    [SerializeField] bool allowButtonHold;
+    [SerializeField] private int magazineSize;
+    [SerializeField] private int bulletsPerTap;
+    [SerializeField] private bool allowButtonHold;
 
-    [SerializeField] int bulletsLeft;
-    [SerializeField] int bulletsShot;
+    [SerializeField] private int bulletsLeft;
+    [SerializeField] private int bulletsShot;
 
     private bool shooting;
     private bool canShoot;
@@ -35,6 +36,15 @@ public class GunMechanics : MonoBehaviour
 
     [Header("Muzzle Flash")] 
     [SerializeField] private GameObject muzzleFlash;
+
+    [Header("Recoil")]
+    [Range(0, 7f)] public float recoilAmountY = 5.14f;
+    [Range(0, 3f)] public float recoilAmountX = 1.48f;
+    [SerializeField] private float maxRecoilTime = 4;
+    private float currentRecoilXPos;
+    private float currentRecoilYPos;
+    private float timePressed;
+    
 
     private void Awake()
     {
@@ -52,60 +62,94 @@ public class GunMechanics : MonoBehaviour
             StartCoroutine(Reload());
         }
 
+        if (shooting)
+        {
+            //Calculating how long firing
+            timePressed += Time.deltaTime;
+            timePressed = timePressed >= maxRecoilTime? maxRecoilTime : timePressed;
+        }
+        else
+        {
+            //Resetting timePressed
+            timePressed = 0;
+        }
+
         if (shooting && canShoot && !reloading && bulletsLeft > 0)
         {
             bulletsShot = bulletsPerTap;
             //Creating Muzzle Flash
-            GameObject muzzleFlashInstance = Instantiate(muzzleFlash, muzzle.position, muzzle.rotation) as GameObject;
+            GameObject muzzleFlashInstance = Instantiate(muzzleFlash, muzzle.position, muzzle.rotation);
             Destroy(muzzleFlashInstance, 4);
-
+            
             Fire();
         }
     }
 
     private void Fire()
     {
-        //Disabling Firing
+        // Disabling Firing
         canShoot = false;
+
+        // Recoil
+        RecoilMath();
         
-        //spread
-        float x = UnityEngine.Random.Range(-spread, spread);
-        float y = UnityEngine.Random.Range(-spread, spread);
+        // RecoilAnimation
+        recoilAnimation.GenerateRecoil();
         
-        //Calculating direction with spread
+        // Spread
+        float x = Random.Range(-spread, spread);
+        float y = Random.Range(-spread, spread);
+        
+
+        // Calculating direction with spread
         Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
 
-        //creating Bullet
-        if (Physics.Raycast(fpsCam.transform.position,direction,out hit,range))
+        // Creating Bullet
+        if (Physics.Raycast(fpsCam.transform.position, direction, out hit, range))
         {
-            GameObject bulletHoleInstance = Instantiate(bulletHole, hit.point, new Quaternion()) as GameObject;
+            GameObject bulletHoleInstance = Instantiate(bulletHole, hit.point, new Quaternion());
             bulletHoleInstance.transform.LookAt(hit.point + hit.normal);
             Destroy(bulletHoleInstance, 20);
         }
-        
-        //counting bullets
+
+        // Counting bullets
         bulletsLeft--;
         bulletsShot--;
-        
-        //StartDelay
-        Invoke(nameof(ResetShot), timeBetweenShooting);
+
+        // Start delay
+        StartCoroutine(ResetShotCoroutine());
         if (bulletsShot > 0 && bulletsLeft > 0)
         {
-            Invoke(nameof(Fire), timeBetweenShots);
+            StartCoroutine(FireCoroutine());
         }
     }
 
-    private void ResetShot()
+    private IEnumerator ResetShotCoroutine()
     {
+        yield return new WaitForSeconds(timeBetweenShooting);
         canShoot = true;
     }
 
-    IEnumerator Reload()
+    private IEnumerator FireCoroutine()
+    {
+        yield return new WaitForSeconds(timeBetweenShots);
+        Fire();
+    }
+
+    private IEnumerator Reload()
     {
         reloading = true;
-        Debug.Log("Reloading");
         yield return new WaitForSeconds(reloadTime);
         bulletsLeft = magazineSize;
         reloading = false;
+    }
+
+    private void RecoilMath()
+    {
+        currentRecoilXPos = ((Random.Range(-1f,1f) * 0.5f) / 2) * recoilAmountX;
+        currentRecoilYPos = ((Random.value * 0.5f) / 2) * (timePressed < maxRecoilTime ? recoilAmountY : (recoilAmountY/4));
+        mainCam.xRotation -= currentRecoilYPos;
+        mainCam.yRotation -= currentRecoilXPos;
+        Debug.Log(timePressed < maxRecoilTime);
     }
 }

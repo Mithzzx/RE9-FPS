@@ -108,7 +108,7 @@ public class AnimationHandler : MonoBehaviour
             shadowBodyTransform.rotation = Quaternion.Euler(0, orientation.eulerAngles.y, 0);
         }
         // Check if the difference is approximately 80 degrees
-        else if (Mathf.Abs(yawDifference) >= 80)
+        else if (Mathf.Abs(yawDifference) >= 75)
         {
             lowerBodyAnimator.applyRootMotion = true;
             shadowBodyAnimator.applyRootMotion = true;
