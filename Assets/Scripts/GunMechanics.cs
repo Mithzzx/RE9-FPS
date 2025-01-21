@@ -150,6 +150,5 @@ public class GunMechanics : MonoBehaviour
         currentRecoilYPos = ((Random.value * 0.5f) / 2) * (timePressed < maxRecoilTime ? recoilAmountY : (recoilAmountY/4));
         mainCam.xRotation -= currentRecoilYPos;
         mainCam.yRotation -= currentRecoilXPos;
-        Debug.Log(timePressed < maxRecoilTime);
     }
 }
