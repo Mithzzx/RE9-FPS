@@ -14,7 +14,7 @@ public class SwayNBob : MonoBehaviour
     [Header("Sway Rotation")]
     public float rotationStep = 4f;
     public float maxRotationStep = 5f;
-    [SerializeField] private Vector2 swayMultiplier;
+    [SerializeField] private Vector3 swayMultiplier;
     Vector3 swayEulerRot; 
 
     public float smooth = 10f;
@@ -61,13 +61,13 @@ public class SwayNBob : MonoBehaviour
         invertLook.x = Mathf.Clamp(invertLook.x, -maxRotationStep, maxRotationStep);
         invertLook.y = Mathf.Clamp(invertLook.y, -maxRotationStep, maxRotationStep);
         swayEulerRot = new Vector3(invertLook.y * swayMultiplier.y, invertLook.x * swayMultiplier.x,
-            invertLook.x * swayMultiplier.x);
+            invertLook.x * swayMultiplier.z);
     }
 
     void CompositePositionRotation()
     {
         transform.localPosition = Vector3.Lerp(transform.localPosition, swayPos + bobPosition, Time.deltaTime * smooth);
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(swayEulerRot) * Quaternion.Euler(bobEulerRotation), Time.deltaTime * smoothRot);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(swayEulerRot) * Quaternion.Euler(bobEulerRotation), Time.deltaTime * smoothRot);
     }
 
     void BobOffset()

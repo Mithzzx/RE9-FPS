@@ -1318,7 +1318,7 @@ MonoBehaviour:
   maxStepDistance: 0.06
   rotationStep: 6
   maxRotationStep: 12
-  swayMultiplier: {x: 1, y: -1.4}
+  swayMultiplier: {x: 1, y: -1.4, z: 0}
   smooth: 10
   speedCurve: 1
   travelLimit: {x: 0.02, y: 0.02, z: 0.01}
@@ -10176,7 +10176,7 @@ MonoBehaviour:
   maxStepDistance: 0.06
   rotationStep: 6
   maxRotationStep: 12
-  swayMultiplier: {x: 1, y: -1.4}
+  swayMultiplier: {x: 1, y: -1.4, z: 0}
   smooth: 10
   speedCurve: 1
   travelLimit: {x: 0.02, y: 0.02, z: 0.01}
@@ -11117,7 +11117,7 @@ MonoBehaviour:
   maxStepDistance: 0.06
   rotationStep: 6
   maxRotationStep: 12
-  swayMultiplier: {x: 1, y: -1.4}
+  swayMultiplier: {x: 1, y: -1.4, z: 0}
   smooth: 10
   speedCurve: 1
   travelLimit: {x: 0.02, y: 0.02, z: 0.01}
@@ -13139,7 +13139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &698026449
 Transform:
   m_ObjectHideFlags: 0
@@ -13582,7 +13582,7 @@ MonoBehaviour:
   maxStepDistance: 0.06
   rotationStep: 6
   maxRotationStep: 12
-  swayMultiplier: {x: 1, y: -1.4}
+  swayMultiplier: {x: 1, y: -1.4, z: 0}
   smooth: 10
   speedCurve: 1
   travelLimit: {x: 0.02, y: 0.02, z: 0.01}
@@ -16036,7 +16036,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &776028839
 Transform:
   m_ObjectHideFlags: 0
@@ -16075,7 +16075,7 @@ MonoBehaviour:
   maxStepDistance: 0.06
   rotationStep: 6
   maxRotationStep: 12
-  swayMultiplier: {x: 1, y: -1.4}
+  swayMultiplier: {x: 1, y: -1.4, z: 0}
   smooth: 10
   speedCurve: 1
   travelLimit: {x: 0.02, y: 0.02, z: 0.01}
@@ -26196,7 +26196,7 @@ MonoBehaviour:
   maxStepDistance: 0.06
   rotationStep: 6
   maxRotationStep: 12
-  swayMultiplier: {x: 1, y: -1.4}
+  swayMultiplier: {x: 1, y: -1.4, z: 0}
   smooth: 10
   speedCurve: 1
   travelLimit: {x: 0.02, y: 0.02, z: 0.01}
@@ -26933,7 +26933,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1283313649}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4236f1ba099e84db490ab512fc96d02c, type: 3}
   m_Name: 
@@ -26944,7 +26944,7 @@ MonoBehaviour:
   maxStepDistance: 0.06
   rotationStep: 6
   maxRotationStep: 12
-  swayMultiplier: {x: 1, y: -1.4}
+  swayMultiplier: {x: 1, y: -1.4, z: 1}
   smooth: 10
   speedCurve: 1
   travelLimit: {x: 0.02, y: 0.02, z: 0.01}
@@ -37141,7 +37141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1859685305
 Transform:
   m_ObjectHideFlags: 0
@@ -37150,7 +37150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1859685304}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.012287297, y: 0.007475539, z: 0.00009186365, w: 0.9998966}
+  m_LocalRotation: {x: -0.012285203, y: 0.016578631, z: 0.00020371522, w: 0.9997871}
   m_LocalPosition: {x: -0.04, y: -0.003, z: -0.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -37163,7 +37163,7 @@ Transform:
   - {fileID: 1437416248}
   - {fileID: 2112953099}
   m_Father: {fileID: 472550296}
-  m_LocalEulerAnglesHint: {x: -1.408, y: 0.857, z: 0}
+  m_LocalEulerAnglesHint: {x: -1.408, y: 1.9, z: 0}
 --- !u!114 &1859685306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37182,13 +37182,13 @@ MonoBehaviour:
   maxStepDistance: 0.06
   rotationStep: 6
   maxRotationStep: 12
-  swayMultiplier: {x: 1, y: -1.4}
+  swayMultiplier: {x: 2, y: -1.4, z: 4}
   smooth: 10
-  speedCurve: 1
+  speedCurve: 329.48206
   travelLimit: {x: 0.02, y: 0.02, z: 0.01}
   bobLimit: {x: 0.012, y: 0.012, z: 0.008}
-  walkExaggeration: 3.4
-  sprintExaggeration: 4.5
+  walkExaggeration: 5
+  sprintExaggeration: 9
   multiplier: {x: 2, y: 2, z: 2}
 --- !u!114 &1859685307
 MonoBehaviour:
@@ -38917,7 +38917,7 @@ MonoBehaviour:
   maxStepDistance: 0.06
   rotationStep: 6
   maxRotationStep: 12
-  swayMultiplier: {x: 1, y: -1.4}
+  swayMultiplier: {x: 1, y: -1.4, z: 0}
   smooth: 10
   speedCurve: 1
   travelLimit: {x: 0.02, y: 0.02, z: 0.01}
@@ -52260,33 +52260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &4481761935313204097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5991221819749100449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4236f1ba099e84db490ab512fc96d02c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mover: {fileID: 617500764}
-  input: {fileID: 617500762}
-  step: 0.01
-  maxStepDistance: 0.06
-  rotationStep: 6
-  maxRotationStep: 12
-  swayMultiplier: {x: 1, y: -1.4}
-  smooth: 10
-  speedCurve: 1
-  travelLimit: {x: 0.02, y: 0.02, z: 0.01}
-  bobLimit: {x: 0.012, y: 0.012, z: 0.008}
-  walkExaggeration: 3.4
-  sprintExaggeration: 4.5
-  multiplier: {x: 2, y: 2, z: 2}
+  m_IsActive: 1
 --- !u!4 &4496906305642217907
 Transform:
   m_ObjectHideFlags: 0
@@ -55381,9 +55355,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5948698424218548826}
-  - component: {fileID: 4481761935313204097}
   - component: {fileID: 1976627909}
   - component: {fileID: 5991221819749100450}
+  - component: {fileID: 5991221819749100451}
   m_Layer: 7
   m_Name: AKM
   m_TagString: Untagged
@@ -55408,6 +55382,32 @@ MonoBehaviour:
   recoilZ: 2
   snappiness: 4
   returnSpeed: 2
+--- !u!114 &5991221819749100451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991221819749100449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4236f1ba099e84db490ab512fc96d02c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mover: {fileID: 617500764}
+  input: {fileID: 617500762}
+  step: 0.01
+  maxStepDistance: 0.06
+  rotationStep: 6
+  maxRotationStep: 12
+  swayMultiplier: {x: 1, y: -1.4, z: 400}
+  smooth: 10
+  speedCurve: 1
+  travelLimit: {x: 0.02, y: 0.02, z: 0.01}
+  bobLimit: {x: 0.012, y: 0.012, z: 0.008}
+  walkExaggeration: 3.4
+  sprintExaggeration: 4.5
+  multiplier: {x: 2, y: 2, z: 2}
 --- !u!1 &5992693141628812455
 GameObject:
   m_ObjectHideFlags: 0
