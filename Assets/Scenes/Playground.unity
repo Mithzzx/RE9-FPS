@@ -290,13 +290,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRotation: {x: -0.000010845432, y: 0.0000017494032, z: 0.00000063412904}
-  currentPosition: {x: 0.000000008076854, y: 0.000000024038417, z: -0.000000027447756}
+  currentRotation: {x: -0.000022805558, y: -0.0000037234063, z: 0.000015613936}
+  currentPosition: {x: 0.000000010406185, y: 0.0000000061548904, z: -0.00000024987156}
   snappiness: 4
   returnSpeed: 2
   recoilXPos: 0.001
-  recoilYPos: 0.01
-  recoilZPos: 0.01
+  recoilYPos: 0.015
+  recoilZPos: 0.015
   recoilXRot: 1.2
   recoilYRot: 1
   recoilZRot: 1
@@ -11338,7 +11338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
-  recoil: {fileID: 0}
+  recoil: {fileID: 564058021}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -12195,7 +12195,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 980329710}
   - {fileID: 1283055153}
   - {fileID: 3765957022317820588}
   - {fileID: 1065088445938178304}
@@ -12757,7 +12756,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 261009551}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -12840,7 +12839,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633168503}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
@@ -12902,7 +12901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
-  recoil: {fileID: 0}
+  recoil: {fileID: 633168505}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -13513,7 +13512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
-  recoil: {fileID: 14490387}
+  recoil: {fileID: 679470883}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -18003,7 +18002,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 884212749}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
@@ -18065,7 +18064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
-  recoil: {fileID: 0}
+  recoil: {fileID: 884212751}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -19322,11 +19321,11 @@ Transform:
   m_GameObject: {fileID: 980329706}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.08899999, z: 0}
+  m_LocalPosition: {x: 0, y: 0.058000013, z: 0}
   m_LocalScale: {x: 0.8, y: 0.9, z: 0.70971996}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 617500759}
+  m_Father: {fileID: 1283055153}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &980717083
 GameObject:
@@ -25300,7 +25299,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256908493}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
@@ -25362,7 +25361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
-  recoil: {fileID: 0}
+  recoil: {fileID: 1256908495}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -25844,6 +25843,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1677691181}
+  - {fileID: 980329710}
   m_Father: {fileID: 617500759}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1283313649
@@ -26466,7 +26466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
-  recoil: {fileID: 0}
+  recoil: {fileID: 1296846209}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -32373,7 +32373,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1674689285}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
@@ -32435,7 +32435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
-  recoil: {fileID: 0}
+  recoil: {fileID: 1674689287}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -39023,7 +39023,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 261009551}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -41377,7 +41377,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115036804}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
@@ -41406,7 +41406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
-  recoil: {fileID: 0}
+  recoil: {fileID: 2115036806}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
