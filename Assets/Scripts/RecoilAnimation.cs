@@ -3,7 +3,7 @@ using UnityEngine;
 public class RecoilAnimation : MonoBehaviour
 {
     //Rotations
-    Vector3 targetRotation;
+    public Vector3 targetRotation;
     Vector3 currentRotation;
 
     [Header("Settings")]

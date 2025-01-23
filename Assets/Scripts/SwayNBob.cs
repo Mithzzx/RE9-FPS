@@ -35,7 +35,7 @@ public class SwayNBob : MonoBehaviour
     [Header("Bob Rotation")]
     public Vector3 multiplier;
     Vector3 bobEulerRotation;
-
+    
     void Update()
     {
         Sway();
@@ -67,7 +67,7 @@ public class SwayNBob : MonoBehaviour
     void CompositePositionRotation()
     {
         transform.localPosition = Vector3.Lerp(transform.localPosition, swayPos + bobPosition, Time.deltaTime * smooth);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(swayEulerRot) * Quaternion.Euler(bobEulerRotation), Time.deltaTime * smoothRot);
+        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(swayEulerRot) * Quaternion.Euler(bobEulerRotation), Time.deltaTime * smoothRot);
     }
 
     void BobOffset()
