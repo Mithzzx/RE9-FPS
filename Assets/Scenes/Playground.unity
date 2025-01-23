@@ -285,17 +285,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14490385}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: {x: 0, y: 0, z: 0}
-  recoilX: 2
-  recoilY: 2
-  recoilZ: 2
+  currentRotation: {x: -0.000010845432, y: 0.0000017494032, z: 0.00000063412904}
+  currentPosition: {x: 0.000000008076854, y: 0.000000024038417, z: -0.000000027447756}
   snappiness: 4
   returnSpeed: 2
+  recoilXPos: 0.001
+  recoilYPos: 0.01
+  recoilZPos: 0.01
+  recoilXRot: 1.2
+  recoilYRot: 1
+  recoilZRot: 1
 --- !u!114 &14490388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
+  recoil: {fileID: 14490387}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -11309,12 +11314,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: {x: 0, y: 0, z: 0}
-  recoilX: 2
-  recoilY: 2
-  recoilZ: 2
+  currentRotation: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
+  recoilXPos: 0
+  recoilYPos: 0
+  recoilZPos: 0
+  recoilXRot: 0
+  recoilYRot: 0
+  recoilZRot: 0
 --- !u!114 &564058022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11329,6 +11338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -12835,12 +12845,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: {x: 0, y: 0, z: 0}
-  recoilX: 2
-  recoilY: 2
-  recoilZ: 2
+  currentRotation: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
+  recoilXPos: 0
+  recoilYPos: 0
+  recoilZPos: 0
+  recoilXRot: 0
+  recoilYRot: 0
+  recoilZRot: 0
 --- !u!114 &633168506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12888,6 +12902,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -13436,17 +13451,21 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679470881}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: {x: 0, y: 0, z: 0}
-  recoilX: 2
-  recoilY: 2
-  recoilZ: 2
+  currentRotation: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
+  recoilXPos: 0
+  recoilYPos: 0
+  recoilZPos: 0
+  recoilXRot: 0
+  recoilYRot: 0
+  recoilZRot: 0
 --- !u!114 &679470884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13494,6 +13513,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
+  recoil: {fileID: 14490387}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -17988,12 +18008,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: {x: 0, y: 0, z: 0}
-  recoilX: 2
-  recoilY: 2
-  recoilZ: 2
+  currentRotation: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
+  recoilXPos: 0
+  recoilYPos: 0
+  recoilZPos: 0
+  recoilXRot: 0
+  recoilYRot: 0
+  recoilZRot: 0
 --- !u!114 &884212752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18041,6 +18065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -25280,12 +25305,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: {x: 0, y: 0, z: 0}
-  recoilX: 2
-  recoilY: 2
-  recoilZ: 2
+  currentRotation: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
+  recoilXPos: 0
+  recoilYPos: 0
+  recoilZPos: 0
+  recoilXRot: 0
+  recoilYRot: 0
+  recoilZRot: 0
 --- !u!114 &1256908496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25333,6 +25362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -25866,6 +25896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -26378,12 +26409,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: {x: 0, y: 0, z: 0}
-  recoilX: 2
-  recoilY: 2
-  recoilZ: 2
+  currentRotation: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
+  recoilXPos: 0
+  recoilYPos: 0
+  recoilZPos: 0
+  recoilXRot: 0
+  recoilYRot: 0
+  recoilZRot: 0
 --- !u!114 &1296846210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26431,6 +26466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -32342,12 +32378,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: {x: 0, y: 0, z: 0}
-  recoilX: 2
-  recoilY: 2
-  recoilZ: 2
+  currentRotation: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
+  recoilXPos: 0
+  recoilYPos: 0
+  recoilZPos: 0
+  recoilXRot: 0
+  recoilYRot: 0
+  recoilZRot: 0
 --- !u!114 &1674689288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32395,6 +32435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6
@@ -41341,12 +41382,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: {x: 0, y: 0, z: 0}
-  recoilX: 2
-  recoilY: 2
-  recoilZ: 2
+  currentRotation: {x: 0, y: 0, z: 0}
+  currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
+  recoilXPos: 0
+  recoilYPos: 0
+  recoilZPos: 0
+  recoilXRot: 0
+  recoilYRot: 0
+  recoilZRot: 0
 --- !u!114 &2115036807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41361,6 +41406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mover: {fileID: 617500764}
   input: {fileID: 617500762}
+  recoil: {fileID: 0}
   step: 0.01
   maxStepDistance: 0.06
   rotationStep: 6

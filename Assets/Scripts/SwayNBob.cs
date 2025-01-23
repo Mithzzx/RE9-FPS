@@ -5,6 +5,7 @@ public class SwayNBob : MonoBehaviour
     [Header("References")]
     [SerializeField] private PlayerMovement mover;
     [SerializeField] private InputHandler input;
+    [SerializeField] private RecoilAnimation recoil;
 
     [Header("Sway")]
     [SerializeField] private float step = 0.01f;
@@ -18,12 +19,13 @@ public class SwayNBob : MonoBehaviour
     Vector3 swayEulerRot; 
 
     public float smooth = 10f;
-    float smoothRot = 12f;
+    readonly float smoothRot = 12f;
 
     [Header("Bobbing")]
     public float speedCurve;
-    float CurveSin {get => Mathf.Sin(speedCurve);}
-    float CurveCos {get => Mathf.Cos(speedCurve);}
+
+    private float curveSin => Mathf.Sin(speedCurve);
+    private float curveCos => Mathf.Cos(speedCurve);
 
     public Vector3 travelLimit = Vector3.one * 0.025f;
     public Vector3 bobLimit = Vector3.one * 0.01f;
@@ -66,8 +68,13 @@ public class SwayNBob : MonoBehaviour
 
     void CompositePositionRotation()
     {
-        transform.localPosition = Vector3.Lerp(transform.localPosition, swayPos + bobPosition, Time.deltaTime * smooth);
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(swayEulerRot) * Quaternion.Euler(bobEulerRotation), Time.deltaTime * smoothRot);
+        Vector3 recoilPosition = recoil.currentPosition;
+        Vector3 swayBobPosition = Vector3.Lerp(transform.localPosition, swayPos + bobPosition, Time.deltaTime * smooth);
+        transform.localPosition = recoilPosition + swayBobPosition;
+        
+        Quaternion recoilRotation = Quaternion.Euler(recoil.currentRotation);
+        Quaternion swayBobRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(swayEulerRot) * Quaternion.Euler(bobEulerRotation), Time.deltaTime * smoothRot);
+        transform.localRotation = recoilRotation * swayBobRotation;
     }
 
     void BobOffset()
@@ -76,15 +83,15 @@ public class SwayNBob : MonoBehaviour
 
         speedCurve += Time.deltaTime * (mover.isGrounded ? (Mathf.Abs(input.MoveInput.x) + Mathf.Abs(input.MoveInput.y)) * bobExaggeration : 1f) + 0.01f;
 
-        bobPosition.x = (CurveCos * bobLimit.x * (mover.isGrounded ? 1 : 0)) - (input.MoveInput.x * travelLimit.x);
-        bobPosition.y = (CurveSin * bobLimit.y) - (Mathf.Abs(input.MoveInput.y) * travelLimit.y);
+        bobPosition.x = (curveCos * bobLimit.x * (mover.isGrounded ? 1 : 0)) - (input.MoveInput.x * travelLimit.x);
+        bobPosition.y = (curveSin * bobLimit.y) - (Mathf.Abs(input.MoveInput.y) * travelLimit.y);
         bobPosition.z = -(Mathf.Abs(input.MoveInput.y) * travelLimit.z);
     }
 
     void BobRotation()
     {
         bobEulerRotation.x = (input.MoveInput != Vector2.zero ? multiplier.x * (Mathf.Sin(2*speedCurve)) : multiplier.x * (Mathf.Sin(2*speedCurve) / 2));
-        bobEulerRotation.y = (input.MoveInput != Vector2.zero ? multiplier.y * CurveCos : 0);
-        bobEulerRotation.z = (input.MoveInput != Vector2.zero ? multiplier.z * CurveCos * input.MoveInput.x : 0);
+        bobEulerRotation.y = (input.MoveInput != Vector2.zero ? multiplier.y * curveCos : 0);
+        bobEulerRotation.z = (input.MoveInput != Vector2.zero ? multiplier.z * curveCos * input.MoveInput.x : 0);
     }
 }
