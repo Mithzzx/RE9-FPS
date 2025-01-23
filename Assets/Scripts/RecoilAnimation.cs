@@ -1,37 +1,28 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class RecoilAnimation : MonoBehaviour
 {
     //Rotations
-    Vector3 targetRotation;
-    public Vector3 recoilRotation;
-    
-    [Header("Recoil Settings")]
-    [SerializeField] private float snappiness;
-    [SerializeField] private float returnSpeed;
-    
-    [Header("Recoil Position Settings")]
-    [SerializeField] private float recoilXPos;
-    [SerializeField] private float recoilYPos;
-    
-    
+    public Vector3 targetRotation;
+    Vector3 currentRotation;
 
-    [Header("Recoil Rotation Settings")]
-    [SerializeField] private float recoilXRot;
-    [SerializeField] private float recoilYRot;
-    [SerializeField] private float recoilZRot;
-    
+    [Header("Settings")]
+    [SerializeField] float recoilX;
+    [SerializeField] float recoilY;
+    [SerializeField] float recoilZ;
+    [SerializeField] float snappiness;
+    [SerializeField] float returnSpeed;
 
 
     void Update()
     {
         targetRotation = Vector3.Lerp(targetRotation, Vector3.zero, returnSpeed * Time.deltaTime);
-        recoilRotation = Vector3.Slerp(recoilRotation, targetRotation, snappiness * Time.fixedDeltaTime);
+        currentRotation = Vector3.Slerp(currentRotation, targetRotation, snappiness * Time.fixedDeltaTime);
+        transform.localRotation = Quaternion.Euler(currentRotation);
     }
 
     public void GenerateRecoil()
     {
-        targetRotation += new Vector3(-recoilXRot, Random.Range(-recoilYRot,recoilYRot), Random.Range(-recoilZRot, recoilZRot));
+        targetRotation += new Vector3(-recoilX, Random.Range(-recoilY,recoilY), Random.Range(-recoilZ, recoilZ));
     }
 }
