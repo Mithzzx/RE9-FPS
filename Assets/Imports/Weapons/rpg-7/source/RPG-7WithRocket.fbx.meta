@@ -3,7 +3,17 @@ guid: 7926a15879db8471a80c46de940d8d76
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RPG-7
+    second: {fileID: 2100000, guid: 1b6c766f6d6b24cd58237368afb107e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RPG-7_Rocket
+    second: {fileID: 2100000, guid: d5d84c4e9457244ae86f234f2153b9ac, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
