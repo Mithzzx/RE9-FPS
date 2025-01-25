@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 713f8d12f5dbfb640b7a4874212c2c08
+timeCreated: 1473769591
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 4.0
+  assetPath: Assets/UnityTechnologies/EffectExamples/WeaponEffects/Materials/ShallCasing.mat
+  uploadId: 684565

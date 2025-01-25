@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2c7e85f4b03483447a66947c83fb7468
+timeCreated: 1475660644
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 4.0
+  assetPath: Assets/UnityTechnologies/EffectExamples/FireExplosionEffects/Prefabs/WallFlames.prefab
+  uploadId: 684565

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 8edb62778d3ea1e489bc191b81b2fc46
+timeCreated: 1473176007
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 4.0
+  assetPath: Assets/UnityTechnologies/EffectExamples/WaterEffects/Prefabs/WaterfallEffect.prefab
+  uploadId: 684565

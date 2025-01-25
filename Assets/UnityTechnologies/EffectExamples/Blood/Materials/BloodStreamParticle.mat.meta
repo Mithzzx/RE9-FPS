@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fb0a006be807eac48a87ffa79b3330a5
+timeCreated: 1473846625
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 4.0
+  assetPath: Assets/UnityTechnologies/EffectExamples/Blood/Materials/BloodStreamParticle.mat
+  uploadId: 684565

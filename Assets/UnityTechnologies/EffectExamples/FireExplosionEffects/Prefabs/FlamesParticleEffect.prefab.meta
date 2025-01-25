@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3228a22491941734bb83ad691d17fcb9
+timeCreated: 1473159169
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 4.0
+  assetPath: Assets/UnityTechnologies/EffectExamples/FireExplosionEffects/Prefabs/FlamesParticleEffect.prefab
+  uploadId: 684565

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2062b6d0a7a2d4f46b4689198aedadd9
+timeCreated: 1471344566
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 4.0
+  assetPath: Assets/UnityTechnologies/EffectExamples/Shared/Materials/DarkDefault.mat
+  uploadId: 684565

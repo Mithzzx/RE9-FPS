@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c482561641a25514791bf19c84125d92
+timeCreated: 1506938341
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 25800000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 73777
+  packageName: Legacy Particle Pack
+  packageVersion: 4.0
+  assetPath: Assets/UnityTechnologies/EffectExamples/Scenes/Menu/LightingData.asset
+  uploadId: 684565
