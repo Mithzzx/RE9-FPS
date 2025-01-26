@@ -1,0 +1,27 @@
+{
+    "name": "AssetInventory.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:478a2357cc57436488a56e564b08d223",
+        "GUID:3b657de9509b8304997f7568b9c95b61",
+        "GUID:f82f873437909ef4fb0deb8005903f14",
+        "GUID:c579267770062bf448e75eb160330b7f"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.render-pipelines.universal",
+            "expression": "14.0.0",
+            "define": "USE_URP_CONVERTER"
+        }
+    ],
+    "noEngineReferences": false
+}

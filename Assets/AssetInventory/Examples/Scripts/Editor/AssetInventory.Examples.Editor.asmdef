@@ -1,0 +1,19 @@
+{
+    "name": "AssetInventory.Examples.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6f5cf4676c89ad64daa709775fe0e85d",
+        "GUID:00da1a2928085014f88a485d1d9df39e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

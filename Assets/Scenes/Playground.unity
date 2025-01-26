@@ -9244,7 +9244,7 @@ GameObject:
   - component: {fileID: 327779429}
   - component: {fileID: 327779431}
   - component: {fileID: 327779430}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9440,7 +9440,7 @@ GameObject:
   - component: {fileID: 333415632}
   - component: {fileID: 333415634}
   - component: {fileID: 333415633}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: metal head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14253,7 +14253,6 @@ Transform:
   - {fileID: 1019283391}
   - {fileID: 887589047}
   - {fileID: 1983987032}
-  - {fileID: 1513581868}
   - {fileID: 1210062840}
   - {fileID: 101532292}
   m_Father: {fileID: 995908697}
@@ -22964,7 +22963,7 @@ GameObject:
   - component: {fileID: 779134280}
   - component: {fileID: 779134282}
   - component: {fileID: 779134281}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43417,7 +43416,7 @@ GameObject:
   - component: {fileID: 1513581869}
   - component: {fileID: 1513581871}
   - component: {fileID: 1513581870}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Mesh (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43432,9 +43431,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1513581867}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.008740497, y: 0.9152481, z: 0.030931942, w: 0.40160635}
-  m_LocalPosition: {x: -0.177, y: 0.035146847, z: 1.212}
-  m_LocalScale: {x: 0.070000015, y: 0.07, z: 0.06999999}
+  m_LocalRotation: {x: -0.008740498, y: 0.91524816, z: 0.030931944, w: 0.40160638}
+  m_LocalPosition: {x: 1.6400001, y: 1.3991468, z: 5.81}
+  m_LocalScale: {x: 0.06999999, y: 0.07, z: 0.06999998}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 779134280}
@@ -43442,7 +43441,7 @@ Transform:
   - {fileID: 333415632}
   - {fileID: 2017562189}
   - {fileID: 327779429}
-  m_Father: {fileID: 472550296}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -3.649, y: 172.071, z: 0.508}
 --- !u!114 &1513581869
 MonoBehaviour:
@@ -43457,8 +43456,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
-  explosionOffset: {x: 0, y: 1, z: 0}
-  explosionDelay: 3
+  explosionOffset: {x: 0, y: 0.3, z: 0}
+  explosionDelay: 7
   explosionForce: 700
   explosionRadius: 5
 --- !u!54 &1513581870
@@ -53995,7 +53994,7 @@ GameObject:
   - component: {fileID: 1904588216}
   - component: {fileID: 1904588218}
   - component: {fileID: 1904588217}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: cover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57588,7 +57587,7 @@ GameObject:
   - component: {fileID: 2017562189}
   - component: {fileID: 2017562191}
   - component: {fileID: 2017562190}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: pin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60560,7 +60559,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2144197416
 Transform:
   m_ObjectHideFlags: 0
@@ -96481,4 +96480,5 @@ SceneRoots:
   - {fileID: 1290072526}
   - {fileID: 155882952}
   - {fileID: 8135575339100577986}
+  - {fileID: 1513581868}
   - {fileID: 1776861240275522150}
