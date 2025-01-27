@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 8594890806761807913}
   - component: {fileID: 1533691550771735005}
   - component: {fileID: 2890663820422462770}
-  - component: {fileID: 1100314519953681675}
+  - component: {fileID: 8859737171389435246}
   m_Layer: 0
   m_Name: Grenade Prefab
   m_TagString: Untagged
@@ -395,7 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ca0ce4f5d504227a041554acd51c98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefab: {fileID: 1828176872806910, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
+  explosionPrefab: {fileID: 7486532981401869373, guid: bb7b8178c86ae44a3b17fa3604ad79d8, type: 3}
   explosionOffset: {x: 0, y: 0.3, z: 0}
   explosionDelay: 3
   explosionForce: 700
@@ -427,8 +427,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &1100314519953681675
-CapsuleCollider:
+--- !u!135 &8859737171389435246
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -445,11 +445,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.58
-  m_Height: 2.0815973
-  m_Direction: 1
-  m_Center: {x: 0.0021065986, y: -0.057690274, z: 8.817352e-10}
+  serializedVersion: 3
+  m_Radius: 0.82
+  m_Center: {x: -0.04, y: -0.19, z: 4.275731e-11}
 --- !u!1 &7340527505747338733
 GameObject:
   m_ObjectHideFlags: 0
