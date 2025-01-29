@@ -13,7 +13,7 @@ public class GunMechanics : MonoBehaviour
     private RaycastHit hit;
     
     [Header("Characteristics")]
-    [SerializeField] private float damage;
+    [SerializeField] public float damage;
     [SerializeField] private float timeBetweenShooting;
     [SerializeField] private float range;
     [SerializeField] private float spread;
@@ -107,9 +107,14 @@ public class GunMechanics : MonoBehaviour
         // Creating Bullet
         if (Physics.Raycast(fpsCam.transform.position, direction, out hit, range))
         {
+            //bullet hit effect
             GameObject bulletHoleInstance = Instantiate(bulletHole, hit.point, new Quaternion());
             bulletHoleInstance.transform.LookAt(hit.point + hit.normal);
             Destroy(bulletHoleInstance, 20);
+            
+            //hit enemy
+            var hitBox = hit.collider.GetComponent<HitBox>();
+            if (hitBox) hitBox.OnRaycastHit(this, direction);
         }
 
         // Counting bullets

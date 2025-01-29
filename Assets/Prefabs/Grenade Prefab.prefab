@@ -398,7 +398,7 @@ MonoBehaviour:
   explosionPrefab: {fileID: 7486532981401869373, guid: bb7b8178c86ae44a3b17fa3604ad79d8, type: 3}
   explosionOffset: {x: 0, y: 0.3, z: 0}
   explosionDelay: 3
-  explosionForce: 700
+  explosionForce: 7000
   explosionRadius: 5
 --- !u!54 &2890663820422462770
 Rigidbody:
