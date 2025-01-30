@@ -432,16 +432,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunMesh: {fileID: 26366944}
   currentRotation: {x: -0.000022805558, y: -0.0000037234063, z: 0.000015613936}
   currentPosition: {x: 0.000000010406185, y: 0.0000000061548904, z: -0.00000024987156}
   snappiness: 4
   returnSpeed: 2
-  recoilXPos: 0.001
-  recoilYPos: 0.015
-  recoilZPos: 0.015
-  recoilXRot: 1.2
-  recoilYRot: 1
-  recoilZRot: 1
+  recoilXPosRange: {x: 0.001, y: 0.002}
+  recoilYPosRange: {x: 0.004, y: 0.005}
+  recoilZPosRange: {x: -0.001, y: -0.008}
+  recoilXRotRange: {x: 0.05, y: 0.1}
+  recoilYRotRange: {x: 0, y: 0}
+  recoilZRotRange: {x: 0, y: 0}
 --- !u!114 &14490388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,7 +462,7 @@ MonoBehaviour:
   mainCam: {fileID: 1948173564}
   muzzle: {fileID: 1875555613}
   damage: 2
-  impactForce: 0
+  impactForce: 30
   timeBetweenShooting: 0.5
   range: 25
   spread: 0.02
@@ -21161,16 +21162,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunMesh: {fileID: 543450652975446088}
   currentRotation: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
-  recoilXPos: 0
-  recoilYPos: 0
-  recoilZPos: 0
-  recoilXRot: 0
-  recoilYRot: 0
-  recoilZRot: 0
+  recoilXPosRange: {x: 0, y: 0}
+  recoilYPosRange: {x: 0, y: 0}
+  recoilZPosRange: {x: 0, y: 0}
+  recoilXRotRange: {x: 0, y: 0}
+  recoilYRotRange: {x: 0, y: 0}
+  recoilZRotRange: {x: 0, y: 0}
 --- !u!114 &564058022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23517,16 +23519,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunMesh: {fileID: 1526471921}
   currentRotation: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
-  recoilXPos: 0
-  recoilYPos: 0
-  recoilZPos: 0
-  recoilXRot: 0
-  recoilYRot: 0
-  recoilZRot: 0
+  recoilXPosRange: {x: 0, y: 0}
+  recoilYPosRange: {x: 0, y: 0}
+  recoilZPosRange: {x: 0, y: 0}
+  recoilXRotRange: {x: 0, y: 0}
+  recoilYRotRange: {x: 0, y: 0}
+  recoilZRotRange: {x: 0, y: 0}
 --- !u!114 &633168506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24887,16 +24890,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunMesh: {fileID: 0}
   currentRotation: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 0
   returnSpeed: 0
-  recoilXPos: 0
-  recoilYPos: 0
-  recoilZPos: 0
-  recoilXRot: 0
-  recoilYRot: 0
-  recoilZRot: 0
+  recoilXPosRange: {x: 0, y: 0}
+  recoilYPosRange: {x: 0, y: 0}
+  recoilZPosRange: {x: 0, y: 0}
+  recoilXRotRange: {x: 0, y: 0}
+  recoilYRotRange: {x: 0, y: 0}
+  recoilZRotRange: {x: 0, y: 0}
 --- !u!114 &672394675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25209,16 +25213,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunMesh: {fileID: 8033412950869543614}
   currentRotation: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
-  recoilXPos: 0
-  recoilYPos: 0
-  recoilZPos: 0
-  recoilXRot: 0
-  recoilYRot: 0
-  recoilZRot: 0
+  recoilXPosRange: {x: 0, y: 0}
+  recoilYPosRange: {x: 0, y: 0}
+  recoilZPosRange: {x: 0, y: 0}
+  recoilXRotRange: {x: 0, y: 0}
+  recoilYRotRange: {x: 0, y: 0}
+  recoilZRotRange: {x: 0, y: 0}
 --- !u!114 &679470884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25238,7 +25243,7 @@ MonoBehaviour:
   mainCam: {fileID: 1948173564}
   muzzle: {fileID: 1557529599}
   damage: 2
-  impactForce: 0
+  impactForce: 45
   timeBetweenShooting: 0.5
   range: 25
   spread: 0.02
@@ -33010,16 +33015,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunMesh: {fileID: 1108197014}
   currentRotation: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
-  recoilXPos: 0
-  recoilYPos: 0
-  recoilZPos: 0
-  recoilXRot: 0
-  recoilYRot: 0
-  recoilZRot: 0
+  recoilXPosRange: {x: 0, y: 0}
+  recoilYPosRange: {x: 0, y: 0}
+  recoilZPosRange: {x: 0, y: 0}
+  recoilXRotRange: {x: 0, y: 0}
+  recoilYRotRange: {x: 0, y: 0}
+  recoilZRotRange: {x: 0, y: 0}
 --- !u!114 &884212752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44324,16 +44330,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunMesh: {fileID: 906240630}
   currentRotation: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
-  recoilXPos: 0
-  recoilYPos: 0
-  recoilZPos: 0
-  recoilXRot: 0
-  recoilYRot: 0
-  recoilZRot: 0
+  recoilXPosRange: {x: 0, y: 0}
+  recoilYPosRange: {x: 0, y: 0}
+  recoilZPosRange: {x: 0, y: 0}
+  recoilXRotRange: {x: 0, y: 0}
+  recoilYRotRange: {x: 0, y: 0}
+  recoilZRotRange: {x: 0, y: 0}
 --- !u!114 &1256908496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44353,7 +44360,7 @@ MonoBehaviour:
   mainCam: {fileID: 1948173564}
   muzzle: {fileID: 953213903}
   damage: 2
-  impactForce: 0
+  impactForce: 30
   timeBetweenShooting: 1
   range: 25
   spread: 0.06
@@ -45618,16 +45625,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunMesh: {fileID: 8918587870276250085}
   currentRotation: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
-  recoilXPos: 0
-  recoilYPos: 0
-  recoilZPos: 0
-  recoilXRot: 0
-  recoilYRot: 0
-  recoilZRot: 0
+  recoilXPosRange: {x: 0, y: 0}
+  recoilYPosRange: {x: 0, y: 0}
+  recoilZPosRange: {x: 0, y: 0}
+  recoilXRotRange: {x: 0, y: 0}
+  recoilYRotRange: {x: 0, y: 0}
+  recoilZRotRange: {x: 0, y: 0}
 --- !u!114 &1296846210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45647,7 +45655,7 @@ MonoBehaviour:
   mainCam: {fileID: 1948173564}
   muzzle: {fileID: 1380777946}
   damage: 2
-  impactForce: 0
+  impactForce: 30
   timeBetweenShooting: 1
   range: 25
   spread: 0.06
@@ -53909,7 +53917,7 @@ Transform:
   m_GameObject: {fileID: 1557529598}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000029802319, y: -0.0000000037252899, z: 5.8207655e-10, w: 1}
-  m_LocalPosition: {x: -0, y: 0.02, z: 0.276}
+  m_LocalPosition: {x: 0, y: 0.02, z: 0.276}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -57427,16 +57435,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunMesh: {fileID: 3362647316914460941}
   currentRotation: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
-  recoilXPos: 0
-  recoilYPos: 0
-  recoilZPos: 0
-  recoilXRot: 0
-  recoilYRot: 0
-  recoilZRot: 0
+  recoilXPosRange: {x: 0, y: 0}
+  recoilYPosRange: {x: 0, y: 0}
+  recoilZPosRange: {x: 0, y: 0}
+  recoilXRotRange: {x: 0, y: 0}
+  recoilYRotRange: {x: 0, y: 0}
+  recoilZRotRange: {x: 0, y: 0}
 --- !u!114 &1674689288
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57456,7 +57465,7 @@ MonoBehaviour:
   mainCam: {fileID: 1948173564}
   muzzle: {fileID: 499781516}
   damage: 2
-  impactForce: 0
+  impactForce: 50
   timeBetweenShooting: 0.5
   range: 25
   spread: 0.02
@@ -65098,7 +65107,7 @@ Transform:
   m_GameObject: {fileID: 1901338554}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0041603274, y: 0.0316204, z: -0.0010519145, w: -0.99949074}
-  m_LocalPosition: {x: -0.08924475, y: 0.010839477, z: 0.228556}
+  m_LocalPosition: {x: -0.0946, y: 0.0221, z: 0.228556}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -72958,16 +72967,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0542580ff8874ac4ab2c8aa1fd1825b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gunMesh: {fileID: 5970416183521633146}
   currentRotation: {x: 0, y: 0, z: 0}
   currentPosition: {x: 0, y: 0, z: 0}
   snappiness: 4
   returnSpeed: 2
-  recoilXPos: 0
-  recoilYPos: 0
-  recoilZPos: 0
-  recoilXRot: 0
-  recoilYRot: 0
-  recoilZRot: 0
+  recoilXPosRange: {x: 0, y: 0}
+  recoilYPosRange: {x: 0, y: 0}
+  recoilZPosRange: {x: 0, y: 0}
+  recoilXRotRange: {x: 0, y: 0}
+  recoilYRotRange: {x: 0, y: 0}
+  recoilZRotRange: {x: 0, y: 0}
 --- !u!114 &2115036807
 MonoBehaviour:
   m_ObjectHideFlags: 0
