@@ -1,0 +1,351 @@
+fileFormatVersion: 2
+guid: ce922672d1cb3e2409220c4966c1af7e
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Aim 3
+    100002: bullet 002
+    100004: bullet 003
+    100006: bullet 1
+    100008: Butt
+    100010: Camera001
+    100012: CATRigHub001
+    100014: CATRigLArm1
+    100016: CATRigLArm21
+    100018: CATRigLArm22
+    100020: CATRigLArmCollarbone
+    100022: CATRigLArmDigit11
+    100024: CATRigLArmDigit12
+    100026: CATRigLArmDigit13
+    100028: CATRigLArmDigit21
+    100030: CATRigLArmDigit22
+    100032: CATRigLArmDigit23
+    100034: CATRigLArmDigit31
+    100036: CATRigLArmDigit32
+    100038: CATRigLArmDigit33
+    100040: CATRigLArmDigit41
+    100042: CATRigLArmDigit42
+    100044: CATRigLArmDigit43
+    100046: CATRigLArmDigit51
+    100048: CATRigLArmDigit52
+    100050: CATRigLArmDigit53
+    100052: CATRigLArmIKTarget
+    100054: CATRigLArmPalm
+    100056: CATRigRArm1
+    100058: CATRigRArm21
+    100060: CATRigRArm22
+    100062: CATRigRArmCollarbone
+    100064: CATRigRArmDigit11
+    100066: CATRigRArmDigit12
+    100068: CATRigRArmDigit13
+    100070: CATRigRArmDigit21
+    100072: CATRigRArmDigit22
+    100074: CATRigRArmDigit23
+    100076: CATRigRArmDigit31
+    100078: CATRigRArmDigit32
+    100080: CATRigRArmDigit33
+    100082: CATRigRArmDigit41
+    100084: CATRigRArmDigit42
+    100086: CATRigRArmDigit43
+    100088: CATRigRArmDigit51
+    100090: CATRigRArmDigit52
+    100092: CATRigRArmDigit53
+    100094: CATRigRArmPalm
+    100096: Character001
+    100098: full gloves
+    100100: gloves without fingers
+    100102: hands
+    100104: long sleeves
+    100106: Object001
+    100108: Options 1
+    100110: Options 1 -2
+    100112: Options 1-005
+    100114: Options 1-006
+    100116: Options 1-007
+    100118: Options 1-3
+    100120: Options 1-4
+    100122: short sleeves
+    100124: //RootNode
+    100126: Shotgun tactical
+    100128: Shotgun tactical 2
+    100130: Shotgun tactical 3
+    400000: Aim 3
+    400002: bullet 002
+    400004: bullet 003
+    400006: bullet 1
+    400008: Butt
+    400010: Camera001
+    400012: CATRigHub001
+    400014: CATRigLArm1
+    400016: CATRigLArm21
+    400018: CATRigLArm22
+    400020: CATRigLArmCollarbone
+    400022: CATRigLArmDigit11
+    400024: CATRigLArmDigit12
+    400026: CATRigLArmDigit13
+    400028: CATRigLArmDigit21
+    400030: CATRigLArmDigit22
+    400032: CATRigLArmDigit23
+    400034: CATRigLArmDigit31
+    400036: CATRigLArmDigit32
+    400038: CATRigLArmDigit33
+    400040: CATRigLArmDigit41
+    400042: CATRigLArmDigit42
+    400044: CATRigLArmDigit43
+    400046: CATRigLArmDigit51
+    400048: CATRigLArmDigit52
+    400050: CATRigLArmDigit53
+    400052: CATRigLArmIKTarget
+    400054: CATRigLArmPalm
+    400056: CATRigRArm1
+    400058: CATRigRArm21
+    400060: CATRigRArm22
+    400062: CATRigRArmCollarbone
+    400064: CATRigRArmDigit11
+    400066: CATRigRArmDigit12
+    400068: CATRigRArmDigit13
+    400070: CATRigRArmDigit21
+    400072: CATRigRArmDigit22
+    400074: CATRigRArmDigit23
+    400076: CATRigRArmDigit31
+    400078: CATRigRArmDigit32
+    400080: CATRigRArmDigit33
+    400082: CATRigRArmDigit41
+    400084: CATRigRArmDigit42
+    400086: CATRigRArmDigit43
+    400088: CATRigRArmDigit51
+    400090: CATRigRArmDigit52
+    400092: CATRigRArmDigit53
+    400094: CATRigRArmPalm
+    400096: Character001
+    400098: full gloves
+    400100: gloves without fingers
+    400102: hands
+    400104: long sleeves
+    400106: Object001
+    400108: Options 1
+    400110: Options 1 -2
+    400112: Options 1-005
+    400114: Options 1-006
+    400116: Options 1-007
+    400118: Options 1-3
+    400120: Options 1-4
+    400122: short sleeves
+    400124: //RootNode
+    400126: Shotgun tactical
+    400128: Shotgun tactical 2
+    400130: Shotgun tactical 3
+    2000000: Camera001
+    2100000: bullet
+    2100002: Shotgun
+    2100004: Butt
+    2100006: Options 1-1
+    2100008: aim 3
+    2100010: glass 4
+    2100012: Glass 3
+    2100014: hands
+    2100016: gloves
+    2100018: clothes
+    2300000: Aim 3
+    2300002: bullet 002
+    2300004: bullet 003
+    2300006: bullet 1
+    2300008: Butt
+    2300010: Object001
+    2300012: Options 1
+    2300014: Options 1 -2
+    2300016: Options 1-005
+    2300018: Options 1-006
+    2300020: Options 1-007
+    2300022: Options 1-3
+    2300024: Options 1-4
+    2300026: Shotgun tactical
+    2300028: Shotgun tactical 2
+    2300030: Shotgun tactical 3
+    3300000: Aim 3
+    3300002: bullet 002
+    3300004: bullet 003
+    3300006: bullet 1
+    3300008: Butt
+    3300010: Object001
+    3300012: Options 1
+    3300014: Options 1 -2
+    3300016: Options 1-005
+    3300018: Options 1-006
+    3300020: Options 1-007
+    3300022: Options 1-3
+    3300024: Options 1-4
+    3300026: Shotgun tactical
+    3300028: Shotgun tactical 2
+    3300030: Shotgun tactical 3
+    4300000: bullet 1
+    4300002: Shotgun tactical
+    4300004: Butt
+    4300006: Options 1
+    4300008: Aim 3
+    4300010: Options 1-4
+    4300012: Options 1-006
+    4300014: Options 1-007
+    4300016: bullet 003
+    4300018: bullet 002
+    4300020: Options 1-005
+    4300022: Options 1 -2
+    4300024: Shotgun tactical 2
+    4300026: Options 1-3
+    4300028: Shotgun tactical 3
+    4300030: Object001
+    4300032: full gloves
+    4300034: short sleeves
+    4300036: hands
+    4300038: gloves without fingers
+    4300040: long sleeves
+    7400000: Shot
+    7400002: Idle
+    9500000: //RootNode
+    13700000: full gloves
+    13700002: gloves without fingers
+    13700004: hands
+    13700006: long sleeves
+    13700008: short sleeves
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Shot
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 200
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 0
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 12.5
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.0125
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,159 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: blood doll demo
+  m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _NORMALMAP _SPECGLOSSMAP
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BloodAlbedo:
+        m_Texture: {fileID: 2800000, guid: 97318301147cec541bd42658de1bbd7f, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _BloodNormalMap:
+        m_Texture: {fileID: 2800000, guid: e70e86d39071f58478811004f797801d, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 2800000, guid: 5ef333b7b93c0c4439cdca2ad64ab646, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DamageAlbedo:
+        m_Texture: {fileID: 2800000, guid: 65df218ee1e84e24b8e06771f2c3dd3c, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _DamageMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DamageNormalMap:
+        m_Texture: {fileID: 2800000, guid: 913c5d7e195c9de42beef6123fdfab54, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _DamageSpecularSmoothness:
+        m_Texture: {fileID: 2800000, guid: 9a19c8976610da94c971b546c0b9c9ab, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ExplosionMask:
+        m_Texture: {fileID: 2800000, guid: e28dc97a9541e3642a48c0e3886688c5, type: 3}
+        m_Scale: {x: 2, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - _ExplosionUniformNoise:
+        m_Texture: {fileID: 2800000, guid: 97318301147cec541bd42658de1bbd7f, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: b351c2c6f1af66a4ab777d87b37ce278, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 5ef333b7b93c0c4439cdca2ad64ab646, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecGlossMap:
+        m_Texture: {fileID: 2800000, guid: 3ec94504a0a6b774f913df415835c095, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularSmoothness:
+        m_Texture: {fileID: 2800000, guid: 3ec94504a0a6b774f913df415835c095, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopTexture0:
+        m_Texture: {fileID: 2800000, guid: cd460ee4ac5c1e746b7a734cc7cc64dd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BlendEnd: 1
+    - _BlendStart: 0
+    - _BloodNormalScale: 0
+    - _BloodSmoothness: 0.921
+    - _BumpScale: 1
+    - _Cutoff: 0.01
+    - _DamageBorderLength: 1
+    - _DamageBorderPower: 0.04
+    - _DamageDisplacement: 0.015
+    - _DamageMaskPower: 1.3
+    - _DamageNormalBlendPower: 10
+    - _DamageNormalScale: 1
+    - _DamageSmoothness: 1
+    - _DamageSpecBlendPower: 10.7
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
+    - _EdgeLength: 15
+    - _ExplosionBlend: 0
+    - _ExplosionSphereRadius: 1.26
+    - _ExplosionUniformScale: 0.17
+    - _GlossMapScale: 1
+    - _Glossiness: 0
+    - _GlossyReflections: 1
+    - _MaskTiling: 0.7
+    - _Metallic: 0
+    - _Mode: 0
+    - _NoisePower: 0
+    - _NormalScale: 1
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Smoothness: 1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _TessMax: 25
+    - _TessMin: 10
+    - _TessValue: 15
+    - _UVSec: 0
+    - _ZWrite: 1
+    - __dirty: 0
+    m_Colors:
+    - _BloodColor: {r: 0.33962226, g: 0.05286555, b: 0.05286555, a: 1}
+    - _BloodSpecular: {r: 0.26415023, g: 0.26415023, b: 0.26415023, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DamageBorderColor: {r: 0.273, g: 0.05308334, b: 0.0015166707, a: 1}
+    - _DamageColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _ExplosionCenter: {r: 0, g: 0, b: -1, a: 0}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

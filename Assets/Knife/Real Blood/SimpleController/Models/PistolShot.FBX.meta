@@ -1,0 +1,310 @@
+fileFormatVersion: 2
+guid: 56fcab368b3764442976054ae4f84f1e
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Box004
+    100002: Camera001
+    100004: CATRigHub001
+    100006: CATRigLArm1
+    100008: CATRigLArm21
+    100010: CATRigLArm22
+    100012: CATRigLArmCollarbone
+    100014: CATRigLArmDigit11
+    100016: CATRigLArmDigit12
+    100018: CATRigLArmDigit13
+    100020: CATRigLArmDigit21
+    100022: CATRigLArmDigit22
+    100024: CATRigLArmDigit23
+    100026: CATRigLArmDigit31
+    100028: CATRigLArmDigit32
+    100030: CATRigLArmDigit33
+    100032: CATRigLArmDigit41
+    100034: CATRigLArmDigit42
+    100036: CATRigLArmDigit43
+    100038: CATRigLArmDigit51
+    100040: CATRigLArmDigit52
+    100042: CATRigLArmDigit53
+    100044: CATRigLArmIKTarget
+    100046: CATRigLArmPalm
+    100048: CATRigRArm1
+    100050: CATRigRArm21
+    100052: CATRigRArm22
+    100054: CATRigRArmCollarbone
+    100056: CATRigRArmDigit11
+    100058: CATRigRArmDigit12
+    100060: CATRigRArmDigit13
+    100062: CATRigRArmDigit21
+    100064: CATRigRArmDigit22
+    100066: CATRigRArmDigit23
+    100068: CATRigRArmDigit31
+    100070: CATRigRArmDigit32
+    100072: CATRigRArmDigit33
+    100074: CATRigRArmDigit41
+    100076: CATRigRArmDigit42
+    100078: CATRigRArmDigit43
+    100080: CATRigRArmDigit51
+    100082: CATRigRArmDigit52
+    100084: CATRigRArmDigit53
+    100086: CATRigRArmPalm
+    100088: Character001
+    100090: full gloves
+    100092: gloves without fingers
+    100094: hands
+    100096: long sleeves
+    100098: Object001
+    100100: Object002
+    100102: Object003
+    100104: Object011
+    100106: Object012
+    100108: Object013
+    100110: Object014
+    100112: Object015
+    100114: short sleeves
+    100116: //RootNode
+    400000: Box004
+    400002: Camera001
+    400004: CATRigHub001
+    400006: CATRigLArm1
+    400008: CATRigLArm21
+    400010: CATRigLArm22
+    400012: CATRigLArmCollarbone
+    400014: CATRigLArmDigit11
+    400016: CATRigLArmDigit12
+    400018: CATRigLArmDigit13
+    400020: CATRigLArmDigit21
+    400022: CATRigLArmDigit22
+    400024: CATRigLArmDigit23
+    400026: CATRigLArmDigit31
+    400028: CATRigLArmDigit32
+    400030: CATRigLArmDigit33
+    400032: CATRigLArmDigit41
+    400034: CATRigLArmDigit42
+    400036: CATRigLArmDigit43
+    400038: CATRigLArmDigit51
+    400040: CATRigLArmDigit52
+    400042: CATRigLArmDigit53
+    400044: CATRigLArmIKTarget
+    400046: CATRigLArmPalm
+    400048: CATRigRArm1
+    400050: CATRigRArm21
+    400052: CATRigRArm22
+    400054: CATRigRArmCollarbone
+    400056: CATRigRArmDigit11
+    400058: CATRigRArmDigit12
+    400060: CATRigRArmDigit13
+    400062: CATRigRArmDigit21
+    400064: CATRigRArmDigit22
+    400066: CATRigRArmDigit23
+    400068: CATRigRArmDigit31
+    400070: CATRigRArmDigit32
+    400072: CATRigRArmDigit33
+    400074: CATRigRArmDigit41
+    400076: CATRigRArmDigit42
+    400078: CATRigRArmDigit43
+    400080: CATRigRArmDigit51
+    400082: CATRigRArmDigit52
+    400084: CATRigRArmDigit53
+    400086: CATRigRArmPalm
+    400088: Character001
+    400090: full gloves
+    400092: gloves without fingers
+    400094: hands
+    400096: long sleeves
+    400098: Object001
+    400100: Object002
+    400102: Object003
+    400104: Object011
+    400106: Object012
+    400108: Object013
+    400110: Object014
+    400112: Object015
+    400114: short sleeves
+    400116: //RootNode
+    2000000: Camera001
+    2100000: Glock 17 -1-
+    2100002: hands
+    2100004: gloves
+    2100006: clothes
+    2300000: Box004
+    2300002: Object001
+    2300004: Object002
+    2300006: Object003
+    2300008: Object011
+    2300010: Object012
+    2300012: Object013
+    2300014: Object014
+    2300016: Object015
+    3300000: Box004
+    3300002: Object001
+    3300004: Object002
+    3300006: Object003
+    3300008: Object011
+    3300010: Object012
+    3300012: Object013
+    3300014: Object014
+    3300016: Object015
+    4300000: Box004
+    4300002: Object011
+    4300004: Object002
+    4300006: Object013
+    4300008: Object001
+    4300010: Object003
+    4300012: Object014
+    4300014: Object012
+    4300016: full gloves
+    4300018: short sleeves
+    4300020: hands
+    4300022: gloves without fingers
+    4300024: long sleeves
+    4300026: Object015
+    7400000: Shot
+    7400002: Idle
+    9500000: //RootNode
+    13700000: full gloves
+    13700002: gloves without fingers
+    13700004: hands
+    13700006: long sleeves
+    13700008: short sleeves
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Shot
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 0
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 12.5
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 0
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.0125
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

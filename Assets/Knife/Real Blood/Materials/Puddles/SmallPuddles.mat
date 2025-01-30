@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SmallPuddles
+  m_Shader: {fileID: 4800000, guid: 61f4eb3602b9f9e4d81cdffe9b0d4f4e, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Albedo:
+        m_Texture: {fileID: 2800000, guid: df76c8b12bb8e6448a86aab9046b523b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: e28dc97a9541e3642a48c0e3886688c5, type: 3}
+        m_Scale: {x: 3, y: 3}
+        m_Offset: {x: 0, y: 0}
+    - _Normals:
+        m_Texture: {fileID: 2800000, guid: b9b3d907646f8694e975a538ef50a976, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Specular:
+        m_Texture: {fileID: 2800000, guid: 27c2987072d30814686f0c1e84f4c6bd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: e28dc97a9541e3642a48c0e3886688c5, type: 3}
+        m_Scale: {x: 0.5, y: 0.5}
+        m_Offset: {x: 1, y: 1}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: 84200b53e638ca340adaafc66e174014, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 1, y: 1}
+    - _TextureSample2:
+        m_Texture: {fileID: 2800000, guid: bd983393eb5e80846838a84a7acaa18d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 1, y: 1}
+    - _TextureSample3:
+        m_Texture: {fileID: 2800000, guid: e28dc97a9541e3642a48c0e3886688c5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample4:
+        m_Texture: {fileID: 2800000, guid: 7344638cbc8aabd4689b930945fe9249, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Alpha: 1
+    - _Border: 0
+    - _Float0: -0
+    - _Float1: 1
+    - _FrameNoise: 100
+    - _MaxDistance: 0.75
+    - _Mul: 25.1
+    - _Mul2: 16.9
+    - _NormalScale: 1
+    - _Power: 39.38
+    - _Power1: 204.93
+    - _Power2: 3.3
+    - _Power3: 2.65
+    - _Radius: 0.618
+    - _ShowFraction: 1
+    - _Smoothness: 1
+    - __dirty: 0
+    m_Colors:
+    - _ColumnsRows: {r: 2, g: 1, b: 0, a: 0}
+    - _Remap: {r: 0, g: 1, b: 0, a: 1}
+    - _SpecularTint: {r: 0, g: 0, b: 0, a: 0}
+    - _Tint: {r: 1, g: 1, b: 1, a: 1}

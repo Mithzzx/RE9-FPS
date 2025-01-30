@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BloodLiquidSurface
+  m_Shader: {fileID: 4800000, guid: 31fae61619f653f45ab866e1b59ec8ef, type: 3}
+  m_ShaderKeywords: _ALPHATEST_ON _STATICNORMAL_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Foam:
+        m_Texture: {fileID: 2800000, guid: d01457b88b1c5174ea4235d140b5fab8, type: 3}
+        m_Scale: {x: 15, y: 15}
+        m_Offset: {x: 0, y: 0}
+    - _FoamAlpha:
+        m_Texture: {fileID: 2800000, guid: d01457b88b1c5174ea4235d140b5fab8, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal1:
+        m_Texture: {fileID: 2800000, guid: dd2fd2df93418444c8e280f1d34deeb5, type: 3}
+        m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
+    - _Normal2:
+        m_Texture: {fileID: 2800000, guid: dd2fd2df93418444c8e280f1d34deeb5, type: 3}
+        m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.5
+    - _Depth: 0.2
+    - _DetailNormalMapScale: 1
+    - _Displacement: 0.63
+    - _Distortion: 5
+    - _DstBlend: 0
+    - _FoamAmplitude: 0.2
+    - _FoamBorderDepth: 0.02
+    - _FoamDepth: 0.05
+    - _FoamFrequency: 10
+    - _FoamSpeed: 0.1
+    - _GlossMapScale: 1
+    - _Glossiness: 0.948
+    - _GlossyReflections: 1
+    - _HeightSoftness: -0.2
+    - _Metallic: 0
+    - _Mode: 1
+    - _NormalOffset: 0.5
+    - _NormalScale1: 0.08
+    - _NormalScale2: 0.04
+    - _NormalStrength: 4
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _Smoothness: 0.9764706
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _StaticNormal: 1
+    - _SurfaceWorldY: -2.45276
+    - _TessMax: 25
+    - _TessMin: 10
+    - _TessValue: 15
+    - _Test: 0.25
+    - _UVSec: 0
+    - _ZWrite: 1
+    - __dirty: 0
+    m_Colors:
+    - _Color: {r: 0.524, g: 0, b: 0, a: 1}
+    - _DepthColor: {r: 0.259, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FoamBorderColor: {r: 0.45098042, g: 0, b: 0, a: 1}
+    - _FoamColor: {r: 0.45282984, g: 0, b: 0, a: 1}
+    - _NormalSpeed1: {r: -0.05, g: -0.05, b: 0, a: 0}
+    - _NormalSpeed2: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _Offset: {r: -0.59000015, g: 0.04, b: 0, a: 0}
+    - _Size: {r: 2, g: 2, b: 0, a: 0}
+    - _SpecularColor: {r: 0.37799868, g: 0.37799868, b: 0.37799868, a: 1}
+    - _WorldOffset: {r: 0, g: 0, b: 0, a: 0}

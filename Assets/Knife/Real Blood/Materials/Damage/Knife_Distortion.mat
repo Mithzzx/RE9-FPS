@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Knife_Distortion
+  m_Shader: {fileID: 4800000, guid: a9b5155e22a432a4baf4193f96f59221, type: 3}
+  m_ShaderKeywords: _SUBSTRACTALPHAFADING_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 5000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 5e511c12facd3474ebbd24d2b202ffa3, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: 3bec9ecfa3d3f254981fbc5038211f52, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ReflectionMap:
+        m_Texture: {fileID: 8900000, guid: c6ba66ab77fde32449695eaf84e29471, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _A: 0.5
+    - _Alpha: 0.963
+    - _AlphaPower: 0.75
+    - _Columns: 4
+    - _Distortion: 0.1
+    - _DistrotionAlphaPower: 2.25
+    - _Frame: 0
+    - _FramesX: 2
+    - _FramesY: 2
+    - _Metallic: 0
+    - _NormalMapLevel: 5.09
+    - _NormalScale: -1
+    - _Rows: 4
+    - _Smoothness: 0.581
+    - _Specular: 0.078
+    - _Specular1: 0
+    - _SpecularNormalMul: 4.75
+    - _SubstractAlphaFading: 1
+    - _T: 0
+    - _T0: 0
+    - __dirty: 0
+    - _test: 0.5
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _ScreenColor: {r: 1, g: 0, b: 0, a: 1}
