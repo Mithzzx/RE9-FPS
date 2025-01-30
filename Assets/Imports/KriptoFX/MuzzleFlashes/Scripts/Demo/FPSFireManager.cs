@@ -9,8 +9,6 @@ public class FPSFireManager : MonoBehaviour
     public GameObject ImpactEffect;
 
 	void Update () {
-        
-        
 	    if (Input.GetMouseButtonDown(0)) {
             
 	        RaycastHit hit;

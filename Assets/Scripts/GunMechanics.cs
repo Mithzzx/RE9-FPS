@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -7,6 +8,7 @@ public class GunMechanics : MonoBehaviour
     [Header("Reference")]
     [SerializeField] private InputHandler input;
     [SerializeField] private RecoilAnimation recoilAnimation;
+    [SerializeField] private GunsDemo gunsDemo;
     [SerializeField] private Camera fpsCam;
     [SerializeField] private PlayerCam mainCam;
     [SerializeField] private Transform muzzle;
@@ -14,6 +16,7 @@ public class GunMechanics : MonoBehaviour
     
     [Header("Characteristics")]
     [SerializeField] public float damage;
+    [SerializeField] private float impactForce = 30f;
     [SerializeField] private float timeBetweenShooting;
     [SerializeField] private float range;
     [SerializeField] private float spread;
@@ -31,9 +34,6 @@ public class GunMechanics : MonoBehaviour
     private bool canShoot;
     private bool reloading;
 
-    [Header("Bullet Holes")]
-    [SerializeField] GameObject bulletHole;
-
     [Header("Muzzle Flash")] 
     [SerializeField] private GameObject muzzleFlash;
 
@@ -50,6 +50,11 @@ public class GunMechanics : MonoBehaviour
     {
         bulletsLeft = magazineSize;
         canShoot = true;
+    }
+
+    private void Start()
+    {
+        gunsDemo = GetComponentInParent<GunsDemo>();
     }
 
     private void Update()
@@ -108,9 +113,16 @@ public class GunMechanics : MonoBehaviour
         if (Physics.Raycast(fpsCam.transform.position, direction, out hit, range))
         {
             //bullet hit effect
-            GameObject bulletHoleInstance = Instantiate(bulletHole, hit.point, new Quaternion());
+            string hitTag = hit.collider.gameObject.tag;
+            GameObject bulletHoleInstance = Instantiate(gunsDemo.GetBulletHole(hitTag), hit.point, new Quaternion());
             bulletHoleInstance.transform.LookAt(hit.point + hit.normal);
             Destroy(bulletHoleInstance, 20);
+            
+            //Adding force to the object
+            if (hit.rigidbody != null)
+            {
+                hit.rigidbody.AddForce(direction * impactForce, ForceMode.Impulse);
+            }
             
             //hit enemy
             var hitBox = hit.collider.GetComponent<HitBox>();

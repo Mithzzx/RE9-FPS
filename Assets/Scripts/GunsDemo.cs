@@ -9,6 +9,7 @@ public class GunsDemo : MonoBehaviour
     [Header("Guns")]
     [SerializeField] private GameObject[] guns;
     [SerializeField] private GameObject[] arms;
+    [SerializeField] private GameObject[] bulletHoles;
     
     int currentGunIndex = 0;
     
@@ -47,5 +48,14 @@ public class GunsDemo : MonoBehaviour
             guns[currentGunIndex].SetActive(true);
             arms[currentGunIndex].SetActive(true);
         }
+    }
+    
+    public GameObject GetBulletHole(string tag)
+    {
+        if (tag == "Enemy")
+        {
+            return bulletHoles[1];
+        }
+        return bulletHoles[0];
     }
 }
