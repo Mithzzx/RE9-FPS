@@ -1,0 +1,80 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8676422740478679109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c02bb70996b49eba31d0c206e28da24, type: 3}
+  m_Name: Behavior Graph Blackboard
+  m_EditorClassIdentifier: 
+  VersionTimestamp: 0
+  AssetID:
+    m_Value0: 0
+    m_Value1: 0
+  m_Blackboard:
+    m_Variables: []
+  m_SharedBlackboardVariableGuids: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad8f2220607dac4db5082ff333fafb8, type: 3}
+  m_Name: Behavior Graph
+  m_EditorClassIdentifier: 
+  Blackboard: {fileID: 2361303010370589647}
+  m_Description: 
+  m_Nodes: []
+  m_VersionTimestamp: 0
+  m_DebugInfo: {fileID: 0}
+  m_RuntimeGraph: {fileID: 0}
+  AssetID:
+    m_Value0: 14381397069235547851
+    m_Value1: 9121791638456795370
+  Story:
+    Story: 
+    StoryVariableNames: []
+    Variables: []
+  m_NodeModelsInfo: []
+  m_Blackboards: []
+  m_MainBlackboardAuthoringAsset: {fileID: 2361303010370589647}
+  m_CommandBuffer:
+    m_Commands: []
+  references:
+    version: 2
+    RefIds: []
+--- !u!114 &2361303010370589647
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd922ae02c94c87a66e46a10a7319b9, type: 3}
+  m_Name: Behavior Graph Blackboard
+  m_EditorClassIdentifier: 
+  AssetID:
+    m_Value0: 0
+    m_Value1: 0
+  m_Variables: []
+  m_VersionTimestamp: 0
+  m_CommandBuffer:
+    m_Commands: []
+  m_RuntimeBlackboardAsset: {fileID: -8676422740478679109}
+  references:
+    version: 2
+    RefIds: []
