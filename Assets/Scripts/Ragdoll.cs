@@ -12,7 +12,6 @@ public class Ragdoll : MonoBehaviour
     {
         rigidbodies = GetComponentsInChildren<Rigidbody>();
         animator = GetComponent<Animator>();
-        locomotion = GetComponent<AILocomotion>();
         DisableRagdoll();
     }
     
@@ -23,7 +22,6 @@ public class Ragdoll : MonoBehaviour
             rb.isKinematic = false;
         }
         animator.enabled = false;
-        locomotion.enabled = false;
     }
     
     public void DisableRagdoll()
@@ -33,6 +31,5 @@ public class Ragdoll : MonoBehaviour
             rb.isKinematic = true;
         }
         animator.enabled = true;
-        locomotion.enabled = true;
     }
 }

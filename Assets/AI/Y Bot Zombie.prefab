@@ -746,7 +746,7 @@ Animator:
   m_GameObject: {fileID: 2043547535134678323}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 84084b531534146f7a2be06f924a6faa, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce63b715341864861b8688bbe05c020a, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -793,6 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  maxDistance: 10
 --- !u!1 &2311887360841295711
 GameObject:
   m_ObjectHideFlags: 0
