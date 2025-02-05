@@ -64,9 +64,6 @@ Assets/Scenes/Tests/**/TestResults*
 [Tt]humbnails/
 Assets/StreamingAssets/
 
-# Ignore Generated Animation Files
-Assets/AnimationClipOverrides/
-
 # Ignore Rider Settings
 .idea/
 
