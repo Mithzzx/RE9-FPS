@@ -13,14 +13,6 @@
 [Mm]emoryCaptures/
 [Uu]nity[Cc]ache/
 
-# Ignore Unity Build and Import folders
-[Bb]uild/
-[Bb]uilds/
-Assets/Import/
-
-# Ignore Plastic SCM
-.plastic/
-
 # Visual Studio / JetBrains Rider / VSCode
 .vscode/
 .idea/
@@ -32,6 +24,10 @@ Assets/Import/
 *.pidb
 *.unityproj
 *.booproj
+
+# Ignore VS Configuration and Custom Ignore Files
+.vsconfig
+ignore.conf
 
 # Script Assemblies & Compiled Files
 *.dll
@@ -72,6 +68,9 @@ Assets/Scenes/Tests/**/TestResults*
 [Tt]humbnails/
 Assets/StreamingAssets/
 
+# Ignore Generated Animation Files
+Assets/AnimationClipOverrides/
+
 # Ignore Rider Settings
 .idea/
 
@@ -98,6 +97,3 @@ DerivedDataCache/
 
 # Ignore Import Folder in Assets
 Assets/Import/
-
-# Ignore Custom Paths (if applicable)
-# !Assets/Scripts/IncludeMe.cs  # Uncomment to explicitly include a file
