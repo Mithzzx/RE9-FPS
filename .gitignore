@@ -13,6 +13,14 @@
 [Mm]emoryCaptures/
 [Uu]nity[Cc]ache/
 
+# Ignore Unity Build and Import folders
+[Bb]uild/
+[Bb]uilds/
+Assets/Import/
+
+# Ignore Plastic SCM
+.plastic/
+
 # Visual Studio / JetBrains Rider / VSCode
 .vscode/
 .idea/
