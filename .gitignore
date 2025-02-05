@@ -2,6 +2,14 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
+Assets/Imports
+.idea/
+.plastic/
+.vsconfig
+.Ds_Store
+ingnore.config
+
+
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
