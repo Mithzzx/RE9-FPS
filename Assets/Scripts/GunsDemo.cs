@@ -10,6 +10,7 @@ public class GunsDemo : MonoBehaviour
     [SerializeField] private GameObject[] guns;
     [SerializeField] private GameObject[] arms;
     [SerializeField] private GameObject[] bulletHoles;
+    [SerializeField] private GameObject[] bloodEffects;
     
     int currentGunIndex = 0;
     
@@ -54,7 +55,7 @@ public class GunsDemo : MonoBehaviour
     {
         if (tag == "Enemy")
         {
-            return bulletHoles[1];
+            return bloodEffects[Random.Range(0, bloodEffects.Length)];
         }
         return bulletHoles[0];
     }

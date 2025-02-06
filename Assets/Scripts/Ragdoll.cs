@@ -6,7 +6,6 @@ public class Ragdoll : MonoBehaviour
 {
     private Rigidbody[] rigidbodies;
     private Animator animator;
-    private AILocomotion locomotion;
 
     private void Start()
     {

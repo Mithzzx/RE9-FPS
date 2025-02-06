@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] private LayerMask deadLayer;
     [SerializeField] private int maxHealth = 100;
-    private float currentHealth;
+    public float currentHealth;
+    
+    public bool IsDead => currentHealth <= 0;
     
     private Ragdoll ragdoll;
     Animator animator;
@@ -32,6 +35,7 @@ public class Health : MonoBehaviour
     
     private void Die()
     {
+        gameObject.layer = deadLayer;
         ragdoll.EnableRagdoll();
     }
 }
