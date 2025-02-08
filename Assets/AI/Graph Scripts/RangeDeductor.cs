@@ -2,68 +2,134 @@ using UnityEngine;
 
 public class RangeDetector : MonoBehaviour
 {
-    public float attackRange = 3f; // Adjustable attack range
-    public float hearingRange = 10f; // Adjustable hearing range
-    public LayerMask targetLayer;
-    public LayerMask enemyLayer;// Layer to detect (e.g., Player)
+    [Header("Detection Ranges")]
+    public float attackRange = 3f;
+    public float hearingRange = 10f;
+    public float visionRange = 15f;
+    public float visionAngle = 45f;
+    
+    [Header("Tags and Layers")]
+    public string targetTag = "Player";
+    public string deadZombieTag = "DeadZombie";
+    public LayerMask obstacleLayer;
+    
+    [Header("Performance Settings")]
+    public float visionCheckInterval = 0.2f;
+    public float hearingCheckInterval = 0.5f;
+
+    private float nextVisionCheck;
+    private float nextHearingCheck;
     private GameObject target;
     private GameObject deadZombie;
+    private bool targetInSight;
+    private bool deadZombieInRange;
+    private Transform cachedTransform;
+    private static readonly Collider[] HitColliders = new Collider[20];
+
+    private void Awake()
+    {
+        cachedTransform = transform;
+        obstacleLayer = LayerMask.GetMask("Obstacle", "Wall");
+    }
+
+    private void Start()
+    {
+        target = GameObject.FindGameObjectWithTag(targetTag);
+        nextVisionCheck = nextHearingCheck = 0f;
+    }
 
     private void Update()
     {
-        // Detect targets within the attack range
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange, targetLayer);
-
-        if (hitColliders.Length > 0)
-        {
-            target = hitColliders[0].gameObject; // Assume the first target is the one to attack
-        }
-        else
-        {
-            target = null;
-        }
+        float currentTime = Time.time;
         
-    }
-    
-    public bool IsTargetInHearingRange()
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, hearingRange, targetLayer);
-        return hitColliders.Length > 0;
-    }
-    
-    public bool IsDeadZombieInHearingRange()
-    {
-        Debug.Log("Checking for dead zombie in hearing range");
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, hearingRange, enemyLayer);
-        if (hitColliders.Length > 0)
+        if (currentTime >= nextVisionCheck)
         {
-            Debug.Log("Dead zombie found in hearing range");
-            deadZombie = hitColliders[0].gameObject; 
-            return true;
+            CheckVision();
+            nextVisionCheck = currentTime + visionCheckInterval;
         }
-        Debug.Log("No dead zombie found in hearing range");
 
-        return false;
+        if (currentTime >= nextHearingCheck)
+        {
+            CheckHearing();
+            nextHearingCheck = currentTime + hearingCheckInterval;
+        }
     }
-    
-    public GameObject GetDeadZombie()
+
+    private void CheckVision()
     {
-        Debug.Log("Returning dead zombie");
-        return deadZombie;
+        if (target == null) return;
+
+        Vector3 directionToTarget = target.transform.position - cachedTransform.position;
+        float distanceToTarget = directionToTarget.magnitude;
+
+        targetInSight = distanceToTarget <= visionRange &&
+                       Vector3.Angle(cachedTransform.forward, directionToTarget) <= visionAngle / 2 &&
+                       !Physics.Raycast(cachedTransform.position, directionToTarget.normalized, 
+                           distanceToTarget, obstacleLayer);
+
+        if (targetInSight)
+        {
+            AIManager.Instance.UpdateLastKnownPosition(target.transform.position);
+        }
     }
+
+    private void CheckHearing()
+    {
+        int numColliders = Physics.OverlapSphereNonAlloc(
+            cachedTransform.position, 
+            hearingRange,
+            HitColliders);
+
+        deadZombieInRange = false;
+        deadZombie = null;
+
+        for (int i = 0; i < numColliders; i++)
+        {
+            if (HitColliders[i].CompareTag(deadZombieTag))
+            {
+                deadZombieInRange = true;
+                deadZombie = HitColliders[i].gameObject;
+                break;
+            }
+        }
+    }
+
+    public bool IsTargetInSight() => targetInSight;
+    public bool IsDeadZombieInRange() => deadZombieInRange;
+    public GameObject GetDeadZombie() => deadZombie;
 
     public bool IsTargetInAttackRange()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange, targetLayer);
-        return hitColliders.Length > 0;
+        return target != null && 
+               Vector3.Distance(cachedTransform.position, target.transform.position) <= attackRange;
     }
 
-    // Visualize the ranges in the editor
     private void OnDrawGizmosSelected()
     {
+        Vector3 position = transform.position;
+        Vector3 forward = transform.forward;
+
+        // Vision cone
+        Gizmos.color = targetInSight ? Color.green : Color.yellow;
+        Vector3 forwardRay = forward * visionRange;
+        Vector3 leftRay = Quaternion.Euler(0, -visionAngle / 2, 0) * forwardRay;
+        Vector3 rightRay = Quaternion.Euler(0, visionAngle / 2, 0) * forwardRay;
+        
+        Gizmos.DrawLine(position, position + leftRay);
+        Gizmos.DrawLine(position, position + rightRay);
+        
+        // Ranges
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(position, attackRange);
+        
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, hearingRange);
+        Gizmos.DrawWireSphere(position, hearingRange);
+        
+        // Last known position
+        if (AIManager.Instance?.HasLastKnownPosition == true)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(AIManager.Instance.LastKnownPlayerPosition, 1f);
+        }
     }
 }
