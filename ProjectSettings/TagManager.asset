@@ -5,22 +5,21 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
-  - DeadZombie
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Muse Animate Posing
+  - 
   - Water
   - UI
   - PostProssing
   - FPS
   - Player
   - Dead
-  - Muse Animate Baking
-  - Muse Animate Handles
-  - Muse Animate Thumbnail
-  - Muse Animate Environment
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private GameObject deadZombie;
+    [SerializeField] private LayerMask deadLayer;
     [SerializeField] private int maxHealth = 100;
     public float currentHealth;
     
@@ -35,7 +35,7 @@ public class Health : MonoBehaviour
     
     private void Die()
     {
-        deadZombie.SetActive(true);
+        gameObject.layer = deadLayer;
         ragdoll.EnableRagdoll();
     }
 }
