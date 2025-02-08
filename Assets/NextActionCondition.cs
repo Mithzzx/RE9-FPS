@@ -2,39 +2,35 @@ using System;
 using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.Serialization;
-
 [Serializable, Unity.Properties.GeneratePropertyBag]
-[Condition(name: "NextAction", story: "Can Eat dead Zombie in [Range]", category: "Conditions", id: "1097021c6822a70662726386287d6e4d")]
+[Condition(name: "NextAction", story: "Check for dead zombies in range and decide to Eat", 
+    category: "Conditions", id: "1097021c6822a70662726386287d6e4d")]
 public partial class NextActionCondition : Condition
 {
-    [FormerlySerializedAs("Range")] [SerializeReference] public BlackboardVariable<RangeDetector> range;
-    [SerializeField] public BlackboardVariable<float> percentage = new BlackboardVariable<float>(30f); // Percentage chance to return true
+    [SerializeReference] private BlackboardVariable<RangeDetector> range;
+    [SerializeField] private BlackboardVariable<float> percentage = new(100f);
+
+    private static readonly System.Random Random = new();
 
     public override bool IsTrue()
     {
-        if (!range.Value)
+        var detector = range.Value;
+        if (detector == null) return false;
+        
+        if (detector.IsDeadZombieInHearingRange()) 
+        {Debug.Log("Dead zombie is in hearing range");}
+        else
         {
-            return false;
+            Debug.Log("Dead zombie is not in hearing range");
         }
 
-        // Check if there is a dead zombie in range
-        bool isDeadZombieInRange = range.Value.IsDeadZombieInHearingRange();
-
-        // Return true based on the specified percentage
-        if (isDeadZombieInRange)
-        {
-            Debug.Log("Can Eat dead Zombie in [Range]");
-            return UnityEngine.Random.Range(0f, 100f) < percentage;
-        }
-        Debug.Log("Can't Eat dead Zombie in [Range]");
-        return false;
+        return detector.IsDeadZombieInHearingRange() && 
+               Random.NextDouble() * 100 < percentage.Value;
     }
 
     public override void OnStart()
     {
+        if (range.Value == null) Debug.Log("RangeDetector is not set");
     }
-
-    public override void OnEnd()
-    {
-    }
+    public override void OnEnd() { }
 }

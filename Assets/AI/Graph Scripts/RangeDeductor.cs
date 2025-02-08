@@ -1,69 +1,98 @@
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 public class RangeDetector : MonoBehaviour
 {
-    public float attackRange = 3f; // Adjustable attack range
-    public float hearingRange = 10f; // Adjustable hearing range
-    public LayerMask targetLayer;
-    public LayerMask enemyLayer;// Layer to detect (e.g., Player)
-    private GameObject target;
-    private GameObject deadZombie;
+    [SerializeField] private float attackRange = 3f;
+    [SerializeField] private float hearingRange = 10f;
+    [SerializeField] private string targetTag = "Player";
+    [SerializeField] private string deadTag = "Dead";
+
+    private readonly Collider[] hitColliderBuffer = new Collider[10]; // Reusable buffer
+    private GameObject currentTarget;
+    private GameObject currentDeadZombie;
+    private Transform cachedTransform;
+
+    private void Awake()
+    {
+        cachedTransform = transform;
+    }
 
     private void Update()
     {
-        // Detect targets within the attack range
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange, targetLayer);
+        int hitCount = Physics.OverlapSphereNonAlloc(
+            cachedTransform.position,
+            attackRange,
+            hitColliderBuffer
+        );
 
-        if (hitColliders.Length > 0)
+        currentTarget = null;
+        for (int i = 0; i < hitCount; i++)
         {
-            target = hitColliders[0].gameObject; // Assume the first target is the one to attack
+            if (hitColliderBuffer[i].CompareTag(targetTag))
+            {
+                currentTarget = hitColliderBuffer[i].gameObject;
+                break;
+            }
         }
-        else
-        {
-            target = null;
-        }
-        
     }
-    
+
     public bool IsTargetInHearingRange()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, hearingRange, targetLayer);
-        return hitColliders.Length > 0;
-    }
-    
-    public bool IsDeadZombieInHearingRange()
-    {
-        Debug.Log("Checking for dead zombie in hearing range");
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, hearingRange, enemyLayer);
-        if (hitColliders.Length > 0)
+        int hitCount = Physics.OverlapSphereNonAlloc(
+            cachedTransform.position,
+            hearingRange,
+            hitColliderBuffer
+        );
+
+        for (int i = 0; i < hitCount; i++)
         {
-            Debug.Log("Dead zombie found in hearing range");
-            deadZombie = hitColliders[0].gameObject; 
-            return true;
+            if (hitColliderBuffer[i].CompareTag(targetTag))
+            {
+                return true;
+            }
         }
-        Debug.Log("No dead zombie found in hearing range");
 
         return false;
     }
-    
-    public GameObject GetDeadZombie()
+
+    public bool IsDeadZombieInHearingRange()
     {
-        Debug.Log("Returning dead zombie");
-        return deadZombie;
+        int hitCount = Physics.OverlapSphereNonAlloc(
+            cachedTransform.position,
+            hearingRange,
+            hitColliderBuffer
+        );
+
+        currentDeadZombie = null;
+        for (int i = 0; i < hitCount; i++)
+        {
+            Debug.Log(hitColliderBuffer[i].name+hitColliderBuffer[i].tag);
+            if (hitColliderBuffer[i].CompareTag(deadTag))
+            {
+                currentDeadZombie = hitColliderBuffer[i].gameObject;
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public bool IsTargetInAttackRange()
-    {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRange, targetLayer);
-        return hitColliders.Length > 0;
-    }
+    public GameObject GetDeadZombie() => currentDeadZombie;
 
-    // Visualize the ranges in the editor
+    public bool IsTargetInAttackRange() => currentTarget != null;
+
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, hearingRange);
+        Vector3 position = transform.position;
+
+        // Attack range
+        Gizmos.color = new Color(1f, 0f, 0f, 0.3f);
+        Gizmos.DrawWireSphere(position, attackRange);
+
+        // Hearing range
+        Gizmos.color = new Color(0f, 0f, 1f, 0.3f);
+        Gizmos.DrawWireSphere(position, hearingRange);
     }
 }
