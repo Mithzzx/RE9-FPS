@@ -16,17 +16,24 @@ public class ZombieRandom : MonoBehaviour
         // Assign the new AnimatorOverrideController to the Animator
         animator.runtimeAnimatorController = overrideController;
 
-        SetRandomAnimation();
+        SetWalkAnimation();
     }
 
-    public void SetRandomAnimation()
+    public void SetWalkAnimation()
     {
         // Pick a random idle animation from the array
-        AnimationClip selectedIdle = idleAnimations[Random.Range(0, idleAnimations.Length)];
         AnimationClip selectedWalk = walkForwardAnimations[Random.Range(0, walkForwardAnimations.Length)];
 
         // Override the idle animation in the Blend Tree
-        overrideController["Idle_Default"] = selectedIdle;
         overrideController["Walk_Forward"] = selectedWalk;
+    }
+    
+    public void SetIdleAnimation()
+    {
+        // Pick a random idle animation from the array
+        AnimationClip selectedIdle = idleAnimations[Random.Range(0, idleAnimations.Length)];
+
+        // Override the idle animation in the Blend Tree
+        overrideController["Idle_Default"] = selectedIdle;
     }
 }

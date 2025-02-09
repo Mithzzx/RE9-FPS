@@ -118,6 +118,11 @@ public class GunMechanics : MonoBehaviour
             bulletHoleInstance.transform.LookAt(hit.point + hit.normal);
             Destroy(bulletHoleInstance, 20);
             
+            if (hitTag == "Enemy")
+            {
+                Instantiate(gunsDemo.decal, hit.point, Random.rotation);
+            }
+            
             //Adding force to the object
             if (hit.rigidbody != null)
             {

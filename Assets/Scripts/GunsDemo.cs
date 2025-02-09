@@ -10,7 +10,8 @@ public class GunsDemo : MonoBehaviour
     [SerializeField] private GameObject[] guns;
     [SerializeField] private GameObject[] arms;
     [SerializeField] private GameObject[] bulletHoles;
-    [SerializeField] private GameObject[] bloodEffects;
+    [SerializeField] private GameObject[] bloodEffects; 
+    public GameObject decal;
     
     int currentGunIndex = 0;
     

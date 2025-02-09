@@ -3,7 +3,7 @@ using Unity.Behavior;
 using UnityEngine;
 
 [Serializable, Unity.Properties.GeneratePropertyBag]
-[Condition(name: "NextAction", story: "Check if AI can eat dead zombie", category: "Conditions")]
+[Condition(name: "NextAction", story: "Check if any dead Zombie in [range] and decide to eat", category: "Conditions")]
 public partial class NextActionCondition : Condition
 {
     [SerializeReference] public BlackboardVariable<RangeDetector> range;
@@ -13,9 +13,15 @@ public partial class NextActionCondition : Condition
 
     public override bool IsTrue()
     {
-        if (range?.Value == null) return false;
+        if (range?.Value == null)
+        {
+            Debug.LogError("Range detector is not set");
+            return false;
+        }
         
+        Debug.Log(range.Value.IsDeadZombieInRange());
         return range.Value.IsDeadZombieInRange() && 
                Random.NextDouble() * 100 < percentage;
     }
+    
 }

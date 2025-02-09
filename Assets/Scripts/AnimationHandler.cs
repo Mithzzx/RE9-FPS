@@ -51,15 +51,12 @@ public class AnimationHandler : MonoBehaviour
 
     void Update()
     {
-        // Get Vector2's x and y values (e.g., from Input.GetAxis)
-        Vector2 inputVector = input.MoveInput; // -1 to 1 range for vertical input
-
         // Determine targetValueY
         if (input.SprintTriggered) // Shift key pressed
         {
             targetValue = 2f;
         }
-        else if (inputVector.magnitude == 0) // No input for y
+        else if (input.MoveInput.magnitude == 0) // No input for y
         {
             targetValue = 0f;
         }
@@ -72,21 +69,21 @@ public class AnimationHandler : MonoBehaviour
         // Smoothly increase or decrease valueY based on targetValueY
         if (yVelocity < targetValue)
         {
-            yVelocity = Mathf.Lerp(yVelocity, targetValue*inputVector.y, Time.deltaTime * increaseSpeed);
+            yVelocity = Mathf.Lerp(yVelocity, targetValue*input.MoveInput.y, Time.deltaTime * increaseSpeed);
         }
         else if (yVelocity > targetValue)
         {
-            yVelocity = Mathf.Lerp(yVelocity, targetValue*inputVector.y, Time.deltaTime * decreaseSpeed);
+            yVelocity = Mathf.Lerp(yVelocity, targetValue*input.MoveInput.y, Time.deltaTime * decreaseSpeed);
         }
 
         // Smoothly increase or decrease valueX based on targetValueX
         if (xVelocity < targetValue)
         {
-            xVelocity = Mathf.Lerp(xVelocity, targetValue*inputVector.x, Time.deltaTime * increaseSpeed);
+            xVelocity = Mathf.Lerp(xVelocity, targetValue*input.MoveInput.x, Time.deltaTime * increaseSpeed);
         }
         else if (xVelocity > targetValue)
         {
-            xVelocity = Mathf.Lerp(xVelocity, targetValue*inputVector.x, Time.deltaTime * decreaseSpeed);
+            xVelocity = Mathf.Lerp(xVelocity, targetValue*input.MoveInput.x, Time.deltaTime * decreaseSpeed);
         }
 
         if (!lowerBodyScript.rootMotion)

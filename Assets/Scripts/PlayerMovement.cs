@@ -130,10 +130,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+        Vector2 moveVector = input.MoveInput.normalized;
         if (activeGrapple) return;
         if (swinging) return;
         
-        moveDirection = orientation.forward * input.MoveInput.y + orientation.right * input.MoveInput.x;
+        moveDirection = orientation.forward * moveVector.y + orientation.right * moveVector.x;
         moveDirection.y = 0;
         moveDirection.Normalize();
 
