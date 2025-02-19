@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ZombieRandom : MonoBehaviour
 {
@@ -7,16 +9,20 @@ public class ZombieRandom : MonoBehaviour
     public AnimationClip[] idleAnimations;
     public AnimationClip[] walkForwardAnimations;
     private AnimatorOverrideController overrideController;
-    
-    void Start()
+
+    private void Awake()
     {
         // Get the existing Animator Controller
         overrideController = new AnimatorOverrideController(animator.runtimeAnimatorController);
 
         // Assign the new AnimatorOverrideController to the Animator
         animator.runtimeAnimatorController = overrideController;
+    }
 
+    void Start()
+    {
         SetWalkAnimation();
+        SetIdleAnimation();
     }
 
     public void SetWalkAnimation()

@@ -186,16 +186,26 @@ public class AISensor : MonoBehaviour
         }
     }
     
-    public int Filter(GameObject[] buffer, string layerName)
+    public int Filter(GameObject[] buffer, string layerName, bool inSight)
     {
-        int index = 0;
-        for (int i = 0; i < objectsInSight.Count; i++)
+        int layer = LayerMask.NameToLayer(layerName);
+        int count = 0;
+        
+        var objects = inSight ? objectsInSight : objectsInRange;
+        foreach (var obj in objects)
         {
-            if (objectsInSight[i].layer == LayerMask.NameToLayer(layerName))
+            if (obj.layer == layer)
             {
-                buffer[index++] = objectsInSight[i];
+                buffer[count++] = obj;
             }
+            
+            if (count == buffer.Length)
+            {
+                break;
+            }
+           
         }
-        return index;
-    } 
+
+        return count;
+    }
 }
