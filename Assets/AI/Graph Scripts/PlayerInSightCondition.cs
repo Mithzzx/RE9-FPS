@@ -3,7 +3,7 @@ using Unity.Behavior;
 using UnityEngine;
 
 [Serializable, Unity.Properties.GeneratePropertyBag]
-[Condition(name: "Player in Sight", story: "[Player] is in sight of Zombie", category: "Conditions", id: "1ac3f648263f0d364ddb6365e5437785")]
+[Condition(name: "Player in Sight", story: "[Player] is in [sensor] of Zombie", category: "Conditions", id: "1ac3f648263f0d364ddb6365e5437785")]
 public partial class PlayerInSightCondition : Condition
 {
     [SerializeReference] public BlackboardVariable<GameObject> player;

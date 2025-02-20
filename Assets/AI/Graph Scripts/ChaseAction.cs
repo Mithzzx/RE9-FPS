@@ -8,7 +8,7 @@ using Unity.Properties;
 using Debug = UnityEngine.Debug;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "Chase", story: "Chase target with vision cone awareness and memory", category: "Action")]
+[NodeDescription(name: "SmartChase", story: "Intelligently chases target with position prediction", category: "Action")]
 public partial class ChaseAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> ai;
@@ -17,91 +17,104 @@ public partial class ChaseAction : Action
     [SerializeReference] public BlackboardVariable<NavMeshAgent> agent;
     [SerializeReference] public BlackboardVariable<RangeDetector> rangeDetector;
     
-    [SerializeReference] public BlackboardVariable<float> baseSpeed = new BlackboardVariable<float>(3.5f);
-    [SerializeReference] public BlackboardVariable<float> maxSpeed = new BlackboardVariable<float>(7f);
-    [SerializeReference] public BlackboardVariable<float> searchDuration = new BlackboardVariable<float>(30f);
+    [SerializeReference] public BlackboardVariable<float> speed = new BlackboardVariable<float>(0.3f);
+    [SerializeReference] public BlackboardVariable<float> acceleration = new BlackboardVariable<float>(0.08f);
+    [SerializeReference] public BlackboardVariable<float> stoppingDistance = new BlackboardVariable<float>(0.5f);
     
-    private Vector3 currentDestination;
-    private bool isSearching;
-    private float searchStartTime;
+    // New variables for prediction
+    [SerializeReference] public BlackboardVariable<float> predictionTime = new BlackboardVariable<float>(0.5f);
+    [SerializeReference] public BlackboardVariable<float> maxPredictionDistance = new BlackboardVariable<float>(5f);
     
-    private static readonly int SpeedHash = Animator.StringToHash("XSpeed");
-
+    private Vector3 lastTargetPosition;
+    private Vector3 targetVelocity;
+    private float lastUpdateTime;
+    
+    private static readonly int XSpeed = Animator.StringToHash("XSpeed");
+    
     protected override Status OnStart()
     {
-        if (!ValidateReferences()) return Status.Failure;
+        if (!ValidateReferences())
+            return Status.Failure;
+            
+        // Initialize tracking variables
+        lastTargetPosition = target.Value.transform.position;
+        lastUpdateTime = Time.time;
+        targetVelocity = Vector3.zero;
         
-        agent.Value.speed = baseSpeed.Value;
-        agent.Value.stoppingDistance = 1.5f;
-        isSearching = false;
-        
+        // Configure NavMeshAgent
+        agent.Value.speed = speed.Value;
+        agent.Value.acceleration = acceleration.Value;
+        agent.Value.stoppingDistance = stoppingDistance.Value;
+            
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        if (!ValidateReferences()) return Status.Failure;
-
-        if (rangeDetector.Value.IsTargetInSight())
-        {
-            Debug.Log("Target in sight");
-            // Direct chase when target is visible
-            currentDestination = target.Value.transform.position;
-            agent.Value.speed = maxSpeed.Value;
-            isSearching = false;
-        }
-        else if (AIManager.Instance.HasLastKnownPosition && !isSearching)
-        {
-            Debug.Log("moving to last known position");
-            // Move to last known position if not already searching
-            currentDestination = AIManager.Instance.LastKnownPlayerPosition;
-            agent.Value.speed = baseSpeed.Value;
-            isSearching = true;
-            searchStartTime = Time.time;
-        }
-        else if (isSearching && Time.time - searchStartTime > searchDuration.Value)
-        {
-            Debug.Log("Search timeout");
-            // Give up search after duration
+        if (!ValidateReferences())
             return Status.Failure;
-        }
-        Debug.Log("Moving to destination");
 
-        agent.Value.SetDestination(currentDestination);
-        UpdateAnimator();
+        // Update target velocity calculation
+        float deltaTime = Time.time - lastUpdateTime;
+        if (deltaTime > 0)
+        {
+            Vector3 currentTargetPosition = target.Value.transform.position;
+            targetVelocity = (currentTargetPosition - lastTargetPosition) / deltaTime;
+            lastTargetPosition = currentTargetPosition;
+            lastUpdateTime = Time.time;
+        }
+
+        // Calculate predicted position
+        Vector3 predictedPosition = CalculatePredictedPosition();
         
-        // Check if the agent has reached the destination
-        if (!agent.Value.pathPending && agent.Value.remainingDistance <= agent.Value.stoppingDistance)
-        {
-            if (!agent.Value.hasPath || agent.Value.velocity.sqrMagnitude == 0f)
-            {
-                return Status.Success;
-            }
-        }
+        // Set destination for NavMeshAgent
+        agent.Value.SetDestination(predictedPosition);
 
-        return Status.Running;
-    }
+        // Update animator parameters based on actual movement
+        Vector3 velocity = agent.Value.velocity;
+        animator.Value.SetFloat(XSpeed, (velocity.magnitude/agent.Value.speed)*2f);
 
-    private bool ValidateReferences()
-    {
-        return ai.Value != null && target.Value != null && 
-               agent.Value != null && animator.Value != null && 
-               rangeDetector.Value != null;
-    }
-
-    private void UpdateAnimator()
-    {
-        if (animator.Value != null)
-        {
-            animator.Value.SetFloat(SpeedHash, agent.Value.velocity.magnitude);
-        }
+        // Return status based on distance to target
+        float distanceToTarget = Vector3.Distance(ai.Value.transform.position, target.Value.transform.position);
+        return distanceToTarget <= stoppingDistance.Value ? Status.Success : Status.Running;
     }
 
     protected override void OnEnd()
     {
-        if (animator.Value != null)
+        if (agent.Value)
+            agent.Value.ResetPath();
+    }
+    
+    private Vector3 CalculatePredictedPosition()
+    {
+        Vector3 currentPosition = target.Value.transform.position;
+        
+        // Calculate base prediction
+        float distanceToTarget = Vector3.Distance(ai.Value.transform.position, currentPosition);
+        float predictionTimeScale = Mathf.Clamp(distanceToTarget / agent.Value.speed, 0, predictionTime.Value);
+        Vector3 prediction = currentPosition + (targetVelocity * predictionTimeScale);
+        
+        // Limit prediction distance
+        Vector3 predictionOffset = prediction - currentPosition;
+        if (predictionOffset.magnitude > maxPredictionDistance.Value)
         {
-            animator.Value.SetFloat(SpeedHash, 0);
+            prediction = currentPosition + (predictionOffset.normalized * maxPredictionDistance.Value);
         }
+        
+        // Validate prediction is on NavMesh
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(prediction, out hit, 1.0f, NavMesh.AllAreas))
+        {
+            prediction = hit.position;
+        }
+        
+        return prediction;
+    }
+    
+    private bool ValidateReferences()
+    {
+        return ai.Value && 
+               target.Value && 
+               agent.Value;
     }
 }
