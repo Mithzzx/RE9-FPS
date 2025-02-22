@@ -5,7 +5,7 @@ using UnityEngine;
 public class AISensor : MonoBehaviour
 {
     [SerializeField] private float distance = 10;
-    [SerializeField] private float angle = 30;
+    [SerializeField] public float angle = 30;
     [SerializeField] private float height = 1.0f;
     [SerializeField] private Color meshColor = Color.red;
     [SerializeField] private int scanFrequency = 30;
@@ -19,7 +19,6 @@ public class AISensor : MonoBehaviour
     private int count;
     private float scanInterval;
     private float scanTimer;
-    
 
     void Start()
     {

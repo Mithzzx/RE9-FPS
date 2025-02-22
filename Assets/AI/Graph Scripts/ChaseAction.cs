@@ -7,16 +7,17 @@ using Unity.Properties;
 using Random = UnityEngine.Random;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "SmartChase", story: "Intelligently chases target with position prediction and random path variation", category: "Action")]
+[NodeDescription(name: "SmartChase", story: "Naturally chase target", category: "Action")]
 public partial class ChaseAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> ai;
     [SerializeReference] public BlackboardVariable<GameObject> target;
     [SerializeReference] public BlackboardVariable<Animator> animator;
     [SerializeReference] public BlackboardVariable<NavMeshAgent> agent;
-    [SerializeReference] public BlackboardVariable<RangeDetector> rangeDetector;
+    [SerializeReference] public BlackboardVariable<AISensor> sensor;
+    [SerializeReference] public BlackboardVariable<Vector3> lastSeenPosition; // New variable for tracking last seen position
     
-    [SerializeReference] public BlackboardVariable<float> speed = new BlackboardVariable<float>(3f);
+    [SerializeReference] public BlackboardVariable<float> speed = new BlackboardVariable<float>(2f);
     [SerializeReference] public BlackboardVariable<float> acceleration = new BlackboardVariable<float>(8f);
     [SerializeReference] public BlackboardVariable<float> stoppingDistance = new BlackboardVariable<float>(0.5f);
     
@@ -24,13 +25,12 @@ public partial class ChaseAction : Action
     [SerializeReference] public BlackboardVariable<float> predictionTime = new BlackboardVariable<float>(0.5f);
     [SerializeReference] public BlackboardVariable<float> maxPredictionDistance = new BlackboardVariable<float>(5f);
     
-    // Path randomization variables - adjusted for more noticeable random movement
-    [SerializeReference] public BlackboardVariable<float> pathRandomizationRadius = new BlackboardVariable<float>(3f); // Increased radius
+    // Path randomization variables
+    [SerializeReference] public BlackboardVariable<float> pathRandomizationRadius = new BlackboardVariable<float>(3f);
     [SerializeReference] public BlackboardVariable<float> pathUpdateInterval = new BlackboardVariable<float>(0.75f);
-    [SerializeReference] public BlackboardVariable<int> waypointsCount = new BlackboardVariable<int>(3); // More waypoints
+    [SerializeReference] public BlackboardVariable<int> waypointsCount = new BlackboardVariable<int>(3);
     
-    // New variables to control behavior switching
-    [SerializeReference] public BlackboardVariable<float> directPursuitThreshold = new BlackboardVariable<float>(2f); // Distance threshold for direct pursuit
+    [SerializeReference] public BlackboardVariable<float> directPursuitThreshold = new BlackboardVariable<float>(2f);
     
     private Vector3 lastTargetPosition;
     private Vector3 targetVelocity;
@@ -41,6 +41,8 @@ public partial class ChaseAction : Action
     private bool isDirectPursuit;
     private bool hasReachedTarget;
     private float nextPathUpdateTime;
+    private bool targetWasInSight; // New tracking variable
+    private float visionAngle;
     
     private static readonly int XSpeed = Animator.StringToHash("XSpeed");
     
@@ -49,22 +51,23 @@ public partial class ChaseAction : Action
         if (!ValidateReferences())
             return Status.Failure;
             
-        // Initialize tracking variables
         lastTargetPosition = target.Value.transform.position;
         lastUpdateTime = Time.time;
         lastPathUpdateTime = Time.time;
         nextPathUpdateTime = Time.time;
         targetVelocity = Vector3.zero;
-        isDirectPursuit = false; // Start with random path movement
+        isDirectPursuit = false;
         hasReachedTarget = false;
+        targetWasInSight = true; // Initialize as true since we're starting the chase
+        visionAngle = sensor.Value.angle;
+        sensor.Value.angle = 350f; // Increase sensor angle to detect target
         
-        // Initialize waypoints
+        // Initialize lastSeenPosition with current target position
+        lastSeenPosition.Value = target.Value.transform.position;
+        
         randomWaypoints = new Vector3[waypointsCount.Value];
         
-        // Configure NavMeshAgent
         ConfigureAgent();
-        
-        // Generate initial random path
         GenerateRandomPath();
             
         return Status.Running;
@@ -75,19 +78,39 @@ public partial class ChaseAction : Action
         if (!ValidateReferences())
             return Status.Failure;
 
+        // Check if target is in sight
+        GameObject[] targetObj = new GameObject[1];
+        bool targetInSight = sensor.Value.Filter(targetObj, "Player", true) > 0;
+        
+        // If target just went out of sight
+        if (!targetInSight && targetWasInSight)
+        {
+            // Update last seen position before returning failure
+            lastSeenPosition.Value = lastTargetPosition;
+            sensor.Value.angle = visionAngle;
+            targetWasInSight = false;
+            return Status.Failure;
+        }
+
+        // Update tracking state
+        targetWasInSight = targetInSight;
+
+        // If target is in sight, update last seen position
+        if (targetInSight)
+        {
+            lastSeenPosition.Value = target.Value.transform.position;
+        }
+
         float distanceToTarget = Vector3.Distance(ai.Value.transform.position, target.Value.transform.position);
 
-        // Update target velocity calculation
         UpdateTargetVelocity();
 
-        // Check if we've reached the target
         if (distanceToTarget <= stoppingDistance.Value)
         {
             hasReachedTarget = true;
             return Status.Success;
         }
 
-        // Only switch to direct pursuit when very close or target is moving very fast
         bool shouldDirectPursue = distanceToTarget < directPursuitThreshold.Value;
 
         if (shouldDirectPursue && !isDirectPursuit)
@@ -103,7 +126,6 @@ public partial class ChaseAction : Action
 
         if (!isDirectPursuit)
         {
-            // Update random path periodically
             if (Time.time >= nextPathUpdateTime)
             {
                 GenerateRandomPath();
@@ -117,10 +139,7 @@ public partial class ChaseAction : Action
             agent.Value.SetDestination(CalculatePredictedPosition());
         }
 
-        // Ensure the agent is actually moving
         EnsureAgentMovement();
-
-        // Update animator parameters
         UpdateAnimator();
 
         return Status.Running;

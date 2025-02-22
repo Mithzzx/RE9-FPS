@@ -1,12 +1,12 @@
 using Unity.Behavior;
 
 [BlackboardEnum]
-public enum CurrentState
+public enum ZombieState
 {
     Idle,
 	Wander,
 	Eat,
 	Chase,
 	Attack,
-	Bite
+	Search
 }
